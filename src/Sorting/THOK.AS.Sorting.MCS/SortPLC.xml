@@ -1,0 +1,20 @@
+﻿<?xml version='1.0' ?>
+<Config>
+  <OPCServer ConnectionString="OPC.SimaticNET">
+    <OPCGroup GroupName="DefaultGroup" GroupString="S7:[S7 connection_1]" UpdateRate="250">
+      <OPCItem ItemName="OrderRequest" ClientHandler="1" OPCItemName="DB2,INT0,1"  ItemType="READ"/>
+      <OPCItem ItemName="CurrentOrder" ClientHandler="2" OPCItemName="DB2,INT2,1"  ItemType="READ"/>
+      <OPCItem ItemName="OrderData" ClientHandler="3" OPCItemName="DB10,INT0,90"  ItemType="WRITE"/>
+      <OPCItem ItemName="ChannelData" ClientHandler="4" OPCItemName="DB9,INT0,86"  ItemType="WRITE"/>
+      <OPCItem ItemName="ChannelChangeData" ClientHandler="5" OPCItemName="DB9,INT226,3"  ItemType="WRITE"/>
+      <OPCItem ItemName="RestartData" ClientHandler="6" OPCItemName="DB9,INT172,1"  ItemType="WRITE"/>
+      <OPCItem ItemName="EmptyErr" ClientHandler="7" OPCItemName="DB9,INT174,1"  ItemType="READ"/>
+      <OPCItem ItemName="MissOrder" ClientHandler="8" OPCItemName="DB9,INT176,1"  ItemType="READ"/>
+      <OPCItem ItemName="UpdateMissOrder" ClientHandler="9" OPCItemName="DB9,INT178,1"  ItemType="WRITE"/>
+      <OPCItem ItemName="Check" ClientHandler="10" OPCItemName="DB7,INT0,86"  ItemType="READ" IsActive="false"/>
+      <OPCItem ItemName="RouteChannageTag" ClientHandler="11" OPCItemName="DB9,INT220,1"  ItemType="WRITE"/>
+      <OPCItem ItemName="SortingOrder" ClientHandler="12" OPCItemName="DB3,INT0,1"  ItemType="READ" />
+	  <OPCItem ItemName="SortStatus" ClientHandler="13" OPCItemName="DB2,INT6,1"  ItemType="READ" />
+    </OPCGroup>
+  </OPCServer>
+</Config>
