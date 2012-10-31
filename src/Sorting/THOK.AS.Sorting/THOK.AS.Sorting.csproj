@@ -306,6 +306,12 @@
   <ItemGroup>
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\THOK.MCP.Service.LEDBarScreen\THOK.MCP.Service.LEDBarScreen.csproj">
+      <Project>{BFEB5A96-4B53-4726-96F9-189D3B441688}</Project>
+      <Name>THOK.MCP.Service.LEDBarScreen</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
