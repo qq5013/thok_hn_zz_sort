@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+	<Set rollSpeed="5" rollTime="40" />
+	<LEDGroup top="0" left="0" groupNo="0"/>
+	<LEDGroup top="64" left="0" groupNo="1"/>
+	<LEDGroup top="128" left="0" groupNo="2"/>
+	<LEDGroup top="192" left="0" groupNo="3"/>
+	<LEDGroup top="256" left="0" groupNo="4"/>
+	<LEDGroup top="320" left="0" groupNo="5"/>
+</Config>

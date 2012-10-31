@@ -11,7 +11,7 @@ namespace THOK.AS.Dal
     {
         public DataSet GetUserList(int pageIndex, int pageSize, string filter)
         {
-            using (PersistentManager persistentManager = new PersistentManager())
+            using (PersistentManager persistentManager = new PersistentManager("DefaultConnection"))
             {
                 SysUserDao userDao = new SysUserDao();
                 return userDao.FindAll((pageIndex - 1) * pageSize, pageSize, filter);
