@@ -2,31 +2,17 @@
 <Configuration>
   <LogLevel>DEBUG</LogLevel>
   <Attributes>
-    <Attribute Name="LineCode" Value="01" />
+    <Attribute Name="LineCode" Value="02" />
     <Attribute Name="ExportIP" Value="192.168.1.47" />
     <Attribute Name="ExportPort" Value="5000" />
     <Attribute Name="SupplyIP" Value="192.168.1.49" />
     <Attribute Name="SupplyPort" Value="7000" />
     <Attribute Name="SortLedIP" Value="192.168.1.50" />
     <Attribute Name="SortLedPort" Value="6000" />
-    
-    <Attribute Name="SysName" Value="Sorting" />
-    <Attribute Name="ServerIP" Value="127.0.0.1" />
-    <Attribute Name="ServerPort" Value="5000" />
-    <Attribute Name="ListenPort" Value="6000" />
-    <Attribute Name="ExportServerIP" Value="127.0.0.1" />
-    <Attribute Name="ExportServerPort" Value="5000" />
-    <Attribute Name="LEDServerIP" Value="192.168.1.111" />
-    <Attribute Name="LEDServerPort" Value="7777" />
-    <!--<Attribute Name="LineCode" Value="01" />-->
-    <Attribute Name="CurrentBatchDate" Value="2009-03-05" />
-    <Attribute Name="CurrentBatchNO" Value="1" />
-    
   </Attributes>
   <Services>
-    <!--<Service Name="SortPLC" Type="THOK.MCP.Service.Siemens.dll, THOK.MCP.Service.Siemens.OPCService" ConfigFile="SortPLC.xml" />-->
-    <Service Name="LedBarScreen" Type="THOK.MCP.Service.LEDBarScreen.dll, THOK.MCP.Service.LEDBarScreen.LEDBarScreenService" ConfigFile="Led.xml" />
-    <!--<Service Name="PackPLC" Type="THOK.MCP.Service.Package.dll, THOK.MCP.Service.Package.S7200Service" ConfigFile="PackPLC.xml" />-->
+    <!--<Service Name="SortPLC" Type="THOK.MCP.Service.Siemens.dll, THOK.MCP.Service.Siemens.OPCService" ConfigFile="SortPLC.xml" />
+    <Service Name="PackPLC" Type="THOK.MCP.Service.Package.dll, THOK.MCP.Service.Package.S7200Service" ConfigFile="PackPLC.xml" />-->
   </Services>
   <Processes>
     <Process Name="OrderRequestProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.OrderRequestProcess" Suspend="true">
@@ -38,19 +24,18 @@
     <Process Name="CurrentOrderProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.CurrentOrderProcess">
       <Item ServiceName="SortPLC" ItemName="CurrentOrder" />
     </Process>
-    <!--<Process Name="PackRequestProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.PackRequestProcess" Suspend="true">
+    <Process Name="PackRequestProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.PackRequestProcess" Suspend="true">
       <Item ServiceName="PackPLC" ItemName="PackageRequest" />
-    </Process>-->
+    </Process>
     <Process Name="MissOrderProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.MissOrderProcess">
       <Item ServiceName="SortPLC" ItemName="MissOrder" />
     </Process>
     <Process Name="ViewProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.ViewProcess" />
-    
-    <!--<Process Name="LEDProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.LEDProcess">
+    <Process Name="LEDProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.LEDProcess">
       <Item ServiceName="SortPLC" ItemName="EmptyErr" />
-    </Process>-->
-	<!--<Process Name="SortStatusProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.SortStatusProcess">
+    </Process>
+	<Process Name="SortStatusProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.SortStatusProcess">
 		<Item ServiceName="SortPLC" ItemName="SortStatus" />
-	</Process>-->
+	</Process>
   </Processes>
 </Configuration>

@@ -143,10 +143,6 @@
       <Project>{7C262527-51F1-4586-B590-9F2AD56EDAAC}</Project>
       <Name>THOK.AS.Sorting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\THOK.MCP.Service.LEDBarScreen\THOK.MCP.Service.LEDBarScreen.csproj">
-      <Project>{BFEB5A96-4B53-4726-96F9-189D3B441688}</Project>
-      <Name>THOK.MCP.Service.LEDBarScreen</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

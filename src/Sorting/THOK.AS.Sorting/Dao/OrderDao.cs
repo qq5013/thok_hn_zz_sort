@@ -79,6 +79,23 @@ namespace THOK.AS.Sorting.Dao
             return ExecuteQuery(string.Format(sql,filter)).Tables[0];
         }
 
+        //客户订单查询
+        public DataTable FindPackDetail()
+        {
+            //string sql = string.Format("SELECT A.ORDERID, A.CIGARETTECODE,A.CIGARETTENAME, SUM(A.QUANTITY) QUANTITY ,CASE WHEN A.CHANNELGROUP=1 THEN 'A线' ELSE 'B线' END  CHANNELLINE,A.CHANNELGROUP " +
+            //                        "FROM AS_SC_ORDER A  LEFT JOIN DBO.AS_SC_CHANNELUSED B ON A.CHANNELCODE = B.CHANNELCODE WHERE A.ORDERID='{0}' "+
+            //                        " GROUP BY ORDERID,A.CHANNELGROUP,A.SORTNO ,B.CHANNELNAME,A.CIGARETTECODE,A.CIGARETTENAME ORDER BY A.CHANNELGROUP,A.SORTNO,B.CHANNELNAME", orderId);
+            //return ExecuteQuery(sql).Tables[0];
+            string sql = string.Format(@"SELECT DISTINCT B.ORDERNO,A.SORTNO, A.ORDERID, C.CHANNELNAME, C.CHANNELADDRESS,
+                                            CASE C.CHANNELTYPE WHEN '2' THEN '立式机' WHEN '5' THEN '立式机' ELSE '通道机' END CHANNELTYPE,
+                                              A.CIGARETTECODE, A.CIGARETTENAME, A.QUANTITY 
+                                                FROM AS_SC_ORDER A
+                                                  LEFT JOIN AS_SC_PALLETMASTER B ON A.ORDERID=B.ORDERID 
+                                                     LEFT JOIN AS_SC_CHANNELUSED C ON A.CHANNELCODE=C.CHANNELCODE
+                                                       WHERE A.QUANTITY>0
+                                                           ORDER BY A.SORTNO DESC,C.CHANNELADDRESS DESC");
+            return ExecuteQuery(sql).Tables[0];
+        }
 
         public DataTable FindPackDetail(string orderId)
         {
