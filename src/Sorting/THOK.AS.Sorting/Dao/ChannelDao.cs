@@ -38,6 +38,12 @@ namespace THOK.AS.Sorting.Dao
             return ExecuteQuery(sql).Tables[0];
         }
 
+        public string FindChanneCigarette(string channelCode)
+        {
+            string sql = string.Format("SELECT CIGARETTENAME FROM AS_SC_CHANNELUSED WHERE CHANNELCODE='{0}'", channelCode);
+            return ExecuteScalar(sql).ToString();
+        }
+
         public DataTable FindLastSortNo()
         {
             string sql = string.Format("SELECT CHANNELADDRESS,CHANNELCODE,SORTNO FROM AS_SC_CHANNELUSED ORDER BY CHANNELTYPE,CHANNELCODE");
