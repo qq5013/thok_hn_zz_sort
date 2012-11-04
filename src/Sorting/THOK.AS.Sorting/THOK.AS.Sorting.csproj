@@ -134,6 +134,18 @@
     <Compile Include="View\ButtonArea.Designer.cs">
       <DependentUpon>ButtonArea.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\CacheChannelCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CacheChannelCheckForm.Designer.cs">
+      <DependentUpon>CacheChannelCheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CacheOrderQueryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CacheOrderQueryForm.designer.cs">
+      <DependentUpon>CacheOrderQueryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ChannelDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +236,14 @@
     <EmbeddedResource Include="View\ButtonArea.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ButtonArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CacheChannelCheckForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CacheChannelCheckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CacheOrderQueryForm.resx">
+      <DependentUpon>CacheOrderQueryForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ChannelDialog.resx">
       <SubType>Designer</SubType>

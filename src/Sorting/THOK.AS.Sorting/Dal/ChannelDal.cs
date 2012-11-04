@@ -27,6 +27,26 @@ namespace THOK.AS.Sorting.Dal
             }
         }
 
+        //获取单个立式机烟道信息
+        public DataTable GetChannel(string ledGroup,string sortNo)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                ChannelDao channelDao = new ChannelDao();
+                return channelDao.FindChannelQuantity(ledGroup, sortNo);
+            }
+        }
+
+        //获取全部通道机或者立式机烟道信息
+        public DataTable GetChannel(string deviceClass, string sortNo, string nulltype)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                ChannelDao channelDao = new ChannelDao();
+                return channelDao.FindChannelQuantity(deviceClass, sortNo, "本参数无特殊意义");
+            }
+        }
+
         public DataTable GetEmptyChannel()
         {
             using (PersistentManager pm = new PersistentManager())

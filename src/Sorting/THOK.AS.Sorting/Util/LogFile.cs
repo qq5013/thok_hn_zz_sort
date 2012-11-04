@@ -7,7 +7,7 @@ namespace THOK.AS.Sorting.Util
 {
     public static class LogFile
     {
-        private static Dictionary<string, string> attributes = null;
+        //private static Dictionary<string, string> attributes = null;
         public static void DeleteFile()
         {
             try
