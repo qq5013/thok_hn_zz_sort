@@ -170,7 +170,8 @@ namespace THOK.AS.Sorting.View
                             serverDao.UpdateBatchStatus(batchID, lineCode);
 
                             Logger.Info("数据下载完成");
-                            Context.ProcessDispatcher.WriteToProcess("LEDProcess", "NewData", null);
+                            //Context.ProcessDispatcher.WriteToProcess("LEDProcess", "NewData", null);
+                            Context.ProcessDispatcher.WriteToProcess("LEDProcess", "zz_NewData", null);
                             Context.ProcessDispatcher.WriteToProcess("CurrentOrderProcess", "CurrentOrder", new int[] { 0 });
                             Context.ProcessDispatcher.WriteToProcess("monitorView", "ProgressState", new ProgressState());
                         }

@@ -48,7 +48,7 @@ namespace THOK.AS.Sorting.Process
                             CacheChannelCheckForm3.ShowDialog();
                         }
                     }
-                break;
+                    break;
             }
         }
     }
