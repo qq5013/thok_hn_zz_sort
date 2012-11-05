@@ -146,36 +146,19 @@ namespace THOK.AS.Sorting.Process
             {
                 using (PersistentManager pm = new PersistentManager())
                 {
-                    //旧版本
-                    //OrderDao orderDao = new OrderDao();
-                    //string sortNo = orderDao.FindMaxSortedMaster();
-                    //ChannelDao channelDao = new ChannelDao();
-                    //DataTable channelTable = channelDao.FindChannelQuantity(sortNo);
-                    //DataRow[] channelRows = channelTable.Select("CHANNELTYPE='立式机'", "CHANNELNAME");
-                    //if (!restartState.IsRestart && checkMode && quantity != null)
-                    //{
-                    //    foreach (DataRow  row in channelRows)
-                    //    {
-                    //        row["REMAINQUANTITY"] = Convert.ToInt32(row["REMAINQUANTITY"]) + quantity[Convert.ToInt32(row["CHANNELADDRESS"]) - 1];
-                    //    }
-                    //}
-                    //ledUtil.Show(channelRows, checkMode);
-
-
-                    //株洲
-
-                    //获得当前烟道剩余的烟的数量
-                    //Int16[] order1 = GetOrder(dispatcher);
-                    //汇总未发送给plc的剩余的烟的烟量
+                    OrderDao orderDao = new OrderDao();
+                    string sortNo = orderDao.FindMaxSortedMaster();
                     ChannelDao channelDao = new ChannelDao();
-                    DataTable channelInfo = channelDao.FindChannelInfos();
-                    //真实数量
-                    for (int i = 10, j = 0; i < 70; i++, j++)
+                    DataTable channelTable = channelDao.FindChannelQuantity(sortNo);
+                    DataRow[] channelRows = channelTable.Select("CHANNELTYPE='立式机'", "CHANNELNAME");
+                    if (!restartState.IsRestart && checkMode && quantity != null)
                     {
-                        channelInfo.Rows[j]["UQUANTITY"] = Convert.ToInt16(channelInfo.Rows[j]["UQUANTITY"]) + quantity[i];
-                        channelInfo.Rows[j]["FQUANTITY"] = Convert.ToInt16(channelInfo.Rows[j]["QUANTITY"]) - Convert.ToInt16(channelInfo.Rows[j]["UQUANTITY"]);
+                        foreach (DataRow row in channelRows)
+                        {
+                            row["REMAINQUANTITY"] = Convert.ToInt32(row["REMAINQUANTITY"]) + quantity[Convert.ToInt32(row["CHANNELADDRESS"]) - 1];
+                        }
                     }
-                    WriteToService("LedBarScreen", "Check", channelInfo);
+                    ledUtil.Show(channelRows, checkMode);
                 }
             }
             catch (Exception e)

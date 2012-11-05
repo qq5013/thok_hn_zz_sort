@@ -89,6 +89,7 @@
     <Compile Include="Process\PackRequestProcess.cs" />
     <Compile Include="Process\CurrentOrderProcess.cs" />
     <Compile Include="Process\SortingOrderProcess.cs" />
+    <Compile Include="Process\SynchroLedProcess.cs" />
     <Compile Include="Process\ViewProcess.cs" />
     <Compile Include="Process\SortStatusProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
