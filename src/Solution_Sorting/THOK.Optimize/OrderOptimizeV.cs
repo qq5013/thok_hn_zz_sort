@@ -13,58 +13,90 @@ namespace THOK.Optimize
         public DataSet Optimize(DataRow masterRow, DataRow[] orderRows, DataTable channelTable, ref int sortNo, int breakQuantity, int margin, bool IsBreakOrderForLastThree)
         {
             DataSet ds = new DataSet();
+            int splitOrderQuantity = 25;
+            int totalOrderQuantity = 0;
+
             DataTable masterTable = GetEmptyOrderMaster();
             DataTable detailTable  = GetEmptyOrderDetail();
             DataTable supplyTable = GetEmptySupply();
 
-            AddMaster(masterRow, masterTable, ++sortNo);
-
-            foreach (DataRow detailRow in orderRows)
+            while (true)
             {
-                DataRow[] channelRows = channelTable.Select(string.Format("CIGARETTECODE='{0}' AND QUANTITY>0", detailRow["CIGARETTECODE"]), "QUANTITY DESC");
-                int quantity = Convert.ToInt32(detailRow["QUANTITY"]);
+                AddMaster(masterRow, masterTable, ++sortNo);
 
-                if (channelRows.Length == 0)       //多个品牌在混合烟道中分拣
+                foreach (DataRow detailRow in orderRows)
                 {
-                    AddRow(masterRow,sortNo, detailTable, detailRow["CIGARETTECODE"], detailRow["CIGARETTENAME"],"-1", quantity);
-                }
-                else if (channelRows.Length == 1)  //一个品牌在一个烟道中分拣
-                {
-                    Optimize(masterRow, channelRows[0], masterTable, detailTable, supplyTable, quantity, ref sortNo, breakQuantity, margin, IsBreakOrderForLastThree);
-                }
-                else if (channelRows.Length >= 2)  //一个品牌在多个烟道中分拣
-                {
-                    int[] quantitys = new int[channelRows.Length];
-
-                    int[] channelQuantity = new int[channelRows.Length];
-                    for (int i = 0; i < channelRows.Length; i++)
-                        channelQuantity[i] = Convert.ToInt32(channelRows[i]["QUANTITY"]);
-
-                    //拆分到多个烟道进行分拣
-                    int totalQuantity = quantity;
-                    while (totalQuantity != 0)
+                    int ableAllotQuantity = splitOrderQuantity - (totalOrderQuantity % splitOrderQuantity);
+                    ableAllotQuantity = ableAllotQuantity <= Convert.ToInt32(detailRow["QUANTITY"]) ? ableAllotQuantity : Convert.ToInt32(detailRow["QUANTITY"]);
+                    detailRow["QUANTITY"] -= ableAllotQuantity;
+                    totalOrderQuantity += ableAllotQuantity;
+                    if (ableAllotQuantity == 0)
                     {
-                        for (int j = 0; j < channelRows.Length && totalQuantity != 0; j++)
+                        continue;
+                    }
+
+                    DataRow[] channelRows = channelTable.Select(string.Format("CIGARETTECODE='{0}' AND QUANTITY>0", detailRow["CIGARETTECODE"]), "QUANTITY DESC");
+                    int quantity = ableAllotQuantity;
+
+                    if (channelRows.Length == 0)       //多个品牌在混合烟道中分拣
+                    {
+                        AddRow(masterRow, sortNo, detailTable, detailRow["CIGARETTECODE"], detailRow["CIGARETTENAME"], "-1", quantity);
+                    }
+                    else if (channelRows.Length == 1)  //一个品牌在一个烟道中分拣
+                    {
+                        Optimize(masterRow, channelRows[0], masterTable, detailTable, supplyTable, quantity, ref sortNo, breakQuantity, margin, IsBreakOrderForLastThree);
+                    }
+                    else if (channelRows.Length >= 2)  //一个品牌在多个烟道中分拣
+                    {
+                        int[] quantitys = new int[channelRows.Length];
+
+                        int[] channelQuantity = new int[channelRows.Length];
+                        for (int i = 0; i < channelRows.Length; i++)
+                            channelQuantity[i] = Convert.ToInt32(channelRows[i]["QUANTITY"]);
+
+                        //拆分到多个烟道进行分拣
+                        int totalQuantity = quantity;
+                        while (totalQuantity != 0)
                         {
-                            if (channelQuantity[j] > 0)
+                            for (int j = 0; j < channelRows.Length && totalQuantity != 0; j++)
                             {
-                                quantitys[j]++;
-                                channelQuantity[j]--;
-                                totalQuantity--;
+                                if (channelQuantity[j] > 0)
+                                {
+                                    quantitys[j]++;
+                                    channelQuantity[j]--;
+                                    totalQuantity--;
+                                }
                             }
+                        }
+
+                        //确定每个烟道分拣是否需要进行分拣订单拆分
+                        for (int i = 0; i < quantitys.Length; i++)
+                        {
+                            Optimize(masterRow, channelRows[i], masterTable, detailTable, supplyTable, quantitys[i], ref sortNo, breakQuantity, margin, IsBreakOrderForLastThree);
                         }
                     }
 
-                    //确定每个烟道分拣是否需要进行分拣订单拆分
-                    for (int i = 0; i < quantitys.Length; i++)
+                    if (totalOrderQuantity % splitOrderQuantity == 0)
                     {
-                        Optimize(masterRow, channelRows[i], masterTable, detailTable, supplyTable, quantitys[i], ref sortNo, breakQuantity, margin, IsBreakOrderForLastThree);
-                    }        
+                        break;
+                    }
+                }
+
+                int tmp = 0;
+                foreach (DataRow row in orderRows)
+                {
+                    tmp += Convert.ToInt32(detailRow["QUANTITY"]);
+                }
+                if (tmp == 0)
+                {
+                    break;
                 }
             }
+
             ds.Tables.Add(masterTable);
             ds.Tables.Add(detailTable);
             ds.Tables.Add(supplyTable);
+
             return ds;
         }
 
