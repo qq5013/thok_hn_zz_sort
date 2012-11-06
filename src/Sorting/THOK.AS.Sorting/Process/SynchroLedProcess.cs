@@ -24,7 +24,6 @@ namespace THOK.AS.Sorting.Process
                         WriteRestartDataToPLC();           
                         //LED显示盘点数据和卷烟品牌
                         Show(false);
-
                         break;
                     case "Check"://由盘点按钮事件发出
                         object state = Context.Services["SortPLC"].Read("Check");
@@ -67,14 +66,10 @@ namespace THOK.AS.Sorting.Process
                         int channelAddress = Convert.ToInt32(o);
                         if (channelAddress == 0)
                         {
-                            //ledUtil.errChannelAddress.Clear();
                             Show(false);
                         }
                         else
                         {
-                            //ledUtil.errChannelAddress.Clear();
-                            //if (!ledUtil.errChannelAddress.ContainsKey(channelAddress))
-                            //    ledUtil.errChannelAddress.Add(channelAddress, channelAddress);
                             Show(false);
                         }
                         break;

@@ -49,6 +49,34 @@ namespace THOK.AS.Sorting.Process
                         }
                     }
                     break;
+                case "Á´°å¶Î":
+                    int[] cacheAfter = new int[40];
+                    object stateCacheAfter = Context.Services["SortPLC"].Read("CacheAfters");
+                    if (stateCacheAfter is Array)
+                    {
+                        Array arrayCacheAfter = (Array)stateCacheAfter;
+                        if (arrayCacheAfter.Length == 40)
+                        {
+                            arrayCacheAfter.CopyTo(cacheAfter, 0);
+                        }
+                    }
+                    //CacheOrderQueryForm CacheOrderQueryForm1 = new CacheOrderQueryForm(e.DeviceClass,cacheAfter);
+                    //CacheOrderQueryForm1.ShowDialog();
+                    break;
+                case "´òÂë¶Î":
+                    int[] cacheBefore = new int[40];
+                    object stateCacheBefore = Context.Services["SortPLC"].Read("CacheBefores");
+                    if (stateCacheBefore is Array)
+                    {
+                        Array arrayCacheBefore = (Array)stateCacheBefore;
+                        if (arrayCacheBefore.Length == 40)
+                        {
+                            arrayCacheBefore.CopyTo(cacheBefore, 0);
+                        }
+                    }
+                    //CacheOrderQueryForm CacheOrderQueryForm2 = new CacheOrderQueryForm(e.DeviceClass, cacheBefore);
+                    //CacheOrderQueryForm2.ShowDialog();
+                    break;
             }
         }
     }

@@ -15,6 +15,14 @@ namespace THOK.AS.Sorting.View
         {
             InitializeComponent();
         }
+        //public CacheOrderQueryForm(string deviceClass, params int[] channelAndSortNoes)
+        //{
+        //    for (i = 0, j == 1; i < 40; i = i + 2, j = j + 2)
+        //    {
+
+        //    }
+
+        //}
         //#region 缓存段参数
         //private int sortNo = 0;
         //private int deviceNo = 0;
@@ -284,25 +292,22 @@ namespace THOK.AS.Sorting.View
         //#endregion
 
         //#region 缓存段表列创建及行添加
-        ///// <summary>
-        ///// 添加虚拟表并添加相应字段
-        ///// </summary>
-        ///// <returns>订单表</returns>
-        //public void CreatTableForCacheOrder(DataTable Table)
-        //{
-        //    Table.Columns.Add("SORTNO");
-        //    Table.Columns.Add("ORDERID");
-        //    Table.Columns.Add("CIGARETTECODE");
-        //    Table.Columns.Add("CIGARETTENAME");
-        //    Table.Columns.Add("QUANTITY");
-        //    Table.Columns.Add("CUSTOMERNAME");
-        //    Table.Columns.Add("CHANNELNAME");
-        //    Table.Columns.Add("CHANNELTYPE");
-        //    Table.Columns.Add("CHANNELLINE");
-        //    Table.Columns.Add("PACKNO0");
-        //    Table.Columns.Add("PACKNO1");
-        //    Table.Columns.Add("PACKNO2");
-        //}
+        /// <summary>
+        /// 添加虚拟表并添加相应字段
+        /// </summary>
+        /// <returns>订单表</returns>
+        public void CreatTableForCacheOrder(DataTable Table)
+        {
+            Table.Columns.Add("SORTNO");
+            Table.Columns.Add("ORDERID");
+            Table.Columns.Add("CIGARETTECODE");
+            Table.Columns.Add("CIGARETTENAME");
+            Table.Columns.Add("QUANTITY");
+            Table.Columns.Add("CUSTOMERNAME");
+            Table.Columns.Add("CHANNELNAME");
+            Table.Columns.Add("CHANNELTYPE");
+            Table.Columns.Add("PACKNO");
+        }
 
         ///// <summary>
         ///// 增加行数据

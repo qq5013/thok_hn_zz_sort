@@ -9,10 +9,14 @@
 		  <Resource StateCode="0" StateDesc="正常" Image=".\Image\Tower.gif"/>
 		  <Resource StateCode="1" StateDesc="故障1" Image=".\Image\Tower.gif"/>
 	  </DeviceClass>
-	  <DeviceClass Name="流水线">
-		  <Resource StateCode="0" StateDesc="正常" Image=".\Image\Belt.gif"/>
-		  <Resource StateCode="1" StateDesc="故障1" Image=".\Image\Belt.gif"/>
+	  <DeviceClass Name="链板段">
+		  <Resource StateCode="0" StateDesc="正常" Image=".\Image\Belt1.jpg"/>
+		  <Resource StateCode="1" StateDesc="故障1" Image=".\Image\Belt1.jpg"/>
 	  </DeviceClass>
+    <DeviceClass Name="打码段">
+      <Resource StateCode="0" StateDesc="正常" Image=".\Image\Belt2.jpg"/>
+      <Resource StateCode="1" StateDesc="故障1" Image=".\Image\Belt2.jpg"/>
+    </DeviceClass>
 	  <DeviceClass Name="包装机">
 		  <Resource StateCode="0" StateDesc="正常" Image=".\Image\bzj.gif"/>
 		  <Resource StateCode="1" StateDesc="故障1" Image=".\Image\bzj.gif"/>
@@ -39,11 +43,14 @@
       <Device DeviceNo="5" X="550" Y="370" Width="50" Height="96"/>
       <Device DeviceNo="6" X="600" Y="370" Width="50" Height="96"/>
     </DeviceClass>
-	  <DeviceClass Name="流水线">
-		  <Device DeviceNo="100" X="50" Y="464" Width="1110" Height="48"/>
+	  <DeviceClass Name="链板段">
+		  <Device DeviceNo="100" X="50" Y="464" Width="615" Height="48"/>
 	  </DeviceClass>
+    <DeviceClass Name="打码段">
+      <Device DeviceNo="101" X="666" Y="464" Width="544" Height="48"/>
+    </DeviceClass>
 	  <DeviceClass Name="包装机">
-		  <Device DeviceNo="101" X="1150" Y="290" Width="72" Height="228"/>
+		  <Device DeviceNo="102" X="1210" Y="290" Width="72" Height="228"/>
 	  </DeviceClass>
   </Devices>
 
