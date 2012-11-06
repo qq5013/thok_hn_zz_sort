@@ -18,35 +18,26 @@
 		  <Resource StateCode="1" StateDesc="故障1" Image=".\Image\bzj.gif"/>
 	  </DeviceClass>
   </Resources>
-
   <Devices>
-	  <DeviceClass Name="立式机">
-		  <Device DeviceNo="1" X="50" Y="370" Width="50" Height="96"/>
-		  <Device DeviceNo="2" X="100" Y="370" Width="50" Height="96"/>
-		  <Device DeviceNo="3" X="150" Y="370" Width="50" Height="96"/>
-		  <Device DeviceNo="4" X="200" Y="370" Width="50" Height="96"/>
-		  <Device DeviceNo="5" X="250" Y="370" Width="50" Height="96"/>
-		  <Device DeviceNo="6" X="300" Y="370" Width="50" Height="96"/>
-		  <Device DeviceNo="7" X="350" Y="370" Width="50" Height="96"/>
-	  </DeviceClass>
-
-    <DeviceClass Name="通道机">      
-		  <Device DeviceNo="8" X="400" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="9" X="425" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="10" X="450" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="11" X="475" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="12" X="500" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="13" X="525" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="14" X="550" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="15" X="575" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="16" X="600" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="17" X="625" Y="350" Width="25" Height="114"/>
-      <Device DeviceNo="18" X="650" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="19" X="675" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="20" X="700" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="21" X="725" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="22" X="750" Y="350" Width="25" Height="114"/>
-		  <Device DeviceNo="23" X="775" Y="350" Width="25" Height="114"/>
+    <DeviceClass Name="通道机">
+      <Device DeviceNo="1" X="50" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="2" X="80" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="3" X="110" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="4" X="140" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="5" X="170" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="6" X="200" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="7" X="230" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="8" X="260" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="9" X="290" Y="350" Width="25" Height="114"/>
+      <Device DeviceNo="10" X="320" Y="350" Width="25" Height="114"/>
+    </DeviceClass>
+    <DeviceClass Name="立式机">
+      <Device DeviceNo="1" X="350" Y="370" Width="50" Height="96"/>
+      <Device DeviceNo="2" X="400" Y="370" Width="50" Height="96"/>
+      <Device DeviceNo="3" X="450" Y="370" Width="50" Height="96"/>
+      <Device DeviceNo="4" X="500" Y="370" Width="50" Height="96"/>
+      <Device DeviceNo="5" X="550" Y="370" Width="50" Height="96"/>
+      <Device DeviceNo="6" X="600" Y="370" Width="50" Height="96"/>
     </DeviceClass>
 	  <DeviceClass Name="流水线">
 		  <Device DeviceNo="100" X="50" Y="464" Width="1110" Height="48"/>

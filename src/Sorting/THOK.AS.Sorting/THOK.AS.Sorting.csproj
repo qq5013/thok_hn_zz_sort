@@ -89,6 +89,7 @@
     <Compile Include="Process\PackRequestProcess.cs" />
     <Compile Include="Process\CurrentOrderProcess.cs" />
     <Compile Include="Process\SortingOrderProcess.cs" />
+    <Compile Include="Process\SynchroLedProcess.cs" />
     <Compile Include="Process\ViewProcess.cs" />
     <Compile Include="Process\SortStatusProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,6 +135,18 @@
     <Compile Include="View\ButtonArea.Designer.cs">
       <DependentUpon>ButtonArea.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\CacheChannelCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CacheChannelCheckForm.Designer.cs">
+      <DependentUpon>CacheChannelCheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CacheOrderQueryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CacheOrderQueryForm.designer.cs">
+      <DependentUpon>CacheOrderQueryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ChannelDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +164,12 @@
     </Compile>
     <Compile Include="View\CheckQueryForm.Designer.cs">
       <DependentUpon>CheckQueryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerOrderQueryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CustomerOrderQueryForm.designer.cs">
+      <DependentUpon>CustomerOrderQueryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ModifyOrderDialog.cs">
       <SubType>Form</SubType>
@@ -219,6 +238,14 @@
       <SubType>Designer</SubType>
       <DependentUpon>ButtonArea.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\CacheChannelCheckForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CacheChannelCheckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CacheOrderQueryForm.resx">
+      <DependentUpon>CacheOrderQueryForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ChannelDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ChannelDialog.cs</DependentUpon>
@@ -230,6 +257,10 @@
     <EmbeddedResource Include="View\CheckQueryForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>CheckQueryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomerOrderQueryForm.resx">
+      <DependentUpon>CustomerOrderQueryForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ModifyOrderDialog.resx">
       <SubType>Designer</SubType>

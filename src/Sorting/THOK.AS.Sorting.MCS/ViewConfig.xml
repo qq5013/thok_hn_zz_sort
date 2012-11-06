@@ -7,6 +7,7 @@
 
   <Menus Name="统计查询">
     <Menu Name="订单查询" Type="THOK.AS.Sorting.View.OrderQueryForm,THOK.AS.Sorting.dll"/>
+    <Menu Name="客户查询" Type="THOK.AS.Sorting.View.CustomerOrderQueryForm,THOK.AS.Sorting.dll"/>
     <Menu Name="包装查询" Type="THOK.AS.Sorting.View.PackQueryForm,THOK.AS.Sorting.dll"/>
     <Menu Name="烟道查询" Type="THOK.AS.Sorting.View.ChannelQueryForm,THOK.AS.Sorting.dll"/> 
     <Menu Name="烟道盘点" Type="THOK.AS.Sorting.View.CheckQueryForm,THOK.AS.Sorting.dll"/>

@@ -153,7 +153,7 @@ namespace THOK.AS.Sorting.Process
                     DataRow[] channelRows = channelTable.Select("CHANNELTYPE='Á¢Ê½»ú'", "CHANNELNAME");
                     if (!restartState.IsRestart && checkMode && quantity != null)
                     {
-                        foreach (DataRow  row in channelRows)
+                        foreach (DataRow row in channelRows)
                         {
                             row["REMAINQUANTITY"] = Convert.ToInt32(row["REMAINQUANTITY"]) + quantity[Convert.ToInt32(row["CHANNELADDRESS"]) - 1];
                         }

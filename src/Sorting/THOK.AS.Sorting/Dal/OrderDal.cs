@@ -80,6 +80,15 @@ namespace THOK.AS.Sorting.Dal
                 return orderDao.FindPackMaster(filter);
             }
         }
+        //客户订单查询
+        public DataTable GetPackDetail()
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindPackDetail();
+            }
+        }
 
         public DataTable GetPackDetail(string orderId)
         {
