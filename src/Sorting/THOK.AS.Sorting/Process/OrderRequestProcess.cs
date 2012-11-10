@@ -48,6 +48,8 @@ namespace THOK.AS.Sorting.Process
                                 int quantity = Convert.ToInt32(masterTable.Rows[0]["QUANTITY"]);
 
                                 DataTable detailTable = orderDao.FindSortDetail(sortNo);
+                                //查询本分拣线组最后流水号，判断是否结束
+                                string endSortNo = orderDao.FindEndSortNo();
                                 int[] orderData = new int[90];
                                 for (int i = 0; i < detailTable.Rows.Count; i++)
                                 {
@@ -58,6 +60,21 @@ namespace THOK.AS.Sorting.Process
                                 orderData[87] = quantity;
                                 orderData[88] = maxSortNo == sortNo ? 1 : 0;
                                 orderData[89] = 1;
+                                
+                                //分拣流水号
+                                orderData[90] = Convert.ToInt32(sortNo);
+                                //订单数量
+                                orderData[91] = quantity;
+                                //是否换户
+                                orderData[92] = maxSortNo == sortNo ? 1 : 0;
+                                //客户分拣流水号
+                                orderData[93] = Convert.ToInt32(masterTable.Rows[0]["CUSTOMERSORTNO"].ToString());
+                                //包装机号
+                                orderData[94] = 0;
+                                //本分拣线路是否结束
+                                orderData[95] = endSortNo == sortNo ? 1 : 0;
+                                //完成标志
+                                orderData[96] = 1;
 
                                 if (dispatcher.WriteToService("SortPLC", "OrderData", orderData))
                                 {

@@ -51,7 +51,7 @@ namespace THOK.AS.Sorting.Process
                     break;
                 case "Á´°å¶Î":
                     int[] cacheAfter = new int[40];
-                    object stateCacheAfter = Context.Services["SortPLC"].Read("CacheAfters");
+                    object stateCacheAfter = Context.Services["SortPLC"].Read("CacheSortNoes");
                     if (stateCacheAfter is Array)
                     {
                         Array arrayCacheAfter = (Array)stateCacheAfter;
@@ -60,12 +60,12 @@ namespace THOK.AS.Sorting.Process
                             arrayCacheAfter.CopyTo(cacheAfter, 0);
                         }
                     }
-                    //CacheOrderQueryForm CacheOrderQueryForm1 = new CacheOrderQueryForm(e.DeviceClass,cacheAfter);
-                    //CacheOrderQueryForm1.ShowDialog();
+                    CacheOrderQueryForm CacheOrderQueryForm1 = new CacheOrderQueryForm(e.DeviceClass, cacheAfter);
+                    CacheOrderQueryForm1.ShowDialog();
                     break;
                 case "´òÂë¶Î":
                     int[] cacheBefore = new int[40];
-                    object stateCacheBefore = Context.Services["SortPLC"].Read("CacheBefores");
+                    object stateCacheBefore = Context.Services["SortPLC"].Read("CacheSortNoes");
                     if (stateCacheBefore is Array)
                     {
                         Array arrayCacheBefore = (Array)stateCacheBefore;
@@ -74,8 +74,8 @@ namespace THOK.AS.Sorting.Process
                             arrayCacheBefore.CopyTo(cacheBefore, 0);
                         }
                     }
-                    //CacheOrderQueryForm CacheOrderQueryForm2 = new CacheOrderQueryForm(e.DeviceClass, cacheBefore);
-                    //CacheOrderQueryForm2.ShowDialog();
+                    CacheOrderQueryForm CacheOrderQueryForm2 = new CacheOrderQueryForm(e.DeviceClass, cacheBefore);
+                    CacheOrderQueryForm2.ShowDialog();
                     break;
             }
         }

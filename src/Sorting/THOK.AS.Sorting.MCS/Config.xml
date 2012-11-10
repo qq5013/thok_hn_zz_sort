@@ -3,8 +3,8 @@
   <LogLevel>DEBUG</LogLevel>
   <Attributes>
     <Attribute Name="LineCode" Value="02" />
-    <Attribute Name="ExportIP" Value="192.168.1.47" />
-    <Attribute Name="ExportPort" Value="5000" />
+    <Attribute Name="ExportIP" Value="10.73.64.160" />
+    <Attribute Name="ExportPort" Value="2008" />
     <Attribute Name="SupplyIP" Value="192.168.1.49" />
     <Attribute Name="SupplyPort" Value="7000" />
     <Attribute Name="SortLedIP" Value="192.168.1.50" />
@@ -12,7 +12,8 @@
   </Attributes>
   <Services>
     <!--<Service Name="SortPLC" Type="THOK.MCP.Service.Siemens.dll, THOK.MCP.Service.Siemens.OPCService" ConfigFile="SortPLC.xml" />
-    <Service Name="PackPLC" Type="THOK.MCP.Service.Package.dll, THOK.MCP.Service.Package.S7200Service" ConfigFile="PackPLC.xml" />-->
+    <Service Name="PackPLC" Type="THOK.MCP.Service.Package.dll, THOK.MCP.Service.Package.S7200Service" ConfigFile="PackPLC.xml" />
+    <Service Name="LedBarScreen" Type="THOK.MCP.Service.LEDBarScreen.dll, THOK.MCP.Service.LEDBarScreen.LEDBarScreenService" ConfigFile="Led.xml" />-->
   </Services>
   <Processes>
     <Process Name="OrderRequestProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.OrderRequestProcess" Suspend="true">
@@ -31,7 +32,7 @@
       <Item ServiceName="SortPLC" ItemName="MissOrder" />
     </Process>
     <Process Name="ViewProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.ViewProcess" />
-    <Process Name="LEDProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.LEDProcess">
+    <Process Name="SynchroLedProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.SynchroLedProcess">
       <Item ServiceName="SortPLC" ItemName="EmptyErr" />
     </Process>
 	<Process Name="SortStatusProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.SortStatusProcess">

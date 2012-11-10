@@ -10,13 +10,15 @@
       
       <OPCItem ItemName="OrderData" ClientHandler="6" OPCItemName="DB10,INT0,97"  ItemType="WRITE"/>
       <OPCItem ItemName="ChannelData" ClientHandler="7" OPCItemName="DB8,INT0,70"  ItemType="WRITE"/>
-      <OPCItem ItemName="UpdateMissOrder" ClientHandler="9" OPCItemName="DB2,INT16,1"  ItemType="WRITE"/>
-      <OPCItem ItemName="ChannelChangeData" ClientHandler="8" OPCItemName="DB2,INT18,3"  ItemType="WRITE"/>
+      <OPCItem ItemName="UpdateMissOrder" ClientHandler="8" OPCItemName="DB2,INT16,1"  ItemType="WRITE"/>
+      <OPCItem ItemName="ChannelChangeData" ClientHandler="9" OPCItemName="DB2,INT18,3"  ItemType="WRITE"/>
       
-      <OPCItem ItemName="RestartData" ClientHandler="6" OPCItemName="DB100,INT0,1"  ItemType="WRITE"/>
+      <OPCItem ItemName="RestartData" ClientHandler="10" OPCItemName="DB100,INT0,1"  ItemType="WRITE"/>
       <OPCItem ItemName="RouteChannageTag" ClientHandler="11" OPCItemName="DB100,INT2,1"  ItemType="WRITE"/>
-      <OPCItem ItemName="SortStatus" ClientHandler="13" OPCItemName="DB2,INT6,1"  ItemType="READ" />
-      <OPCItem ItemName="SortingOrder" ClientHandler="12" OPCItemName="DB100,INT8,1"  ItemType="READ" />
+      <OPCItem ItemName="SortStatus" ClientHandler="12" OPCItemName="DB100,INT6,1"  ItemType="READ" />
+      <OPCItem ItemName="SortingOrder" ClientHandler="13" OPCItemName="DB100,INT8,1"  ItemType="READ" />
+
+      <OPCItem ItemName="CacheSortNoes" ClientHandler="14" OPCItemName="DB100,INT10,40"  ItemType="READ" />
 	  
     </OPCGroup>
   </OPCServer>
