@@ -83,7 +83,7 @@ namespace THOK.AS.Sorting.View
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Context.ProcessDispatcher.WriteToProcess("LEDProcess", "UnCheck", null);
+            Context.ProcessDispatcher.WriteToProcess("SynchroLedProcess", "UnCheck", null);
             SwitchStatus(true);
         }
 
@@ -104,7 +104,7 @@ namespace THOK.AS.Sorting.View
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            Context.Processes["LEDProcess"].Resume();
+            Context.Processes["SynchroLedProcess"].Resume();
             Context.ProcessDispatcher.WriteToProcess("LEDProcess", "Check", null);
         }
 

@@ -11,9 +11,11 @@
     <Attribute Name="SortLedPort" Value="6000" />
   </Attributes>
   <Services>
-    <!--<Service Name="SortPLC" Type="THOK.MCP.Service.Siemens.dll, THOK.MCP.Service.Siemens.OPCService" ConfigFile="SortPLC.xml" />
+    <Service Name="SortPLC" Type="THOK.MCP.Service.Siemens.dll, THOK.MCP.Service.Siemens.OPCService" ConfigFile="SortPLC.xml" />
     <Service Name="PackPLC" Type="THOK.MCP.Service.Package.dll, THOK.MCP.Service.Package.S7200Service" ConfigFile="PackPLC.xml" />
-    <Service Name="LedBarScreen" Type="THOK.MCP.Service.LEDBarScreen.dll, THOK.MCP.Service.LEDBarScreen.LEDBarScreenService" ConfigFile="Led.xml" />-->
+  </Services>
+  <Services>
+    <Service Name="LedBarScreen" Type="THOK.MCP.Service.LEDBarScreen.dll, THOK.MCP.Service.LEDBarScreen.LEDBarScreenService" ConfigFile="Led.xml" />
   </Services>
   <Processes>
     <Process Name="OrderRequestProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.OrderRequestProcess" Suspend="true">
@@ -24,6 +26,9 @@
     </Process>
     <Process Name="CurrentOrderProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.CurrentOrderProcess">
       <Item ServiceName="SortPLC" ItemName="CurrentOrder" />
+    </Process>
+    <Process Name="CacheOrderProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.CacheOrderProcess">
+      <Item ServiceName="SortPLC" ItemName="CacheSortNoes" />
     </Process>
     <Process Name="PackRequestProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.PackRequestProcess" Suspend="true">
       <Item ServiceName="PackPLC" ItemName="PackageRequest" />
