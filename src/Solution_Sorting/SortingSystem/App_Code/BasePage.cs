@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Text;
+using System.Web.Script;
 /// <summary>
 /// BasePage 的摘要说明
 
@@ -119,6 +120,7 @@ public class BasePage : System.Web.UI.Page
     /// </summary>
     protected void Exit()
     {
-        Response.Redirect("~/MainPage.aspx");
+        //Response.Redirect("~/MainPage.aspx");
+        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "exit", "<script>location.href='../../MainPage.aspx'</script>", false);
     }
 }
