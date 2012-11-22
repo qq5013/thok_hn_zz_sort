@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.Data;
+//using THOK.Odd.Dao;
 
 namespace THOK.Odd
 {
@@ -28,12 +30,15 @@ namespace THOK.Odd
         private string orderID;
         private string customerName;
         private string address = "";
-        private string sequence = "";
+        //private string sequence = "";
+        //private int abnormityQuantity = 0;
+        private string routeCode;
         private string routeName;
         private int currentQuantity = 0;
         private int totalQuantity = 0;
         private int currentPackage = 0;
         private int totalPackage = 0;
+        //private string totalCustomer = "";
         private Queue<string> detailQueue = new Queue<string>();
 
         //请根据客户选用的标签大小更改width和height的值
@@ -73,14 +78,21 @@ namespace THOK.Odd
         {
             Stack<OrderDetail> detail = new Stack<OrderDetail>();
 
-            orderDate = Convert.ToDateTime(masterRow["ORDERDATE"]).ToShortDateString();
+            //orderDate = Convert.ToDateTime(masterRow["ORDERDATE"]).ToShortDateString();
+            orderDate = Convert.ToDateTime(masterRow["ORDERDATE"]).Month.ToString() + "-" + Convert.ToDateTime(masterRow["ORDERDATE"]).Day.ToString();
             orderID = masterRow["ORDERID"].ToString().Trim();
             customerName = masterRow["CUSTOMERNAME"].ToString().Trim();
             address = masterRow["ADDRESS"].ToString().Trim();
-            sequence = masterRow["SORTID"].ToString().Trim();
+            //sequence = masterRow["ORDERNO"].ToString().Trim();
             routeName = masterRow["ROUTENAME"].ToString().Trim();
-            
+            //abnormityQuantity = Convert.ToInt32(masterRow["ABNORMITY_QUANTITY"].ToString().Trim());
+            routeCode = masterRow["ROUTECODE"].ToString().Trim();
+            //using (THOK.Util.PersistentManager pm = new THOK.Util.PersistentManager())
+            //{
+            //    OrderDao orderDao = new OrderDao();
+            //    totalCustomer = orderDao.FindMaxOrderNo(routeCode);
 
+            //}
             totalQuantity = quantity;
             totalPackage = totalQuantity % 25 == 0 ? totalQuantity / 25 : totalQuantity / 25 + 1;
 
@@ -196,50 +208,83 @@ namespace THOK.Odd
         //如果标签格式改变只要修改此函数即可
         void pd_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            GetStyle();
+            //GetStyle();
             Font font = new Font("宋体", 9, FontStyle.Bold);
             Brush brush = new SolidBrush(Color.Black);
 
-            //新版本 2010年9月15日
-            /*
-             * 1、线路：……客户：……
-             * 3、序号：……条：……包：……
-             * 4、地址：…………
-             */
+            //株洲打票新格式 2012年11月18日
 
-            Font bigFont = new Font("黑体", 13, FontStyle.Bold);
+            Font bigFont = new Font("宋体", 13, FontStyle.Bold);
+            Font bFont = new Font("宋体", 11, FontStyle.Bold);
+            Font bigbigFont = new Font("黑体", 15, FontStyle.Bold);
             if (customerName.Length > 13)
                 customerName = customerName.Substring(0, 13);
-            if (address.Length > 13)
-                address = address.Substring(0, 13);
 
-            //90          
-            e.Graphics.DrawString("日期:" + orderDate, font, brush, startX, startY);
-            e.Graphics.DrawString("线路:" + routeName, font, brush, 100, startY);
-            e.Graphics.DrawString(customerName, bigFont, brush, startX, 16);
-            //e.Graphics.DrawString("序号:" + sequence, font, brush, startX, 35);
-            e.Graphics.DrawString(string.Format("条： {0}/{1}", currentQuantity, totalQuantity), font, brush, 85, 35);
-            e.Graphics.DrawString(string.Format("包：{0}/{1}", currentPackage, totalPackage), font, brush, 160, 35);
-            e.Graphics.DrawString("地址:" + address, font, brush, startX, 49);
+            e.Graphics.DrawString(string.Format("{0}  {1}-异 ", routeName,orderDate), bigFont, brush, startX, startY);
+            e.Graphics.DrawString(customerName, bigbigFont, brush, startX + 8, 23);
+            //if (abnormityQuantity > 0)
+            //{
+            //    e.Graphics.DrawString(string.Format("异：{0}", abnormityQuantity), bigFont, brush, 170, 150);
+            //}
+            e.Graphics.DrawString(string.Format(" {0}条/{1}条{2}页/{3}页", currentQuantity, totalQuantity, currentPackage, totalPackage), bigbigFont, brush, startX, 170);
 
-            font = new Font("宋体", fontSize, FontStyle.Bold);
-            int i = 0;
-            int j = 0;
-
-            while (detailQueue.Count != 0)
+            int length = 0;
+            string cigaretteInfo = "";
+            foreach (string detail in detailQueue)
             {
-                if (i % contentCount == 0)
-                    j = 0;
-                int x = startX + i++ / contentCount * columnWidth;
-                int y = 65 + rowHeight * j++;
+                length = length + detail.Length + 1;
+                cigaretteInfo = cigaretteInfo + " " + detail;
+            }
+            string a = length.ToString();
+            string b = cigaretteInfo.ToString();
+            if (detailQueue.Count < 6)
+            {
+                int draw_y = 50;
+                foreach (string detail in detailQueue)
+                {
+                    string cigaretteCount = detail.Substring(detail.IndexOf(" "));
+                    string cigaretteName = detail.Substring(0, detail.IndexOf(" "));
+                    e.Graphics.DrawString(cigaretteName + ":" + cigaretteCount + "", bFont, brush, startX + 8, draw_y);
+                    draw_y = draw_y + 18;
+                }
+            }
+            else if (detailQueue.Count < 11)
+            {
+                string str = "";
+                int y = length / 15;
 
-                string cigaretteInfo = detailQueue.Dequeue().Trim();
-                string cigaretteCount = cigaretteInfo.Substring(cigaretteInfo.IndexOf(" "));
-                string cigaretteName = cigaretteInfo.Substring(0, cigaretteInfo.IndexOf(" "));
-                if (isSubString)
-                    if (cigaretteName.Length > subStringCount)
-                        cigaretteName = cigaretteName.Substring(0, subStringCount);
-                e.Graphics.DrawString(cigaretteName + ":" + cigaretteCount, font, brush, x, y);
+                for (int o = 0; o <= length / 15; o++)//15个字符就换行
+                {
+                    if (o < y)
+                    {
+                        str += cigaretteInfo.Substring(o * 15, 15) + Environment.NewLine;
+                    }
+                    else
+                    {
+                        str += cigaretteInfo.Substring(o * 15);
+                    }
+                }
+
+                e.Graphics.DrawString(str, bFont, brush, 10, 50);
+            }
+            else
+            {
+                string str = "";
+                int y = length / 18;
+
+                for (int o = 0; o <= length / 18; o++)//16个字符就换行
+                {
+                    if (o < y)
+                    {
+                        str += cigaretteInfo.Substring(o * 18, 18) + Environment.NewLine;
+                    }
+                    else
+                    {
+                        str += cigaretteInfo.Substring(o * 18);
+                    }
+                }
+
+                e.Graphics.DrawString(str + "|", font, brush, 10, 50);
             }
         }
 

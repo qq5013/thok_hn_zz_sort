@@ -10,7 +10,7 @@ namespace THOK.Odd.Dao
     {
         public void Insert(string orderDate, string batchNo)
         {
-            string sql = string.Format("INSERT INTO ROUTE SELECT '{0}', {1}, ROUTECODE FROM (SELECT  DISTINCT ROUTECODE FROM SORDER) A", orderDate, batchNo);
+            string sql = string.Format("INSERT INTO ROUTE SELECT '{0}', {1}, ROUTECODE FROM (SELECT  DISTINCT ROUTECODE FROM SORDER WHERE ORDERDATE='{0}' AND BATCHNO ={1}) A", orderDate, batchNo);
             ExecuteNonQuery(sql);
         }
 

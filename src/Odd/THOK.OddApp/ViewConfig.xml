@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Application>
+	<Caption MinBox="true" MaxBox="true"/>
+	<Title Visible="true"/>
+	<MenuBar Width="180"/>
+	<MenuItem Height="25"/>
+	<Menus Name="操作">
+    <Menu Name="数据下载" Type="THOK.Odd.View.DownloadForm,THOK.Odd.dll"/>
+		<Menu Name="一号工程" Type="THOK.Odd.View.UploadForm,THOK.Odd.dll"/>
+	</Menus>
+
+  <Menus Name="查询">
+    <Menu Name="卷烟信息" Type="THOK.Odd.View.CigaretteForm,THOK.Odd.dll"/>
+    <Menu Name="线路异形烟" Type="THOK.Odd.View.RouteForm,THOK.Odd.dll"/>
+    <Menu Name="客户异形烟" Type="THOK.Odd.View.CustomerForm,THOK.Odd.dll"/>
+    <Menu Name="历史异形烟" Type="THOK.Odd.View.HistoryForm,THOK.Odd.dll"/>
+  </Menus>
+</Application>

@@ -53,5 +53,39 @@ namespace THOK.Odd.Dal
                 return orderDao.FindCustomerCigarette(customerCode);
             }
         }
+
+        public DataTable HistoryData(string orderDate,string batchNo)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindHistoryData(orderDate,batchNo);
+            }
+        }
+        public DataTable DetailTable(string orderDate, string batchNo)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindDetail(orderDate, batchNo);
+            }
+        }
+        public DataTable batchTable()
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindBatchNo();
+            }
+        }
+
+        internal DataTable DetailTablebyCustomer(string orderDate, string batchNo, string customerCode)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindDetailbyCustomer(orderDate, batchNo, customerCode);
+            }
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace THOK.Odd.Dal
         {
             using (PersistentManager pm = new PersistentManager())
             {
+                string deleteDate = orderDate.AddDays(-7).ToShortDateString();
                 RouteDao routeDao = new RouteDao();
                 OrderDao orderDao = new OrderDao();
                 CigaretteDao cigaretteDao = new CigaretteDao();
@@ -52,7 +53,7 @@ namespace THOK.Odd.Dal
                             DataTable orderTable = saleDao.FindOrder(orderDate, batchNo);
                             for (int i = 0; i < orderTable.Rows.Count; i++)
                             {
-                                orderDao.Insert(orderTable.Rows[i]);
+                                orderDao.Insert(orderTable.Rows[i], "SORDER");
                                 if (OnProcessing != null)
                                     OnProcessing(this, new ProcessEventArgs(3, "下载订单数据", i, orderTable.Rows.Count));
                                 System.Windows.Forms.Application.DoEvents();
@@ -60,6 +61,12 @@ namespace THOK.Odd.Dal
                             Refresh();
 
                             orderDao.DeleteExists(orderDate.ToShortDateString());
+
+                            DataTable sorderTable = orderDao.GetSorder();
+                            for (int i = 0; i < sorderTable.Rows.Count; i++)
+                            {
+                                orderDao.Insert(sorderTable.Rows[i], "SORDERHISTORY");
+                            }
 
                             routeDao.Insert(orderDate.ToShortDateString(), batchNo);
                             if (OnProcessing != null)
@@ -171,8 +178,8 @@ namespace THOK.Odd.Dal
         private void CreateDataFile(DataTable table, string txtFile)
         {
             FileStream file = new FileStream(txtFile, FileMode.Create);
-            
-            StreamWriter writer = new StreamWriter(file,Encoding.UTF8);
+
+            StreamWriter writer = new StreamWriter(file, Encoding.UTF8);
 
             int columnCount = table.Columns.Count;
             int corder = 0;
@@ -241,7 +248,7 @@ namespace THOK.Odd.Dal
             NetworkStream stream = client.GetStream();
 
             FileStream file = new FileStream(zipFile, FileMode.Open);
-            
+
             int fileLength = (int)file.Length;
             byte[] fileBytes = BitConverter.GetBytes(fileLength);
             Array.Reverse(fileBytes);
@@ -283,7 +290,7 @@ namespace THOK.Odd.Dal
             if (recvStr.Split(';').Length > 2)
             {
                 throw new Exception(recvStr);
-            }        
+            }
         }
 
         /// <summary>

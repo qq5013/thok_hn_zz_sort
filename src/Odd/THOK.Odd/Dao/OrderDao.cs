@@ -6,7 +6,7 @@ using THOK.Util;
 
 namespace THOK.Odd.Dao
 {
-    internal class OrderDao: BaseDao
+    internal class OrderDao : BaseDao
     {
         public DataTable Find(string orderDate, string batchNo)
         {
@@ -58,16 +58,16 @@ namespace THOK.Odd.Dao
                 "GROUP BY CIGARETTECODE,CIGARETTENAME", customerCode);
             return ExecuteQuery(sql).Tables[0];
         }
-        
+
         public void Clear()
         {
             ExecuteNonQuery("TRUNCATE TABLE SORDER");
         }
 
-        public void Insert(DataRow row)
+        public void Insert(DataRow row, string tableName)
         {
-            SqlCreate sqlCreate = new SqlCreate("SORDER", SqlType.INSERT);
-            sqlCreate.AppendQuote("ORDERDATE", row["ORDERDATE"]);
+            SqlCreate sqlCreate = new SqlCreate(tableName, SqlType.INSERT);
+            sqlCreate.AppendQuote("ORDERDATE",Convert.ToDateTime(row["ORDERDATE"]).ToShortDateString());
             sqlCreate.Append("BATCHNO", row["BATCHNO"]);
             sqlCreate.AppendQuote("ORDERID", row["ORDERID"]);
             sqlCreate.AppendQuote("ROUTECODE", row["ROUTECODE"]);
@@ -94,6 +94,51 @@ namespace THOK.Odd.Dao
         {
             string sql = string.Format("DELETE FROM SORDER WHERE ORDERDATE='{0}' AND BATCHNO={1}", orderDate, batchNo);
             ExecuteNonQuery(sql);
+        }
+
+        public DataTable GetSorder()
+        {
+            string sql = "SELECT * FROM SORDER";
+            return ExecuteQuery(sql).Tables[0];
+        }
+        
+        public DataTable FindHistoryData(string orderDate, string batchNo)
+        {
+            string sql =string.Format("SELECT ORDERDATE,BATCHNO,ROUTECODE,ROUTENAME,CUSTOMERCODE,CUSTOMERNAME,SUM(QUANTITY) QUANTITY FROM SORDERHISTORY " +
+                "WHERE CIGARETTECODE IN (SELECT CIGARETTECODE FROM CIGARETTE WHERE ISABNORMITY='1')AND ORDERDATE='{0}' AND BATCHNO='{1}' " +
+                "GROUP BY ORDERDATE,BATCHNO,ROUTECODE,ROUTENAME,CUSTOMERCODE,CUSTOMERNAME " +
+                "ORDER BY ROUTECODE,CUSTOMERCODE",orderDate,batchNo);
+            return ExecuteQuery(sql).Tables[0];
+        }
+        public DataTable FindBatchNo()
+        {
+            string sql = "SELECT DISTINCT " +
+                            " CONVERT(varchar(10),ORDERDATE,120) + '|' + ltrim(STR(BATCHNO)) AS BATCHINFO," +
+                            " CONVERT(varchar(10),ORDERDATE,120) + ' µÚ ' + ltrim(STR(BATCHNO)) + ' Åú´Î '  AS BATCHNAME" +
+                            " FROM SORDERHISTORY ";
+            return ExecuteQuery(sql).Tables[0];
+        }
+
+        public string FindMaxOrderNo(string routeCode)
+        {
+            string sql = string.Format("SELECT MAX(ORDERNO) FROM SORDER  WHERE ROUTECODE ='{0}' ", routeCode);
+            return ExecuteScalar(sql).ToString();
+        }
+
+
+        public DataTable FindDetail(string orderDate, string batchNo)
+        {
+            string sql = string.Format("SELECT CUSTOMERCODE,CIGARETTECODE,CIGARETTENAME,SUM(QUANTITY) QUANTITY FROM SORDERHISTORY " +
+              "WHERE ORDERDATE ='{0}'AND BATCHNO='{1}'AND CIGARETTECODE IN (SELECT CIGARETTECODE FROM CIGARETTE WHERE ISABNORMITY='1') " +
+              "GROUP BY CUSTOMERCODE,CIGARETTECODE,CIGARETTENAME", orderDate, batchNo);
+            return ExecuteQuery(sql).Tables[0];
+        }
+        public DataTable FindDetailbyCustomer(string orderDate, string batchNo,String customerCode)
+        {
+            string sql = string.Format("SELECT CUSTOMERCODE,CIGARETTECODE,CIGARETTENAME,SUM(QUANTITY) QUANTITY FROM SORDERHISTORY " +
+              "WHERE ORDERDATE ='{0}'AND BATCHNO='{1}'AND CUSTOMERCODE='{2}' AND CIGARETTECODE IN (SELECT CIGARETTECODE FROM CIGARETTE WHERE ISABNORMITY='1') " +
+              "GROUP BY CUSTOMERCODE,CIGARETTECODE,CIGARETTENAME", orderDate, batchNo, customerCode);
+            return ExecuteQuery(sql).Tables[0];
         }
     }
 }
