@@ -18,127 +18,135 @@ namespace THOK.AS.Schedule
         {
             try
             {
-                //DateTime dtOrder = DateTime.Parse(orderDate);
-                //string historyDate = dtOrder.AddDays(-7).ToShortDateString();
-                //using (PersistentManager pm = new PersistentManager())
-                //{
-                //    BatchDao batchDao = new BatchDao();
-                //    using (PersistentManager ssPM = new PersistentManager("OuterConnection"))
-                //    {
-                //        SalesSystemDao ssDao = new SalesSystemDao();
-                //        ssDao.SetPersistentManager(ssPM);
-                //        try
-                //        {
-                //            pm.BeginTransaction();
+                DateTime dtOrder = DateTime.Parse(orderDate);
+                string historyDate = dtOrder.AddDays(-7).ToShortDateString();
+                using (PersistentManager pm = new PersistentManager())
+                {
+                    BatchDao batchDao = new BatchDao();
+                    using (PersistentManager ssPM = new PersistentManager("OuterConnection"))
+                    {
+                        SalesSystemDao ssDao = new SalesSystemDao();
+                        ssDao.SetPersistentManager(ssPM);
+                        try
+                        {
+                            pm.BeginTransaction();
 
-                //            //AS_BI_BATCH
-                //            batchDao.DeleteHistory(historyDate);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 1, 14));
+                            //AS_BI_BATCH
+                            batchDao.DeleteHistory(historyDate);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 1, 14));
 
-                //            //AS_SC_CHANNELUSED
-                //            ChannelScheduleDao csDao = new ChannelScheduleDao();
-                //            csDao.DeleteHistory(historyDate);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 2, 14));
+                            //AS_SC_CHANNELUSED
+                            ChannelScheduleDao csDao = new ChannelScheduleDao();
+                            csDao.DeleteHistory(historyDate);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 2, 14));
 
-                //            //AS_SC_LINE
-                //            LineScheduleDao lsDao = new LineScheduleDao();
-                //            lsDao.DeleteHistory(historyDate);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 3, 14));
+                            //AS_SC_LINE
+                            LineScheduleDao lsDao = new LineScheduleDao();
+                            lsDao.DeleteHistory(historyDate);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 3, 14));
 
-                //            //AS_SC_PALLETMASTER ,AS_SC_PALLETDETAIL,AS_SC_ORDER
-                //            OrderScheduleDao osDao = new OrderScheduleDao();
-                //            osDao.DeleteHistory(historyDate);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 4, 14));
+                            //AS_SC_PALLETMASTER ,AS_SC_PALLETDETAIL,AS_SC_ORDER
+                            OrderScheduleDao osDao = new OrderScheduleDao();
+                            osDao.DeleteHistory(historyDate);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 4, 14));
 
-                //            //AS_I_ORDERMASTER,AS_I_ORDERDETAIL,
-                //            OrderDao orderDao = new OrderDao();
-                //            orderDao.DeleteHistory(historyDate);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 5, 14));
+                            //AS_I_ORDERMASTER,AS_I_ORDERDETAIL,
+                            OrderDao orderDao = new OrderDao();
+                            orderDao.DeleteHistory(historyDate);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 5, 14));
 
-                //            //AS_SC_STOCKMIXCHANNEL
-                //            StockChannelDao scDao = new StockChannelDao();
-                //            scDao.DeleteHistory(historyDate);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 6, 14));
+                            //AS_SC_STOCKMIXCHANNEL
+                            StockChannelDao scDao = new StockChannelDao();
+                            scDao.DeleteHistory(historyDate);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 6, 14));
 
-                //            //AS_SC_SUPPLY
-                //            SupplyDao supplyDao = new SupplyDao();
-                //            supplyDao.DeleteHistory(historyDate);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 7, 14));
+                            //AS_SC_SUPPLY
+                            SupplyDao supplyDao = new SupplyDao();
+                            supplyDao.DeleteHistory(historyDate);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 7, 14));
 
-                //            //AS_SC_HANDLESUPPLY
-                //            HandleSupplyDao handleSupplyDao = new HandleSupplyDao();
-                //            handleSupplyDao.DeleteHistory(historyDate);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 8, 14));
+                            //AS_SC_HANDLESUPPLY
+                            HandleSupplyDao handleSupplyDao = new HandleSupplyDao();
+                            handleSupplyDao.DeleteHistory(historyDate);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 8, 14));
 
-                //            ClearSchedule(orderDate, batchNo);
+                            ClearSchedule(orderDate, batchNo);
 
-                //            //下载区域表
-                //            AreaDao areaDao = new AreaDao();
-                //            areaDao.Clear();
-                //            DataTable areaTable = ssDao.FindArea();
-                //            areaDao.BatchInsertArea(areaTable);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 9, 14));
+                            //下载区域表
+                            AreaDao areaDao = new AreaDao();
+                            //areaDao.Clear();
+                            DataTable areaTable = ssDao.FindArea();
+                            areaDao.SynchronizeArea(areaTable);
+                            //areaDao.BatchInsertArea(areaTable);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 9, 14));
 
-                //            //下载配送线路表
-                //            RouteDao routeDao = new RouteDao();
-                //            routeDao.Clear();
-                //            DataTable routeTable = ssDao.FindRoute();
-                //            routeDao.BatchInsertRoute(routeTable);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 10, 14));
+                            //下载配送线路表
+                            RouteDao routeDao = new RouteDao();
+                            //routeDao.Clear();
+                             DataTable routeTable = ssDao.FindRoute();
+                             routeDao.SynchronizeRoute(routeTable);
+                            //routeDao.BatchInsertRoute(routeTable);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 10, 14));
 
-                //            //下载客户表
-                //            CustomerDao customerDao = new CustomerDao();
-                //            customerDao.Clear();
-                //            DataTable customerTable = ssDao.FindCustomer();
-                //            customerDao.BatchInsertCustomer(customerTable);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 11, 14));
+                            //下载客户表
+                            CustomerDao customerDao = new CustomerDao();
+                            customerDao.Clear();
+                            DataTable customerTable = ssDao.FindCustomer();
+                            customerDao.BatchInsertCustomer(customerTable);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 11, 14));
 
-                //            //下载卷烟表 进行同步
-                //            CigaretteDao cigaretteDao = new CigaretteDao();
-                //            DataTable cigaretteTable = ssDao.FindCigarette();
-                //            cigaretteDao.SynchronizeCigarette(cigaretteTable);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 12, 14));
+                            //下载卷烟表 进行同步
+                            CigaretteDao cigaretteDao = new CigaretteDao();
+                            DataTable cigaretteTable = ssDao.FindCigarette();
+                            cigaretteDao.SynchronizeCigarette(cigaretteTable);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 12, 14));
 
-                //            //下载配送线与分拣线对应关系
-                //            string routes = lsDao.FindRoutes(orderDate);
-                //            //DataTable lineTable = ssDao.FindLineSchedule(dtOrder, batchNo, routes);
-                //            //LineScheduleDao lcDao = new LineScheduleDao();
-                //            //lcDao.SaveLineSchedule(lineTable, orderDate, batchNo);
+                            //查询已优化过的线路，以进行排除。
+                            string routes = lsDao.FindRoutes(orderDate);
 
-                //            //下载订单主表
-                //            DataTable masterTable = ssDao.FindOrderMaster(dtOrder, batchNo, routes);
-                //            orderDao.BatchInsertMaster(masterTable);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 13, 14));
+                            //下载配送线与分拣线对应关系
+                            //string routes = lsDao.FindRoutes(orderDate);
+                            //DataTable lineTable = ssDao.FindLineSchedule(dtOrder, batchNo, routes);
+                            //LineScheduleDao lcDao = new LineScheduleDao();
+                            //lcDao.SaveLineSchedule(lineTable, orderDate, batchNo);
 
-                //            //下载订单明细
-                //            DataTable detailTable = ssDao.FindOrderDetail(dtOrder, routes);
-                //            orderDao.BatchInsertDetail(detailTable);
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 14, 14));
+                            //下载订单主表
+                            SysParameterDao spDao = new SysParameterDao();
+                            Dictionary<string, string> parameter = spDao.FindParameters();
+                            string sortLineCode = parameter["OuterLineCode"].ToString().Trim();
+                            DataTable masterTable = ssDao.FindOrderMaster(dtOrder, batchNo, sortLineCode, routes);
+                            orderDao.BatchInsertMaster(masterTable);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 13, 14));
 
-                //            pm.Commit();
-                //        }
-                //        catch (Exception e)
-                //        {
-                //            pm.Rollback();
-                //            if (OnSchedule != null)
-                //                OnSchedule(this, new ScheduleEventArgs(OptimizeStatus.ERROR, e.Message));
-                //        }
-                //    }
-                //}
+                            //下载订单明细
+                            DataTable detailTable = ssDao.FindOrderDetail(dtOrder, routes);
+                            orderDao.BatchInsertDetail(detailTable);
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 14, 14));
+
+                            pm.Commit();
+                        }
+                        catch (Exception e)
+                        {
+                            pm.Rollback();
+                            if (OnSchedule != null)
+                                OnSchedule(this, new ScheduleEventArgs(OptimizeStatus.ERROR, e.Message));
+                        }
+                    }
+                }
 
             }
             catch (Exception ee)
@@ -179,7 +187,7 @@ namespace THOK.AS.Schedule
 
                 if (OnSchedule != null)
                     OnSchedule(this, new ScheduleEventArgs(OptimizeStatus.COMPLETE));
-                
+
             }
             catch (Exception e)
             {
@@ -197,7 +205,7 @@ namespace THOK.AS.Schedule
         public void ClearSchedule(string orderDate, int batchNo)
         {
             using (PersistentManager pm = new PersistentManager())
-            {         
+            {
                 //AS_BI_BATCH
                 BatchDao batchDao = new BatchDao();
                 batchDao.UpdateExecuter("0", "0", orderDate, batchNo);
@@ -256,7 +264,7 @@ namespace THOK.AS.Schedule
                 lineScDao.SaveLineSchedule(scLineTable);
                 if (OnSchedule != null)
                     OnSchedule(this, new ScheduleEventArgs(2, "生产线优化", 1, 1));
-            }     
+            }
         }
 
         /// <summary>
@@ -272,7 +280,7 @@ namespace THOK.AS.Schedule
                 THOK.AS.Dao.OrderDao orderDao = new OrderDao();
                 THOK.AS.Dao.SysParameterDao parameterDao = new SysParameterDao();
                 Dictionary<string, string> parameter = parameterDao.FindParameters();
-                
+
                 //每天分拣结束后备货烟道是否为空
                 if (parameter["ClearStockChannel"] == "1")
                     schannelDao.ClearCigarette();
@@ -311,7 +319,7 @@ namespace THOK.AS.Schedule
 
                 int currentCount = 0;
                 int totalCount = lineTable.Rows.Count;
-                
+
                 foreach (DataRow lineRow in lineTable.Rows)
                 {
                     string lineCode = lineRow["LINECODE"].ToString();
@@ -325,7 +333,7 @@ namespace THOK.AS.Schedule
                     channelSchedule.Optimize(orderTable, channelTable, deviceTable);
 
                     channelDao.SaveChannelSchedule(channelTable, orderDate, batchNo);
-                    
+
                     if (OnSchedule != null)
                         OnSchedule(this, new ScheduleEventArgs(4, "正在优化" + lineRow["LINECODE"].ToString() + "分拣线烟道", ++currentCount, totalCount));
                 }
@@ -356,7 +364,7 @@ namespace THOK.AS.Schedule
                 //拆单条件条数参数
                 int breakQuantity = 17;
                 int margin = 0;
-                Dictionary<string, string> parameter = parameterDao.FindParameters();                
+                Dictionary<string, string> parameter = parameterDao.FindParameters();
                 if (Convert.ToInt32(parameter["BreakQuantity"]) > 1)
                     breakQuantity = Convert.ToInt32(parameter["BreakQuantity"]);
                 if (Convert.ToInt32(parameter["Margin"]) != 0)
@@ -376,7 +384,7 @@ namespace THOK.AS.Schedule
                     int sortNo = 0;
                     int currentCount = 0;
                     int totalCount = masterTable.Rows.Count;
-                    
+
                     foreach (DataRow masterRow in masterTable.Rows)
                     {
                         DataRow[] orderRows = null;
@@ -456,7 +464,7 @@ namespace THOK.AS.Schedule
                     DataTable newSupplyOrders = handleSupplyOptimize.Optimize(handSupplyOrders, multiBrandChannel);
 
                     //保存烟道空仓作业的SortNo
-                    channelDao.Update(multiBrandChannel,orderDate, batchNo);
+                    channelDao.Update(multiBrandChannel, orderDate, batchNo);
 
                     //删除sc_order原来的手工补货定单
                     scOrderDao.DeleteOldSupplyOrders(orderDate, batchNo, lineCode);
@@ -481,6 +489,6 @@ namespace THOK.AS.Schedule
                 channel.Rows[i]["QUANTITY"] = 0;
             }
             return channel;
-        } 
+        }
     }
 }
