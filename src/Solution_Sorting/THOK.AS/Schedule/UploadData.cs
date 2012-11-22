@@ -79,31 +79,29 @@ namespace THOK.AS.Schedule
             OrderScheduleDal orderDal = new OrderScheduleDal();
 
             DataTable table = orderDal.GetOrder(orderDate, batchNo,false);
-            int columnCount = table.Columns.Count;
+            string strOrderDetail = null;
+            int iOrderDetailNO = 0;
 
-            foreach (DataRow row in table.Rows)
+            for (int i = 0; i < table.Rows.Count; i++)
             {
-                string s = row["SORTNO"].ToString();
-                for (int i = 1; i < columnCount; i++)
-                    s += ("," + row[i].ToString().Trim());
-                s += ";";
-                writer.WriteLine(s);
-                writer.Flush();
+                if (i > 0)
+                {
+                    iOrderDetailNO = table.Rows[i]["SORTNO"].ToString().Trim().CompareTo(table.Rows[i - 1]["SORTNO"].ToString().Trim()) == 0 ? (iOrderDetailNO + 1) : 1;
+                }
+                else
+                {
+                    ++iOrderDetailNO;
+                }
+                strOrderDetail = FullZero(table.Rows[i]["SORTNO"].ToString(), 4) + FullZero(iOrderDetailNO.ToString(), 5);
+                for (int j = 1; j < table.Columns.Count; j++)
+                {
+                    strOrderDetail += "," + table.Rows[i][j].ToString().Trim();
+                }
+                strOrderDetail += ";";
+                writer.WriteLine(strOrderDetail);
+                strOrderDetail = null;
             }
-
-            table = orderDal.GetOrder(orderDate, batchNo, true);
-            columnCount = table.Columns.Count;
-
-            foreach (DataRow row in table.Rows)
-            {
-                string s = row["SORTNO"].ToString();
-                for (int i = 1; i < columnCount; i++)
-                    s += ("," + row[i].ToString().Trim());
-                s += ";";
-                writer.WriteLine(s);
-                writer.Flush();
-            }
-
+            writer.Close();
             file.Close();
         }
 
@@ -139,6 +137,21 @@ namespace THOK.AS.Schedule
             {
                 System.Threading.Thread.Sleep(100);
             }
+        }
+
+        private string FullZero(string temp, int bit)
+        {
+            int iTempLength = temp.Trim().Length;
+            string strTemp = temp.Trim();
+            if (iTempLength < bit)
+            {
+                for (int i = 0; i < bit - iTempLength; i++)
+                {
+                    strTemp = "0" + strTemp;
+                }
+
+            }
+            return strTemp;
         }
 
         /// <summary>
