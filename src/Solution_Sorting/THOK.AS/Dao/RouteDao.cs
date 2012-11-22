@@ -38,5 +38,34 @@ namespace THOK.AS.Dao
             string sql = "TRUNCATE TABLE AS_BI_ROUTE";
             ExecuteNonQuery(sql);
         }
+
+        /// <summary>
+        /// ¸üÐÂ
+        /// </summary>
+        /// <param name="dataSet"></param>
+        public void UpdateEntity(string sortID, string routeCode)
+        {
+            SqlCreate sqlCreate = new SqlCreate("AS_BI_ROUTE", SqlType.UPDATE);
+            sqlCreate.Append("SORTID", sortID);
+            sqlCreate.AppendWhereQuote("ROUTECODE", routeCode);
+            ExecuteNonQuery(sqlCreate.GetSQL());
+        }
+
+        public void SynchronizeRoute(DataTable routeTable)
+        {
+            foreach (DataRow row in routeTable.Rows)
+            {
+                string sql = "IF '{0}' IN (SELECT ROUTECODE FROM AS_BI_ROUTE) " +
+                                "BEGIN " +
+                                    "UPDATE AS_BI_ROUTE SET ROUTENAME = '{1}',AREACODE = '{2}' WHERE ROUTECODE = '{0}' " +
+                                "END " +
+                             "ELSE " +
+                                "BEGIN " +
+                                    "INSERT AS_BI_ROUTE VALUES ('{0}','{1}','{2}','{3}','') " +
+                                "END";
+                sql = string.Format(sql, row["ROUTECODE"], row["ROUTENAME"], row["AREACODE"], row["SORTID"]);
+                ExecuteNonQuery(sql);
+            }
+        }
     }
 }

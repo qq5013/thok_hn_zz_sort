@@ -77,5 +77,57 @@ namespace THOK.AS.Dal
                 batchDao.UpdateNoOnePro(orderDate, batchNo, user);
             }
         }
+
+        public object Findbatch()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public bool IsExistBatch()
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                BatchDao batchDao = new BatchDao();
+                DataTable dt = batchDao.IsExistBatch();
+                if (dt.Rows.Count == 1)
+                {
+                    if (dt.Rows[0]["parametervalue"].ToString() == "1")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public void UpdateBatch()
+        {
+            using (PersistentManager ssPM = new PersistentManager("OuterConnection"))
+            {
+                SalesSystemDao ssDao = new SalesSystemDao();
+                DataTable dt = ssDao.FindBatch();
+                using (PersistentManager pm = new PersistentManager())
+                {
+                    BatchDao batchDao = new BatchDao();
+                    batchDao.BatchInsertBatch(dt);
+                }
+            }
+        }
+
+        public void Save(string orderDate, string sortBatch, string no1Batch, string no1UpLoadState)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                BatchDao batchDao = new BatchDao();
+                batchDao.UpdateEntity(orderDate, sortBatch, no1Batch, no1UpLoadState);
+            }
+        }
     }
 }

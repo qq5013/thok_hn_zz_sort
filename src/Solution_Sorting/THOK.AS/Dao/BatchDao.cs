@@ -57,13 +57,15 @@ namespace THOK.AS.Dao
 
             SqlCreate sqlCreate = new SqlCreate("AS_BI_BATCH", SqlType.INSERT);
             sqlCreate.Append("BATCHNO", batchNo);
+            sqlCreate.Append("BATCHNO_ONEPRO", batchNo);
             sqlCreate.AppendQuote("BATCHNAME", string.Format("{0}第{1}批次", orderDate, batchNo));
             sqlCreate.AppendQuote("ORDERDATE", orderDate);
             sqlCreate.AppendQuote("ISVALID", 0);
             sqlCreate.AppendQuote("EXECUTEUSER", 0);
             sqlCreate.AppendQuote("EXECUTEIP", 0);
             sqlCreate.AppendQuote("ISUPTONOONEPRO", 0);
-            sqlCreate.AppendQuote("SCDATE", SCDATE.AddDays(+2).ToShortDateString());
+            sqlCreate.AppendQuote("SCDATE", orderDate);
+            //sqlCreate.AppendQuote("SCDATE", SCDATE.AddDays(+2).ToShortDateString());
             ExecuteNonQuery(sqlCreate.GetSQL());
         }
 
@@ -87,5 +89,27 @@ namespace THOK.AS.Dao
             ExecuteNonQuery(sql);
         }
 
+
+        public DataTable IsExistBatch()
+        {
+            string sql = "SELECT PARAMETERVALUE FROM AS_SYS_PARAMETER WHERE PARAMETERNAME ='OuterBatch'";
+            return ExecuteQuery(sql).Tables[0];
+        }
+
+        /// <summary>
+        /// 批次插入
+        /// </summary>
+        /// <param name="dtData"></param>
+        /// <param name="tableName"></param>
+        public void BatchInsertBatch(DataTable dtData)
+        {
+            BatchInsert(dtData, "AS_BI_BATCH");
+        }
+
+        public void UpdateEntity(string orderDate, string sortBatch, string no1Batch, string no1UpLoadState)
+        {
+            string sql = "UPDATE AS_BI_BATCH SET BATCHNO_ONEPRO = {0},ISUPTONOONEPRO='{3}' WHERE ORDERDATE='{1}' AND BATCHNO='{2}'";
+            ExecuteNonQuery(string.Format(sql, no1Batch, orderDate, sortBatch, no1UpLoadState));
+        }
     }
 }

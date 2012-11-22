@@ -93,5 +93,14 @@ namespace THOK.AS.Dal
             }
         }
 
+        public void SetRouteNewSort(string route, int sortId)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                orderDao.SetRouteNewSort(route, sortId);
+            }
+        }
+
     }
 }
