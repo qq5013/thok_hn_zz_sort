@@ -111,6 +111,53 @@ namespace THOK.AS.Sorting.Dao
             return ExecuteQuery(sql).Tables[0];
         }
 
+        /// <summary>
+        /// 查询缓存段40条订单数据 20121109 zzb
+        /// </summary>
+        /// <param name="sortNoStart">前端订单号</param>
+        /// <returns>返回缓存段起40条订单数据</returns>         
+        public DataTable FindDetailForCacheOrderQuery(int sortNoStart)
+        {
+            string sql = @"SELECT TOP 40 A.SORTNO,A.ORDERID,A.CIGARETTECODE, A.CIGARETTENAME, A.QUANTITY ,C.CUSTOMERNAME,B.CHANNELNAME,   
+                            CASE B.CHANNELTYPE 
+                        	  WHEN '2' 
+	                            THEN '立式机' 
+                              WHEN '5' 
+	                            THEN '立式机' 
+	                          ELSE '通道机' 
+                            END CHANNELTYPE
+                                FROM AS_SC_ORDER A  
+                                  LEFT JOIN AS_SC_CHANNELUSED B ON A.CHANNELCODE=B.CHANNELCODE   
+                                    LEFT JOIN AS_SC_PALLETMASTER C ON A.SORTNO = C.SORTNO AND A.ORDERID = C.ORDERID AND A.ORDERDATE = C.ORDERDATE
+                                      WHERE A.SORTNO >={0} ORDER BY A.SORTNO,B.CHANNELADDRESS";
+            return ExecuteQuery(string.Format(sql, sortNoStart)).Tables[0];
+        }
+
+        //获取流水号的订单  20121109 zzb
+        public DataTable FindSortNoDetail(int sortNoStart)
+        {
+            string sql = @"SELECT TOP 40 A.SORTNO,A.ORDERID,A.CIGARETTECODE, A.CIGARETTENAME, A.QUANTITY ,C.CUSTOMERNAME,B.CHANNELNAME,   
+                            CASE B.CHANNELTYPE 
+                        	  WHEN '2' 
+	                            THEN '立式机' 
+                              WHEN '5' 
+	                            THEN '立式机' 
+	                          ELSE '通道机' 
+                            END CHANNELTYPE
+                                FROM AS_SC_ORDER A  
+                                  LEFT JOIN AS_SC_CHANNELUSED B ON A.CHANNELCODE=B.CHANNELCODE   
+                                    LEFT JOIN AS_SC_PALLETMASTER C ON A.SORTNO = C.SORTNO AND A.ORDERID = C.ORDERID AND A.ORDERDATE = C.ORDERDATE
+                                      WHERE A.SORTNO ={0} ORDER BY A.SORTNO,B.CHANNELADDRESS DESC";
+            return ExecuteQuery(string.Format(sql, sortNoStart)).Tables[0];
+        }
+        
+        //查询本线路是否结束
+        public string FindEndSortNo()
+        {
+            string sql = "SELECT ISNULL(MAX(SORTNO),0) FROM AS_SC_PALLETMASTER WHERE QUANTITY != 0 ";
+            return ExecuteScalar(sql).ToString();
+        }
+
         public DataTable FindSortSpeed()
         {
             string sql = "SELECT * FROM 效率报表";

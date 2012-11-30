@@ -28,7 +28,7 @@ namespace THOK.Optimize
                 {
                     int ableAllotQuantity = splitOrderQuantity - (totalOrderQuantity % splitOrderQuantity);
                     ableAllotQuantity = ableAllotQuantity <= Convert.ToInt32(detailRow["QUANTITY"]) ? ableAllotQuantity : Convert.ToInt32(detailRow["QUANTITY"]);
-                    detailRow["QUANTITY"] -= ableAllotQuantity;
+                    detailRow["QUANTITY"] =Convert.ToInt32(detailRow["QUANTITY"]) - ableAllotQuantity;
                     totalOrderQuantity += ableAllotQuantity;
                     if (ableAllotQuantity == 0)
                     {
@@ -85,7 +85,7 @@ namespace THOK.Optimize
                 int tmp = 0;
                 foreach (DataRow row in orderRows)
                 {
-                    tmp += Convert.ToInt32(detailRow["QUANTITY"]);
+                    tmp += Convert.ToInt32(row["QUANTITY"]);
                 }
                 if (tmp == 0)
                 {

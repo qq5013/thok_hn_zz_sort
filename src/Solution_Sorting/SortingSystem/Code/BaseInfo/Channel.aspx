@@ -14,10 +14,8 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <asp:Panel ID="pnlMain" runat="server" Height="100%" Width="100%" style="LEFT: 0px; POSITION: relative; TOP: 0px">
-                    <asp:Panel id="pnlList" runat="server" Width="100%" Height="401px">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server"><ContentTemplate>
+<asp:Panel style="LEFT: 0px; POSITION: relative; TOP: 0px" id="pnlMain" runat="server" Width="100%" Height="100%"><asp:Panel id="pnlList" runat="server" Width="100%" Height="401px">
                         <TABLE style="HEIGHT: 30px" borderColor=#111111 cellSpacing=0 cellPadding=0 width="100%" border=0>
                             <TBODY>
                                 <TR>
@@ -81,67 +79,12 @@
                             </asp:GridView> 
                         </asp:Panel> 
                         <NetPager:AspNetPager id="pager" runat="server" Width="555px" Height="24px" ShowPageIndex="False" AlwaysShow="True" OnPageChanging="pager_PageChanging" ShowInputBox="Never"></NetPager:AspNetPager> 
-                    </asp:Panel> 
-                    <asp:Panel style="LEFT: 0px; POSITION: relative; TOP: 0px" id="pnlEdit" runat="server" Width="100%" Height="131px" Visible="False">
-                        <table class="OperationBar">   
-                            <tr >
-                                <td style="width: 47px" ><asp:Button ID="btnUpdate" CssClass="ButtonSave" runat="server" Text="保存" OnClick="btnUpdate_Click" /></td>
-                                <td style="width: 33px" ><asp:Button ID="btnCanel" CssClass="ButtonBack" runat="server" Text="返回" OnClick="btnCanel_Click"  /></td>
-                                <td style="height: 20px" ></td>
-                            </tr>   
-                           </table>
-                           <table width="100%">
-                                <tr>
-                                    <td class="tdTitle">
-                                        烟道代码:</td>
-                                    <td ><asp:TextBox ID="txtChannelCode" runat="server" MaxLength="12" CssClass="Textbox" Text = "" ></asp:TextBox></td>
-                                    <td style="height: 0px; width: 72px;" > 
-                                    </td>
-                                </tr>
-                                <tr class="tdTitle">
-                                    <td class="tdTitle">卷烟代码:</td>
-                                    <td ><asp:TextBox ID="txtCigaretteCode" runat="server" MaxLength="10" CssClass="TextBox"  Text = ""></asp:TextBox></td>
-                                    <td style="height: 20px; width: 72px;" >
-                                     <asp:Button ID="Button2"　CssClass="ButtonBrowse" OnClientClick="return SelectDialog2('txtCIGARETTECODE,txtCIGARETTENAME','AS_BI_CIGARETTE','CIGARETTECODE,CIGARETTENAME')" runat="server" Text="..." />
-                                        <asp:Button ID="Button1" runat="server" Text="清空" CssClass="ButtonClear"/> 
-                                    </td>
-                                    <td ></td>
-                                </tr>
-                                <tr >
-                                    <td class="tdTitle">卷烟名称:</td>
-                                    <td><asp:TextBox ID="txtCigaretteName" runat="server" MaxLength="50" CssClass="TextBox"  Text = ""></asp:TextBox></td>
-                                    <td height="20" style="width: 72px" >
-                                        </td>
-                                </tr>
-                                <tr >
-                                    <td class="tdTitle"><font color="red">*</font>LED组号:</td>
-                                    <td><asp:TextBox ID="txtLedGroup" runat="server" MaxLength="4" CssClass="TextBox"  Text = ""></asp:TextBox></td>
-                                    <td height="20" style="width: 72px" >
-                                        </td>
-                                </tr>
-                                
-                                <tr >
-                                    <td class="tdTitle"><font color="red">*</font>LED编号:</td>
-                                    <td><asp:TextBox ID="txtLedNo" runat="server" MaxLength="4" CssClass="TextBox"  Text = ""></asp:TextBox></td>
-                                    <td height="20" style="width: 72px" >
-                                        </td>
-                                </tr>
-                                    <tr>
-                                    <td class="tdTitle">
-                                        是否启用:</td>
-                                    <td height="20" align="left" style="width: 132px">
-                                        <asp:DropDownList ID="ddlStatus" runat="server">
+                    </asp:Panel> <asp:Panel style="LEFT: 0px; POSITION: relative; TOP: 0px" id="pnlEdit" runat="server" Width="100%" Height="131px" Visible="False"><TABLE class="OperationBar"><TBODY><TR><TD style="WIDTH: 47px"><asp:Button id="btnUpdate" onclick="btnUpdate_Click" runat="server" CssClass="ButtonSave" Text="保存"></asp:Button></TD><TD style="WIDTH: 33px"><asp:Button id="btnCanel" onclick="btnCanel_Click" runat="server" CssClass="ButtonBack" Text="返回"></asp:Button></TD><TD style="HEIGHT: 20px"></TD></TR></TBODY></TABLE><TABLE width="100%"><TBODY><TR><TD class="tdTitle">烟道代码:</TD><TD><asp:TextBox id="txtChannelCode" runat="server" CssClass="Textbox" Text="" MaxLength="12"></asp:TextBox></TD><TD style="WIDTH: 72px; HEIGHT: 0px"></TD></TR><TR class="tdTitle"><TD class="tdTitle">卷烟代码:</TD><TD><asp:TextBox id="txtCigaretteCode" runat="server" CssClass="TextBox" Text="" MaxLength="10"></asp:TextBox></TD><TD style="WIDTH: 72px; HEIGHT: 20px"><asp:Button id="Button2" runat="server" Text="..." OnClientClick="return SelectDialog2('txtCIGARETTECODE,txtCIGARETTENAME','AS_BI_CIGARETTE','CIGARETTECODE,CIGARETTENAME')" 　CssClass="ButtonBrowse"></asp:Button> <asp:Button id="Button1" runat="server" CssClass="ButtonClear" Text="清空" OnClick="Button1_Click"></asp:Button> </TD><TD></TD></TR><TR><TD class="tdTitle">卷烟名称:</TD><TD><asp:TextBox id="txtCigaretteName" runat="server" CssClass="TextBox" Text="" MaxLength="50"></asp:TextBox></TD><TD style="WIDTH: 72px" height=20></TD></TR><TR><TD class="tdTitle"><FONT color=red>*</FONT>LED组号:</TD><TD><asp:TextBox id="txtLedGroup" runat="server" CssClass="TextBox" Text="" MaxLength="4"></asp:TextBox></TD><TD style="WIDTH: 72px" height=20></TD></TR><TR><TD class="tdTitle"><FONT color=red>*</FONT>LED编号:</TD><TD><asp:TextBox id="txtLedNo" runat="server" CssClass="TextBox" Text="" MaxLength="4"></asp:TextBox></TD><TD style="WIDTH: 72px" height=20></TD></TR><TR><TD class="tdTitle">是否启用:</TD><TD style="WIDTH: 132px" align=left height=20><asp:DropDownList id="ddlStatus" runat="server">
                                         <asp:ListItem Value="1">启用</asp:ListItem>
                                         <asp:ListItem Value="0">未启用</asp:ListItem>
-                                        </asp:DropDownList></td>
-                                    <td height="20" style="width: 72px" ></td>
-                                </tr>
-                        </table>
-                    </asp:Panel> 
-                </asp:Panel>
-                
-            </ContentTemplate>
-        </asp:UpdatePanel>
+                                        </asp:DropDownList></TD><TD style="WIDTH: 72px" height=20></TD></TR></TBODY></TABLE></asp:Panel> </asp:Panel> 
+</ContentTemplate>
+</asp:UpdatePanel>
         
     </form>
 </body>

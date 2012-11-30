@@ -31,5 +31,14 @@ namespace THOK.AS.Dal
             }
             return count;
         }
+
+        public void Save(string sortID, string routeCode)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                RouteDao routeDao = new RouteDao();
+                routeDao.UpdateEntity(sortID, routeCode);
+            }
+        }
     }
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <Connections>
   <Connection Name="DefaultConnection" DatabaseType="SQLSERVER">
-    <ConnectionString Value="server=192.168.1.20;database=Logistics;uid=sa;" />
+    <ConnectionString Value="server=SORTINGSERVER\SQLEXPRESS;database=zz_Logistics;uid=sa;" />
     <Password Name="password" Value="65CED0851FFD283F" />
   </Connection>
   <Connection Name="OldConnection" DatabaseType="SQLSERVER">
-    <ConnectionString Value="server=10.66.97.250;database=ngphnamw;uid=hnamw;" />
-    <Password Name="password" Value="96C77EEAE00CF241" />
+    <ConnectionString Value="server=10.73.68.33;database=wlctr;uid=ms;" />
+    <Password Name="password" Value="A0E5B8AA619AE888" />
   </Connection>
   <Connection Name="OuterConnection" DatabaseType="DB2">
-    <ConnectionString Value="server=10.66.97.230:50000;database=TRADECTR;uid=ic;" />
-    <Password Name="password" Value="76CBF27DE3DFFA09740A8CDF7192058B" />
+    <ConnectionString Value="Server=10.73.68.33;database =wlctr;UID=ms;" />
+    <Password Name="Password" Value="A0E5B8AA619AE888" />
   </Connection>
   <Connection Name="DB2Connection" DatabaseType="DB2">
     <ConnectionString Value="server=10.66.97.230:50000;database=TRADECTR;uid=ic;" />

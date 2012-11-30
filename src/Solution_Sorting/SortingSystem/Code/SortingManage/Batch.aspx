@@ -14,43 +14,115 @@
     <form id="form1" runat="server">
         <asp:ScriptManager id="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:UpdatePanel id="UpdatePanel1" runat="server"><ContentTemplate>
-<asp:Panel style="LEFT: 0px; POSITION: relative; TOP: 0px" id="pnlMain" runat="server" Width="100%" Height="100%"><asp:Panel id="pnlList" runat="server" Width="100%" Height="401px"><TABLE style="HEIGHT: 30px" borderColor=#111111 cellSpacing=0 cellPadding=0 width="100%" border=0><TOBDY /><TBODY><TR><TD style="BORDER-LEFT-COLOR: #cccc99; BORDER-BOTTOM-COLOR: #cccc99; BORDER-TOP-COLOR: #cccc99; BORDER-RIGHT-COLOR: #cccc99"><asp:DropDownList id="ddlField" runat="server">
-                                        <asp:ListItem Value="ORDERDATE">订单日期</asp:ListItem>
-                                    </asp:DropDownList> <asp:TextBox id="txtValue" runat="server" Height="20px" CssClass="TextBox"></asp:TextBox> <asp:Button id="btnQuery" onclick="btnQuery_Click" runat="server" CssClass="ButtonQuery" Text="查询"></asp:Button>&nbsp; <asp:Button id="btnExit" onclick="btnExit_Click" runat="server" CssClass="ButtonExit" Text="退出"></asp:Button> </TD></TR></TBODY></TABLE><asp:Panel id="pnlGrid" runat="server" Width="100%" Height="460px"><asp:GridView id="gvMain" runat="server" Width="100%" OnRowDeleting="gvMain_RowDeleting" OnRowDataBound="gvMain_RowDataBound" AutoGenerateColumns="False"><Columns>
-<asp:CommandField ShowCancelButton="False" ShowDeleteButton="True" DeleteText="清除优化" HeaderText="操作">
-<HeaderStyle Width="60px" HorizontalAlign="Center"></HeaderStyle>
-
-<ItemStyle HorizontalAlign="Center"></ItemStyle>
-</asp:CommandField>
-<asp:BoundField HtmlEncode="False" DataFormatString="{0:yyyy-MM-dd}" DataField="ORDERDATE" HeaderText="订单日期">
-<HeaderStyle Width="80px"></HeaderStyle>
-</asp:BoundField>
-<asp:BoundField DataField="BATCHNO" HeaderText="批次">
-<ItemStyle HorizontalAlign="Center"></ItemStyle>
-
-<HeaderStyle Width="60px"></HeaderStyle>
-</asp:BoundField>
-<asp:BoundField DataField="ISUPTONOONEPRO" HeaderText="是否上传">
-<HeaderStyle Width="80px"></HeaderStyle>
-</asp:BoundField>
-<asp:BoundField DataField="ISVALID" HeaderText="是否优化">
-<HeaderStyle Width="80px"></HeaderStyle>
-</asp:BoundField>
-<asp:BoundField DataField="EXECUTEUSER" HeaderText="操作员"></asp:BoundField>
-<asp:BoundField DataField="EXECUTEIP" HeaderText="操作IP">
-<HeaderStyle Width="100px"></HeaderStyle>
-</asp:BoundField>
-</Columns>
-
-<RowStyle BackColor="White" Height="28px"></RowStyle>
-
-<HeaderStyle CssClass="gridheader"></HeaderStyle>
-
-<AlternatingRowStyle BackColor="#E8F4FF"></AlternatingRowStyle>
-</asp:GridView> </asp:Panel> <NetPager:AspNetPager id="pager" runat="server" Width="555px" Height="24px" OnPageChanging="pager_PageChanging" AlwaysShow="True" ShowPageIndex="False" ShowInputBox="Never"></NetPager:AspNetPager> </asp:Panel> </asp:Panel> 
-</ContentTemplate>
-</asp:UpdatePanel>        
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlMain" runat="server" Height="100%" Style="left: 0px; position: relative;
+                    top: 0px" Width="100%">
+                    <asp:Panel ID="pnlList" runat="server" Height="401px" Width="100%">
+                        <table border="0" bordercolor="#111111" cellpadding="0" cellspacing="0" style="height: 30px"
+                            width="100%">
+                            <tobdy></tobdy>
+                            <tbody>
+                                <tr>
+                                    <td style="border-left-color: #cccc99; border-bottom-color: #cccc99; border-top-color: #cccc99;
+                                        border-right-color: #cccc99">
+                                        <asp:DropDownList ID="ddlField" runat="server">
+                                            <asp:ListItem Value="ORDERDATE">订单日期</asp:ListItem>
+                                        </asp:DropDownList>
+                                        <asp:TextBox ID="txtValue" runat="server" CssClass="TextBox" Height="20px"></asp:TextBox>
+                                        <asp:Button ID="btnQuery" runat="server" CssClass="ButtonQuery" OnClick="btnQuery_Click"
+                                            Text="查询" />&nbsp;
+                                        <asp:Button ID="btnExit" runat="server" CssClass="ButtonExit" OnClick="btnExit_Click"
+                                            Text="退出" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <asp:Panel ID="pnlGrid" runat="server" Height="460px" Width="100%">
+                            <asp:GridView ID="gvMain" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvMain_RowDataBound"
+                                OnRowDeleting="gvMain_RowDeleting" Width="100%" OnRowEditing="gvMain_RowEditing">
+                                <Columns>
+                                    <asp:CommandField DeleteText="清除优化" HeaderText="操作" ShowCancelButton="False" ShowDeleteButton="True" ShowEditButton="True">
+                                        <HeaderStyle HorizontalAlign="Center" Width="100px" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:CommandField>
+                                    <asp:BoundField DataField="ORDERDATE" DataFormatString="{0:yyyy-MM-dd}" HeaderText="订单日期"
+                                        HtmlEncode="False">
+                                        <HeaderStyle Width="80px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="BATCHNO" HeaderText="批次">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <HeaderStyle Width="60px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="ISUPTONOONEPRO" HeaderText="是否上传">
+                                        <HeaderStyle Width="80px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="ISVALID" HeaderText="是否优化">
+                                        <HeaderStyle Width="80px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="EXECUTEUSER" HeaderText="操作员" />
+                                    <asp:BoundField DataField="EXECUTEIP" HeaderText="操作IP">
+                                        <HeaderStyle Width="100px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="BATCHNO_ONEPRO" HeaderText="一号工程批次号" />
+                                </Columns>
+                                <RowStyle BackColor="White" Height="28px" />
+                                <HeaderStyle CssClass="gridheader" />
+                                <AlternatingRowStyle BackColor="#E8F4FF" />
+                            </asp:GridView>
+                        </asp:Panel>
+                        <NetPager:AspNetPager ID="pager" runat="server" AlwaysShow="True" Height="24px" OnPageChanging="pager_PageChanging" ShowInputBox="Never" ShowPageIndex="False" Width="555px"></NetPager:AspNetPager>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlEdit" runat="server" Height="131px" Style="left: 0px; position: relative;
+                        top: 0px" Visible="False" Width="100%">
+                        <table class="OperationBar">
+                            <tr>
+                                <td style="height: 25px">
+                                    <asp:Button ID="btnUpdate" runat="server" CssClass="ButtonSave" OnClick="btnUpdate_Click"
+                                        Text="保存" />
+                                </td>
+                                <td style="height: 25px">
+                                    <asp:Button ID="btnCanel" runat="server" CssClass="ButtonBack" OnClick="btnCanel_Click"
+                                        Text="返回" /></td>
+                                <td style="height: 25px" width="100%">
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%">
+                            <tr>
+                                <td class="tdTitle">
+                                    订单日期:</td>
+                                <td>
+                                    <asp:TextBox ID="txtOrderDate" runat="server" CssClass="TextBox" MaxLength="12" ReadOnly="True"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td class="tdTitle">
+                                    分拣批次:</td>
+                                <td>
+                                    <asp:TextBox ID="txtSortBatch" runat="server" CssClass="TextBox" MaxLength="50" ReadOnly="True"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td class="tdTitle">
+                                    <font color="red">*</font>一号工程批次号:</td>
+                                <td>
+                                    <asp:TextBox ID="txtNO1Batch" runat="server" CssClass="TextBox" MaxLength="10"></asp:TextBox></td>
+                            </tr>
+                        </table>
+                        <table width="100%">
+                            <tr>
+                                <td class="tdTitle">
+                                    <font color="red">*</font>一号工程状态值:</td>
+                                <td>
+                                    <asp:DropDownList ID="DDLNo1State" runat="server" CssClass="TEXTBOX">
+                                        <asp:ListItem Value="1">已上传</asp:ListItem>
+                                        <asp:ListItem Value="0">未上传</asp:ListItem>
+                                    </asp:DropDownList></td>
+                            </tr>
+                        </table>
+                    </asp:Panel>
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </form>
 </body>
 </html>

@@ -191,14 +191,25 @@ namespace THOK.AS.Dao
 
         public DataTable FindOrder(string orderDate, int batchNo)
         {
-            string sql = "SELECT A.SORTNO, A.ORDERID,A.CUSTOMERCODE,A.CUSTOMERNAME,B.CIGARETTECODE,B.CIGARETTENAME,B.QUANTITY, " +
-                            " A.BATCHNO,A.SORTNO ORDERNO,A.ROUTECODE,A.ROUTENAME,CONVERT(NVARCHAR(10),A.ORDERDATE,120) ORDERDATE, " +
-                            " CONVERT(NVARCHAR(10),Z.SCDATE,120) SCDATE,A.LINECODE,'1' AS ZZBS  "+
+            string sql = "SELECT A.SORTNO,A.ORDERID,A.CUSTOMERCODE,A.CUSTOMERNAME,B.CIGARETTECODE,B.CIGARETTENAME,B.QUANTITY, " +
+                            " ISNULL(Z.BATCHNO_ONEPRO,Z.BATCHNO) BATCHNO,A.SORTNO,A.ROUTECODE,A.ROUTENAME,CONVERT(NVARCHAR(10),A.ORDERDATE,120) ORDERDATE, " +
+                            " CONVERT(NVARCHAR(10),Z.SCDATE,120) SCDATE,A.LINECODE,'1' AS 'WHOLEBOX'  " +
                             " FROM AS_SC_PALLETMASTER A " +
                             " LEFT JOIN AS_SC_ORDER B ON A.ORDERDATE = B.ORDERDATE AND A.BATCHNO = B.BATCHNO AND A.LINECODE=B.LINECODE AND A.SORTNO=B.SORTNO " +
-                            " LEFT JOIN AS_BI_BATCH Z ON A.ORDERDATE = Z.ORDERDATE AND A.BATCHNO = Z.BATCHNO "+
-                            " WHERE A.ORDERDATE='{0}' AND A.BATCHNO='{1}' "+
+                            " LEFT JOIN AS_BI_BATCH Z ON A.ORDERDATE = Z.ORDERDATE AND A.BATCHNO = Z.BATCHNO " +
+                            " WHERE A.ORDERDATE='{0}' AND A.BATCHNO='{1}' " +
                             " ORDER BY A.LINECODE,A.SORTNO,B.CIGARETTECODE";
+
+
+
+//            string sql = @"SELECT  ASPM.ORDERID,  ASPM.CUSTOMERCODE, ASPM.CUSTOMERNAME,  ASO.CIGARETTECODE,  ASO.CIGARETTENAME,   ASO.QUANTITY,
+//                            ASPM.BATCHNO,   ASPM.SORTNO,   ASPM.ROUTECODE,    ASPM.ROUTENAME,     convert(nvarchar(10),ASPM.ORDERDATE,120) as 'ORDERDATE'  ,
+//                            convert(nvarchar(10),ABB.SCDATE,120) as 'SCDATE',    ASPM.LINECODE,   '1' as 'WHOLEBOX'
+//                            FROM AS_SC_ORDER ASO
+//                            LEFT JOIN  AS_SC_PALLETMASTER ASPM  on ASO.SORTNO=ASPM.SORTNO and ASO.orderdate=ASPM.orderdate and ASO.batchno=ASPM.batchno and ASO.LINECODE=ASPM.LINECODE
+//                            LEFT JOIN AS_BI_BATCH ABB on ASPM.orderdate=ABB.orderdate and ASPM.BATCHNO=ABB.BATCHNO                            
+//                            WHERE ASO.orderdate='{0}' and ASO.batchno='{1}'                            
+//                            ORDER BY ASO.sortno,CIGARETTECODE";
             return ExecuteQuery(string.Format(sql,orderDate, batchNo)).Tables[0];
         }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Connections>
   <Connection Name="DefaultConnection" DatabaseType="SQLSERVER">
-    <ConnectionString Value="server=.;database=zz_SortDB;uid=sa;" />
+    <ConnectionString Value="server=THOK-MONITOR2\SQLEXPRESS;database=SortDB;uid=sa;" />
     <Password Name="password" Value="65CED0851FFD283F" />
   </Connection>
   <Connection Name="ServerConnection" DatabaseType="SQLSERVER">

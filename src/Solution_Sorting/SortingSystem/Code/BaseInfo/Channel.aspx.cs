@@ -10,7 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using THOK.AS.Dal;
 
-public partial class Code_BaseInfo_Channel: BasePage
+public partial class Code_BaseInfo_Channel : BasePage
 {
     private int pageIndex = 1;
 
@@ -46,9 +46,16 @@ public partial class Code_BaseInfo_Channel: BasePage
 
     protected void btnExit_Click(object sender, EventArgs e)
     {
-        Exit();
+        try
+        {
+            this.Exit();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
-    
+
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
         ////保存修改到数据库
@@ -101,7 +108,12 @@ public partial class Code_BaseInfo_Channel: BasePage
             e.Row.Cells[4].Text = "立式机";
         else if (e.Row.Cells[4].Text == "3")
             e.Row.Cells[4].Text = "通道机";
-        else if(e.Row.Cells[4].Text == "5")
+        else if (e.Row.Cells[4].Text == "5")
             e.Row.Cells[4].Text = "立式机";
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        txtCigaretteCode.Text = "";
+        txtCigaretteName.Text = "";
     }
 }

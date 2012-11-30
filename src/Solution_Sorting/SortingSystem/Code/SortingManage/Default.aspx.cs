@@ -268,7 +268,7 @@ public partial class Code_SortingManage_Default : BasePage
         string selectedRoutes = "";
         foreach (GridViewRow row in gvRoute.Rows)
         {
-            if (row.Cells[0].Controls.Count != 0 && ((CheckBox)row.Cells[0].Controls[0]).Checked)
+            if (row.Cells[0].Controls.Count != 0 && ((CheckBox)row.Cells[0].Controls[0]).Checked)        
             {
                 selectedRoutes += string.Format("'{0}',", row.Cells[1].Text);
             }
@@ -281,7 +281,6 @@ public partial class Code_SortingManage_Default : BasePage
             //清除用户选择之外的数据
             OrderDal orderDal = new OrderDal();
             orderDal.DeleteNoUseOrder(Session["OrderDate"].ToString(), Convert.ToInt32(Session["BatchNo"]), selectedRoutes);
-
             Session["OptimizeStatus"] = "<root><status>CONTINUE</status><message></message></root>";
             JScript.Instance.RegisterScript(Page, "post=true;");
             thread = new Thread(new ThreadStart(Optimize));
@@ -293,4 +292,5 @@ public partial class Code_SortingManage_Default : BasePage
             JScript.Instance.ShowMessage(Page, "请选择要进行优化的线路。");
         
     }
+
 }

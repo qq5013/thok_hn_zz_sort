@@ -237,5 +237,11 @@ namespace THOK.AS.Dao
             sql = string.Format("DELETE FROM AS_I_ORDERMASTER WHERE ORDERDATE='{0}' AND BATCHNO={1} AND ROUTECODE NOT IN ({2})", orderDate, batchNo, routes);
             ExecuteNonQuery(sql);
         }
+
+        public void SetRouteNewSort(string route, int sortId)
+        {
+            string sql = String.Format("UPDATE AS_BI_ROUTE SET SORTID={0} WHERE ROUTECODE='{1}'", sortId, route);    
+            ExecuteNonQuery(sql);
+        }
     }
 }

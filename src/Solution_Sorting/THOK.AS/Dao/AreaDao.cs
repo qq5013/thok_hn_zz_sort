@@ -68,5 +68,22 @@ namespace THOK.AS.Dao
             string sql = "TRUNCATE TABLE AS_BI_AREA";
             ExecuteNonQuery(sql);
         }
+
+        public void SynchronizeArea(DataTable areaTable)
+        {
+            foreach (DataRow row in areaTable.Rows)
+            {
+                string sql = "IF '{0}' IN (SELECT AREACODE FROM AS_BI_AREA) " +
+                                "BEGIN " +
+                                    "UPDATE AS_BI_AREA SET AREANAME = '{1}' WHERE AREACODE = '{0}' " +
+                                "END " +
+                             "ELSE " +
+                                "BEGIN " +
+                                    "INSERT AS_BI_AREA VALUES ('{0}','{1}','{2}') " +
+                                "END";
+                sql = string.Format(sql, row["AREACODE"], row["AREANAME"], row["SORTID"]);
+                ExecuteNonQuery(sql);
+            }
+        }
     }
 }

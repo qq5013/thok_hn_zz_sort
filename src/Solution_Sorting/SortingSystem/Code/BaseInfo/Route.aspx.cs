@@ -10,14 +10,17 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using THOK.AS.Dal;
 
-public partial class Code_BaseInfo_Route: BasePage
+public partial class Code_BaseInfo_Route : BasePage
 {
     private int pageIndex = 1;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
+        {
+            btnCanel.ToolTip = "1";
             BindData();
+        }
     }
 
     private void BindData()
@@ -43,10 +46,43 @@ public partial class Code_BaseInfo_Route: BasePage
     protected void btnExit_Click(object sender, EventArgs e)
     {
         Exit();
+        //Response.Redirect("~/MainPage.aspx");
+        //ClientScript.RegisterStartupScript(this.GetType(), "exit", "<script>location.href='~/MainPage.aspx'</script>",false);
+        //ScriptManager.RegisterStartupScript(this.btnExit, this.GetType(), "exit", "<script>location.href='/SortingSystem/MainPage.aspx'</script>", false);
     }
-    
+
+    protected void btnUpdate_Click(object sender, EventArgs e)
+    {
+        //保存修改到数据库
+        RouteDal routeDal = new RouteDal();
+        routeDal.Save(txtSortID.Text, txtRouteCode.Text);
+        JScript.Instance.ShowMessage(UpdatePanel1, "保存数据成功。");
+    }
+
+    protected void btnCanel_Click(object sender, EventArgs e)
+    {
+        SwitchView(true);
+        pageIndex = Convert.ToInt32(btnCanel.ToolTip);
+        BindData();
+    }
+
+    protected void gvMain_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        txtRouteCode.Text = gvMain.Rows[e.NewEditIndex].Cells[1].Text;
+        txtRouteName.Text = gvMain.Rows[e.NewEditIndex].Cells[2].Text;
+        txtSortID.Text = gvMain.Rows[e.NewEditIndex].Cells[6].Text;
+        SwitchView(false);
+    }
+
+    private void SwitchView(bool showList)
+    {
+        pnlList.Visible = showList;
+        pnlEdit.Visible = !showList;
+    }
+
     protected void pager_PageChanging(object src, PageChangingEventArgs e)
     {
+        btnCanel.ToolTip = e.NewPageIndex.ToString();
         pageIndex = e.NewPageIndex;
         BindData();
     }

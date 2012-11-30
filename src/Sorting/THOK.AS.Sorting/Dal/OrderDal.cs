@@ -72,6 +72,30 @@ namespace THOK.AS.Sorting.Dal
             }
         }
 
+        /// <summary>
+        ///  缓存段数据显示DAL方法 
+        /// </summary>
+        /// <param name="sortNoStart">前端流水号</param>
+        /// <returns></returns>
+        public DataTable GetAllOrderDetailForCacheOrderQuery(int sortNoStart)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindDetailForCacheOrderQuery(sortNoStart);
+            }
+        }
+
+        //换取单个流水号的订单
+        public DataTable GetSortNoOrderDetail(int sortNoStart)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindSortNoDetail(sortNoStart);
+            }
+        }
+
         public DataTable GetPackMaster(string [] filter)
         {
             using (PersistentManager pm = new PersistentManager())

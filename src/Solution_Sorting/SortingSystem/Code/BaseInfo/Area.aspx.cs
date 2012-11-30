@@ -17,7 +17,10 @@ public partial class Code_BaseInfo_Area: BasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
+        {
+            btnCanel.ToolTip = "1";
             BindData();
+        }
     }
 
     private void BindData()
@@ -56,6 +59,8 @@ public partial class Code_BaseInfo_Area: BasePage
     protected void btnCanel_Click(object sender, EventArgs e)
     {
         SwitchView(true);
+        pageIndex = Convert.ToInt32(btnCanel.ToolTip);
+        BindData();
     }
 
     protected void gvMain_RowEditing(object sender, GridViewEditEventArgs e)
@@ -74,6 +79,7 @@ public partial class Code_BaseInfo_Area: BasePage
 
     protected void pager_PageChanging(object src, PageChangingEventArgs e)
     {
+        btnCanel.ToolTip = e.NewPageIndex.ToString();
         pageIndex = e.NewPageIndex;
         BindData();
     }

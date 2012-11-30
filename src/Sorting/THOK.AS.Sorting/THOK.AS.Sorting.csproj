@@ -83,6 +83,7 @@
     <Compile Include="Dao\ServerDao.cs" />
     <Compile Include="Dao\SortStatusDao.cs" />
     <Compile Include="Parameter.cs" />
+    <Compile Include="Process\CacheOrderProcess.cs" />
     <Compile Include="Process\LEDProcess.cs" />
     <Compile Include="Process\MissOrderProcess.cs" />
     <Compile Include="Process\OrderRequestProcess.cs" />

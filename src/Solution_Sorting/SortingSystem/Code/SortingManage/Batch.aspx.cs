@@ -16,7 +16,11 @@ public partial class Code_SortingManage_Batch : BasePage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindData();
+        if (!IsPostBack)
+        {
+            btnCanel.ToolTip = "1";
+            BindData();
+        }
     }
 
     private void BindData()
@@ -27,7 +31,7 @@ public partial class Code_SortingManage_Batch : BasePage
         string filter = null;
         if (ViewState["Filter"] != null)
             filter = ViewState["Filter"].ToString();
-        
+
         pager.RecordCount = batchDal.GetCount(filter);
         DataTable batchTable = batchDal.GetAll(pageIndex, PagingSize, filter);
         BindTable2GridView(gvMain, batchTable);
@@ -47,6 +51,7 @@ public partial class Code_SortingManage_Batch : BasePage
 
     protected void pager_PageChanging(object src, PageChangingEventArgs e)
     {
+        btnCanel.ToolTip = e.NewPageIndex.ToString();
         pageIndex = e.NewPageIndex;
         BindData();
     }
@@ -85,5 +90,34 @@ public partial class Code_SortingManage_Batch : BasePage
         else
             JScript.Instance.ShowMessage(UpdatePanel1, "不能清除当前批次，原因是当前批次未优化。");
         BindData();
+    }
+
+    protected void btnUpdate_Click(object sender, EventArgs e)
+    {
+        //保存修改到数据库
+        BatchDal batchDal = new BatchDal();
+        batchDal.Save(txtOrderDate.Text, txtSortBatch.Text, txtNO1Batch.Text, DDLNo1State.SelectedValue.ToString());
+        JScript.Instance.ShowMessage(UpdatePanel1, "保存数据成功。");
+    }
+
+    protected void btnCanel_Click(object sender, EventArgs e)
+    {
+        SwitchView(true);
+        pageIndex = Convert.ToInt32(btnCanel.ToolTip);
+        BindData();
+    }
+
+    protected void gvMain_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        txtOrderDate.Text = gvMain.Rows[e.NewEditIndex].Cells[1].Text;
+        txtSortBatch.Text = gvMain.Rows[e.NewEditIndex].Cells[2].Text;
+        txtNO1Batch.Text = gvMain.Rows[e.NewEditIndex].Cells[7].Text;
+        SwitchView(false);
+    }
+
+    private void SwitchView(bool showList)
+    {
+        pnlList.Visible = showList;
+        pnlEdit.Visible = !showList;
     }
 }

@@ -42,11 +42,7 @@
             this.CIGARETTECODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIGARETTENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QUANTITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CHANNELLINE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,11 +70,7 @@
             this.CIGARETTECODE,
             this.CIGARETTENAME,
             this.QUANTITY,
-            this.CHANNELLINE,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
+            this.Column3});
             this.dgvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetail.Location = new System.Drawing.Point(0, 0);
             this.dgvDetail.MultiSelect = false;
@@ -163,45 +155,13 @@
             this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.QUANTITY.Width = 80;
             // 
-            // CHANNELLINE
-            // 
-            this.CHANNELLINE.DataPropertyName = "CHANNELLINE";
-            this.CHANNELLINE.HeaderText = "线组";
-            this.CHANNELLINE.Name = "CHANNELLINE";
-            this.CHANNELLINE.ReadOnly = true;
-            this.CHANNELLINE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "ORDERNO_PACKNO";
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
-            // 
             // Column3
             // 
             this.Column3.DataPropertyName = "PACKNO0";
-            this.Column3.HeaderText = "单独包装机包号";
+            this.Column3.HeaderText = "包装机包号";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.Width = 120;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "PACKNO1";
-            this.Column4.HeaderText = "一号包装机包号";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 120;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "PACKNO2";
-            this.Column5.HeaderText = "二号包装机包号";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 120;
             // 
             // CacheOrderQueryForm
             // 
@@ -231,10 +191,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CIGARETTECODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIGARETTENAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn QUANTITY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CHANNELLINE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }
