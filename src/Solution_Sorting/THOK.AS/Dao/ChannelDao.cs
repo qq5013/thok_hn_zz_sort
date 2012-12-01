@@ -38,6 +38,19 @@ namespace THOK.AS.Dao
             ExecuteNonQuery(sqlCreate.GetSQL());
         }
 
+        public void UpdateEntity(string channelID, string cigaretteCode, string cigaretteName,int channelType, string ledGroup, string ledNo, string status)
+        {
+            SqlCreate sqlCreate = new SqlCreate("AS_BI_CHANNEL", SqlType.UPDATE);
+            sqlCreate.AppendQuote("LEDGROUP", ledGroup);
+            sqlCreate.AppendQuote("CIGARETTECODE", cigaretteCode.Trim());
+            sqlCreate.AppendQuote("CIGARETTENAME", cigaretteName.Trim());
+            sqlCreate.Append("CHANNELTYPE", channelType);
+            sqlCreate.Append("LEDNO", ledNo);
+            sqlCreate.AppendQuote("STATUS", status);
+            sqlCreate.AppendWhereQuote("CHANNELID", channelID);
+            ExecuteNonQuery(sqlCreate.GetSQL());
+        }
+
         public DataSet FindAvailableChannel(string lineCode)
         {
             string sql = string.Format("SELECT * ,ROW_NUMBER() OVER (ORDER BY CASE WHEN GROUPNO > 8 THEN ABS(GROUPNO - 17) ELSE GROUPNO END,GROUPNO) AS CHANNELINDEX FROM AS_BI_CHANNEL WHERE LINECODE = '{0}' ", lineCode);
