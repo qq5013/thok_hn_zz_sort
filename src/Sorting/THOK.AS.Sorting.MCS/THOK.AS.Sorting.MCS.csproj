@@ -125,6 +125,7 @@
     <Content Include="Image\Tower.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Led.xml" />
     <Content Include="Monitor.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

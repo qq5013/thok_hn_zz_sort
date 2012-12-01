@@ -60,8 +60,9 @@ namespace THOK.AS.Sorting.Process
                             arrayCacheAfter.CopyTo(cacheAfter, 0);
                         }
                     }
-                    CacheOrderQueryForm CacheOrderQueryForm1 = new CacheOrderQueryForm(e.DeviceClass, cacheAfter);
-                    CacheOrderQueryForm1.ShowDialog();
+                    //CacheOrderQueryForm CacheOrderQueryForm1 = new CacheOrderQueryForm(e.DeviceClass, cacheAfter);
+                    //CacheOrderQueryForm1.Paint += new PaintEventHandler(CacheOrderQueryForm1.CacheOrderQueryFormPaint);//窗体重绘加载颜色
+                    //CacheOrderQueryForm1.ShowDialog();
                     break;
                 case "打码段":
                     int[] cacheBefore = new int[40];
@@ -74,8 +75,9 @@ namespace THOK.AS.Sorting.Process
                             arrayCacheBefore.CopyTo(cacheBefore, 0);
                         }
                     }
-                    CacheOrderQueryForm CacheOrderQueryForm2 = new CacheOrderQueryForm(e.DeviceClass, cacheBefore);
-                    CacheOrderQueryForm2.ShowDialog();
+                    //CacheOrderQueryForm CacheOrderQueryForm2 = new CacheOrderQueryForm(e.DeviceClass, cacheBefore);
+                    //CacheOrderQueryForm2.Paint += new PaintEventHandler(CacheOrderQueryForm2.CacheOrderQueryFormPaint);//窗体重绘加载颜色
+                    //CacheOrderQueryForm2.ShowDialog();
                     break;
             }
         }

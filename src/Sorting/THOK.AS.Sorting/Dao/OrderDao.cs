@@ -21,7 +21,7 @@ namespace THOK.AS.Sorting.Dao
         }
         public DataTable FindMaster()
         {
-            string sql = "SELECT ORDERDATE,BATCHNO,SORTNO, ORDERID,ROUTECODE,ROUTENAME,CUSTOMERCODE,CUSTOMERNAME, " +
+            string sql = "SELECT ORDERDATE,BATCHNO,SORTNO, ORDERID,ROUTECODE,ROUTENAME,CUSTOMERCODE,CUSTOMERNAME,ORDERNO, " +
                 "CASE STATUS WHEN '0' THEN '未下单' ELSE '已下单' END STATUS, CASE WHEN PACKQUANTITY=QUANTITY THEN '已发送' ELSE '未发送' END PACKAGE FROM AS_SC_PALLETMASTER";
             return ExecuteQuery(sql).Tables[0];
         }
@@ -208,6 +208,12 @@ namespace THOK.AS.Sorting.Dao
             return ExecuteQuery(sql).Tables[0];
         }
 
+        public DataTable GetOrderIdFromSortNo(string sortNo)
+        {
+            string sql = string.Format("SELECT ORDERID FROM AS_SC_PALLETMASTER WHERE SORTNO={0}", sortNo);
+            return ExecuteQuery(sql).Tables[0];
+        }
+
         public string FindLastSortNo()
         {
             string sql = "SELECT CASE WHEN MAX(SORTNO) IS NULL THEN '0' ELSE MAX(SORTNO) END FROM AS_SC_PALLETMASTER WHERE STATUS='1'";
@@ -334,6 +340,26 @@ namespace THOK.AS.Sorting.Dao
         {
             string sql = "SELECT (CASE WHEN COUNT(*)>=1 THEN (SUM(分拣效率)/COUNT(*)) ELSE 0 END) AS AVERAGE FROM 效率报表 ";
             return Convert.ToInt32(ExecuteQuery(sql).Tables[0].Rows[0][0]);
+        }
+
+        public void UpdateMixChannelQuantity()
+        {
+            string sql = @"update dbo.AS_SC_CHANNELUSED 
+                                         set QUANTITY=(select ISNULL(sum(quantity),0) from dbo.AS_SC_HANDLESUPPLY where channelcode=2058)
+                                         where channelcode=2058 and CHANNELTYPE=5
+                            update dbo.AS_SC_CHANNELUSED 
+                                        set QUANTITY=(select ISNULL(sum(quantity),0) from dbo.AS_SC_HANDLESUPPLY where channelcode=2059)
+                                        where channelcode=2059 and CHANNELTYPE=5
+                            update dbo.AS_SC_CHANNELUSED 
+                                        set QUANTITY=(select ISNULL(sum(quantity),0) from dbo.AS_SC_HANDLESUPPLY where channelcode=2060)
+                                        where channelcode=2060 and CHANNELTYPE=5";
+            ExecuteNonQuery(sql);
+        }
+
+        public DataTable SumFromOrderId(string orderid)
+        {
+            string sql = string.Format("SELECT CUSTOMERCODE,FINISHEDTIME,SUM(QUANTITY) AS QUANTITY FROM AS_SC_PALLETMASTER WHERE ORDERID='{0}' GROUP BY CUSTOMERCODE,FINISHEDTIME", orderid);
+            return ExecuteQuery(sql).Tables[0];
         }
     }
 }

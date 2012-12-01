@@ -16,7 +16,7 @@ namespace THOK.AS.Sorting.View
     {
         public ButtonArea()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -29,7 +29,18 @@ namespace THOK.AS.Sorting.View
             if (DialogResult.Yes == MessageBox.Show("您确定要退出分拣监控系统吗？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 Util.LogFile.DeleteFile();
-                Application.Exit();
+
+                try
+                {
+                    Application.Exit();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("先关闭所有对话框才能退出系统。" + ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
             }
         }
 
@@ -105,7 +116,7 @@ namespace THOK.AS.Sorting.View
         private void btnCheck_Click(object sender, EventArgs e)
         {
             Context.Processes["SynchroLedProcess"].Resume();
-            Context.ProcessDispatcher.WriteToProcess("LEDProcess", "Check", null);
+            Context.ProcessDispatcher.WriteToProcess("SynchroLedProcess", "Check", null);
         }
 
         private void btnHelp_Click(object sender, EventArgs e)
@@ -116,7 +127,7 @@ namespace THOK.AS.Sorting.View
         private void SwitchStatus(bool isStart)
         {
             btnDownload.Enabled = !isStart;
-            btnUpload.Enabled = !isStart;
+            //btnUpload.Enabled = !isStart;
             btnStart.Enabled = !isStart;
             btnStop.Enabled = isStart;
         }
@@ -166,12 +177,13 @@ namespace THOK.AS.Sorting.View
                             Context.ProcessDispatcher.WriteToProcess("monitorView", "ProgressState", new ProgressState("下载手工补货订单明细表", 4, 4));
                             table = serverDao.FindHandleSupply(orderDate, batchNo, lineCode);
                             orderDao.InsertHandleSupply(table);
+                            //更新混合烟道数量
+                            orderDao.UpdateMixChannelQuantity();
 
                             serverDao.UpdateBatchStatus(batchID, lineCode);
 
                             Logger.Info("数据下载完成");
-                            //Context.ProcessDispatcher.WriteToProcess("LEDProcess", "NewData", null);
-                            Context.ProcessDispatcher.WriteToProcess("LEDProcess", "zz_NewData", null);
+                            Context.ProcessDispatcher.WriteToProcess("SynchroLedProcess", "NewData", null);
                             Context.ProcessDispatcher.WriteToProcess("CurrentOrderProcess", "CurrentOrder", new int[] { 0 });
                             Context.ProcessDispatcher.WriteToProcess("monitorView", "ProgressState", new ProgressState());
                         }

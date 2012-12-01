@@ -53,12 +53,13 @@ namespace THOK.AS.Sorting.View
             this.BATCHNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.Column2 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column5 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.Column6 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column7 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.Column9 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.Column10 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column5 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column7 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.pnlTool.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -125,12 +126,13 @@ namespace THOK.AS.Sorting.View
             this.BATCHNO,
             this.Column1,
             this.Column2,
-            this.Column5,
             this.Column6,
-            this.Column7,
+            this.Column3,
             this.Column8,
             this.Column9,
-            this.Column10});
+            this.Column10,
+            this.Column5,
+            this.Column7});
             this.dgvMaster.DataSource = this.bsMaster;
             this.dgvMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMaster.Location = new System.Drawing.Point(0, 0);
@@ -295,14 +297,6 @@ namespace THOK.AS.Sorting.View
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "ROUTECODE";
-            this.Column5.FilteringEnabled = false;
-            this.Column5.HeaderText = "线路代码";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
             // Column6
             // 
             this.Column6.DataPropertyName = "ROUTENAME";
@@ -311,13 +305,12 @@ namespace THOK.AS.Sorting.View
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
-            // Column7
+            // Column3
             // 
-            this.Column7.DataPropertyName = "CUSTOMERCODE";
-            this.Column7.FilteringEnabled = false;
-            this.Column7.HeaderText = "客户代码";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
+            this.Column3.DataPropertyName = "ORDERNO";
+            this.Column3.HeaderText = "客户顺序";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // Column8
             // 
@@ -347,6 +340,22 @@ namespace THOK.AS.Sorting.View
             this.Column10.HeaderText = "包装状态";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "ROUTECODE";
+            this.Column5.FilteringEnabled = false;
+            this.Column5.HeaderText = "线路代码";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "CUSTOMERCODE";
+            this.Column7.FilteringEnabled = false;
+            this.Column7.HeaderText = "客户代码";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
             // 
             // OrderQueryForm
             // 
@@ -386,11 +395,12 @@ namespace THOK.AS.Sorting.View
         private System.Windows.Forms.DataGridViewTextBoxColumn BATCHNO;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column1;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column2;
-        private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column5;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column6;
-        private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column8;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column9;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column10;
+        private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column5;
+        private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column7;
     }
 }

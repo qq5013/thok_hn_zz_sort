@@ -163,8 +163,8 @@ namespace THOK.MCP.Service.LEDBarScreen
             }
 
         }
-       
-        public void Refresh(System.Data.DataTable dt,bool showQuantity)
+
+        public void Refresh(System.Data.DataTable dt, bool showQuantity)
         {
             //刷新led显示的数据，并设置字体颜色
 
@@ -206,7 +206,7 @@ namespace THOK.MCP.Service.LEDBarScreen
                         name = "无";
                     }
                     //所能显示的字数小于实际字数，滚屏
-                    if ((plGroup[0].Height - labelNumHeight) / charHeight < name.Length )
+                    if ((plGroup[0].Height - labelNumHeight) / charHeight < name.Length)
                     {
                         string space = "";
                         for (int i = 0; i < nSpace; i++)
@@ -262,7 +262,7 @@ namespace THOK.MCP.Service.LEDBarScreen
                 thread = new System.Threading.Thread(roll);
                 thread.Start();
             }
-            
+
         }
 
         private void RollItem(int groupNo, int ledNo, string name, int quantity)
