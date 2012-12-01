@@ -111,5 +111,11 @@ namespace THOK.AS.Dao
             string sql = "UPDATE AS_BI_BATCH SET BATCHNO_ONEPRO = {0},ISUPTONOONEPRO='{3}' WHERE ORDERDATE='{1}' AND BATCHNO='{2}'";
             ExecuteNonQuery(string.Format(sql, no1Batch, orderDate, sortBatch, no1UpLoadState));
         }
+
+        public void deleteBatch(string orderDate, int batchNo)
+        {
+            string sql = "DELETE FROM AS_BI_BATCH WHERE ORDERDATE='{0}' AND BATCHNO='{1}'";
+            ExecuteNonQuery(string.Format(sql,orderDate,batchNo));
+        }
     }
 }

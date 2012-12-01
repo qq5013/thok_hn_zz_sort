@@ -243,5 +243,11 @@ namespace THOK.AS.Dao
             string sql = String.Format("UPDATE AS_BI_ROUTE SET SORTID={0} WHERE ROUTECODE='{1}'", sortId, route);    
             ExecuteNonQuery(sql);
         }
+
+        public int FindQuantityAll(string orderDate, int batchNo)
+        {
+            string sql = String.Format("SELECT SUM(QUANTITY) FROM  AS_SC_PALLETMASTER WHERE ORDERDATE='{0}' AND BATCHNO={1}", orderDate, batchNo); 
+            return (int)ExecuteScalar(sql);
+        }
     }
 }

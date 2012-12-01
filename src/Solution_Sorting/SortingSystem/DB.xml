@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Connections>
   <Connection Name="DefaultConnection" DatabaseType="SQLSERVER">
-    <ConnectionString Value="server=SORTINGSERVER\SQLEXPRESS;database=zz_Logistics;uid=sa;" />
+    <ConnectionString Value="server=SORTINGSERVER\SQLEXPRESS;database=Logistics_1;uid=sa;" />
     <Password Name="password" Value="65CED0851FFD283F" />
   </Connection>
   <Connection Name="OldConnection" DatabaseType="SQLSERVER">

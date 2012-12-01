@@ -118,7 +118,7 @@ public partial class Code_SortingManage_Default : BasePage
         {
             BatchDal batchDal = new BatchDal();
             batchDal.SaveExecuter("0", "0", Session["OrderDate"].ToString(), Convert.ToInt32(Session["BatchNo"]));
-            schedule.ClearSchedule(Session["OrderDate"].ToString(), Convert.ToInt32(Session["BatchNo"]));
+            //schedule.ClearSchedule(Session["OrderDate"].ToString(), Convert.ToInt32(Session["BatchNo"]));
 
             Application.Remove("ExecuteUser");
             Application.Remove("ExecuteIP");

@@ -55,6 +55,7 @@
     <Compile Include="Dal\DepartmentDal.cs" />
     <Compile Include="Dal\DialogDataDal.cs" />
     <Compile Include="Dal\EmployeeDal.cs" />
+    <Compile Include="Dal\HandleCigaretteDal.cs" />
     <Compile Include="Dal\RouteDal.cs" />
     <Compile Include="Dal\LineInfoDal.cs" />
     <Compile Include="Dal\AbnormityCigaretteDal.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Dao\CustomerDao.cs" />
     <Compile Include="Dao\DepartmentDao.cs" />
     <Compile Include="Dao\EmployeeDao.cs" />
+    <Compile Include="Dao\HandleCigaretteDao.cs" />
     <Compile Include="Dao\HandleSupplyDao.cs" />
     <Compile Include="Dao\LineDeviceDao.cs" />
     <Compile Include="Dao\OrderScheduleDao.cs" />

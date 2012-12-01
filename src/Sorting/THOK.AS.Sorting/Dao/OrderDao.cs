@@ -100,7 +100,7 @@ namespace THOK.AS.Sorting.Dao
         public DataTable FindPackDetail(string orderId)
         {
             string sql = string.Format("SELECT A.ORDERID, A.CIGARETTECODE,A.CIGARETTENAME, SUM(A.QUANTITY) QUANTITY " +
-                "FROM AS_SC_ORDER A  LEFT JOIN dbo.AS_SC_CHANNELUSED B ON A.CHANNELCODE = B.CHANNELCODE where A.ORDERID='{0}'  " +
+                "FROM AS_SC_ORDER A LEFT JOIN dbo.AS_SC_CHANNELUSED B ON A.CHANNELCODE = B.CHANNELCODE where A.ORDERID='{0}' AND A.QUANTITY>0 " +
                 "GROUP BY ORDERID, A.SORTNO ,B.CHANNELNAME,A.CIGARETTECODE,A.CIGARETTENAME ORDER BY A.SORTNO,B.CHANNELNAME", orderId);
             return ExecuteQuery(sql).Tables[0];
         }
@@ -181,7 +181,7 @@ namespace THOK.AS.Sorting.Dao
         {
             string strSql = "SELECT A.CHANNELADDRESS,A.CHANNELCODE, A.CHANNELTYPE, CASE WHEN B.QUANTITY IS NULL THEN 0 ELSE B.QUANTITY END QUANTITY " +
                 "FROM AS_SC_CHANNELUSED A LEFT JOIN (SELECT SORTNO,CHANNELCODE,SUM(QUANTITY)  QUANTITY FROM AS_SC_ORDER GROUP BY SORTNO,CHANNELCODE) B ON A.CHANNELCODE = B.CHANNELCODE AND B.SORTNO = '{0}' " +
-                "ORDER BY A.CHANNELTYPE , A.CHANNELCODE";
+                "ORDER BY A.CHANNELADDRESS,A.CHANNELTYPE , A.CHANNELCODE";
             strSql = string.Format(strSql, sortNo);
             return ExecuteQuery(strSql).Tables[0];
         }

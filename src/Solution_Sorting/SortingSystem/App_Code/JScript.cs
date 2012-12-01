@@ -20,7 +20,7 @@ public class JScript
 		// TODO: 在此处添加构造函数逻辑
 		//
 	}
-    static int p = 0;
+    //static int p = 0;
     /// <summary>
     /// 信息提示框
 

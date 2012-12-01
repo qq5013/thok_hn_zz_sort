@@ -75,20 +75,26 @@ public partial class Code_SortingManage_Batch : BasePage
 
     protected void gvMain_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
+        //GridViewRow row = gvMain.Rows[e.RowIndex];
+        //THOK.AS.Schedule.SemiAutoSchedule schedule = new THOK.AS.Schedule.SemiAutoSchedule();
+        //if (row.Cells[4].Text == "已优化")
+        //{
+        //    if (row.Cells[3].Text == "未上传")
+        //    {
+        //        schedule.ClearSchedule(row.Cells[1].Text.ToString(), Convert.ToInt32(row.Cells[2].Text));
+        //        JScript.Instance.ShowMessage(UpdatePanel1, "清除数据成功。");
+        //    }
+        //    else
+        //        JScript.Instance.ShowMessage(UpdatePanel1, "不能清除当前批次，原因是数据已上传一号工程。");
+        //}
+        //else
+        //    JScript.Instance.ShowMessage(UpdatePanel1, "不能清除当前批次，原因是当前批次未优化。");
+
         GridViewRow row = gvMain.Rows[e.RowIndex];
         THOK.AS.Schedule.SemiAutoSchedule schedule = new THOK.AS.Schedule.SemiAutoSchedule();
-        if (row.Cells[4].Text == "已优化")
-        {
-            if (row.Cells[3].Text == "未上传")
-            {
-                schedule.ClearSchedule(row.Cells[1].Text.ToString(), Convert.ToInt32(row.Cells[2].Text));
-                JScript.Instance.ShowMessage(UpdatePanel1, "清除数据成功。");
-            }
-            else
-                JScript.Instance.ShowMessage(UpdatePanel1, "不能清除当前批次，原因是数据已上传一号工程。");
-        }
-        else
-            JScript.Instance.ShowMessage(UpdatePanel1, "不能清除当前批次，原因是当前批次未优化。");
+        schedule.ClearSchedule(row.Cells[1].Text.ToString(), Convert.ToInt32(row.Cells[2].Text));
+        JScript.Instance.ShowMessage(UpdatePanel1, "清除数据成功。");
+
         BindData();
     }
 

@@ -77,26 +77,33 @@ namespace THOK.AS.Sorting.Dal
                 try
                 {
                     pm.BeginTransaction();
-                    DataTable channelTable = channelDao.FindChannel(sourceChannel);
-                    DataTable targetChannelTable = channelDao.FindChannel(targetChannel);
+                    DataTable sourceChannelTable = channelDao.FindChannel(sourceChannel);//获取欲交换的烟道
+                    DataTable targetChannelTable = channelDao.FindChannel(targetChannel);//获取要交换的目的烟道
 
-                    sourceChannelAddress = Convert.ToInt32(channelTable.Rows[0]["CHANNELADDRESS"]);
+                    sourceChannelAddress = Convert.ToInt32(sourceChannelTable.Rows[0]["CHANNELADDRESS"]);
                     targetChannelAddress = Convert.ToInt32(targetChannelTable.Rows[0]["CHANNELADDRESS"]);
 
-                    channelDao.UpdateChannel(targetChannel, channelTable.Rows[0]["CIGARETTECODE"].ToString(),
-                        channelTable.Rows[0]["CIGARETTENAME"].ToString(), 
-                        Convert.ToInt32(channelTable.Rows[0]["QUANTITY"]),
-                        channelTable.Rows[0]["SORTNO"].ToString());
+                    channelDao.UpdateChannel(targetChannel,
+                        sourceChannelTable.Rows[0]["CIGARETTECODE"].ToString(),
+                        sourceChannelTable.Rows[0]["CIGARETTENAME"].ToString(),
+                        Convert.ToInt32(sourceChannelTable.Rows[0]["QUANTITY"]),
+                        sourceChannelTable.Rows[0]["SORTNO"].ToString());
 
-                    channelDao.UpdateChannel(sourceChannel, "", "", 0, "0");
+                    channelDao.UpdateChannel(sourceChannel,
+                        targetChannelTable.Rows[0]["CIGARETTECODE"].ToString(),
+                        targetChannelTable.Rows[0]["CIGARETTENAME"].ToString(),
+                        Convert.ToInt32(targetChannelTable.Rows[0]["QUANTITY"]),
+                        targetChannelTable.Rows[0]["SORTNO"].ToString());
 
-                    orderDao.UpdateChannel(sourceChannel, targetChannel);
+                    orderDao.UpdateChannel(sourceChannel, "0000");
+                    orderDao.UpdateChannel(targetChannel, sourceChannel);
+                    orderDao.UpdateChannel("0000", targetChannel);
 
                     pm.Commit();
                     return true;
                 }
                 catch
-                {                    
+                {
                     pm.Rollback();
                     sourceChannelAddress = 0;
                     targetChannelAddress = 0;

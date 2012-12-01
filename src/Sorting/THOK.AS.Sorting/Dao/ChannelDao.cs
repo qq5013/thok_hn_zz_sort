@@ -53,10 +53,10 @@ namespace THOK.AS.Sorting.Dao
         //立式机烟道信息
         public DataTable FindChannelInfo()
         {
-            string strSql = "SELECT A.CHANNELCODE,A.CHANNELTYPE, C.CIGARETTENAME,A.LEDGROUP,A.LEDNO,SUM(C.QUANTITY) as QUANTITY from "
+            string strSql = "SELECT DISTINCT A.CHANNELCODE,A.CHANNELTYPE, C.CIGARETTENAME,A.LEDGROUP,A.LEDNO,SUM(C.QUANTITY) as QUANTITY FROM "
                 + "AS_SC_ORDER C left join AS_SC_PALLETMASTER B on B.SORTNO=C.SORTNO "
                 + " left join AS_SC_CHANNELUSED A on C.CHANNELCODE=A.CHANNELCODE"
-                + " where A.CHANNELTYPE in ('2','5')"
+                + " where A.CHANNELTYPE in ('2')"
                 + "GROUP BY A.CHANNELCODE,A.CHANNELTYPE,C.CIGARETTENAME,A.LEDGROUP,A.LEDNO ORDER BY A.LEDGROUP asc,A.LEDNO asc";
             return ExecuteQuery(strSql).Tables[0];
         }
