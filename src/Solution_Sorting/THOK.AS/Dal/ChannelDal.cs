@@ -40,5 +40,13 @@ namespace THOK.AS.Dal
                 channelDao.UpdateEntity(channelID, cigaretteCode, cigaretteName, ledGroup, ledNo, status);
             }
         }
+        public void Save(string channelID, string cigaretteCode, string cigaretteName,int channeltype, string ledGroup, string ledNo, string status)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                ChannelDao channelDao = new ChannelDao();
+                channelDao.UpdateEntity(channelID, cigaretteCode, cigaretteName, channeltype,ledGroup, ledNo, status);
+            }
+        }
     }
 }

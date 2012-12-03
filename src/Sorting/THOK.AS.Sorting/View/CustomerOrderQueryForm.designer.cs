@@ -36,19 +36,6 @@ namespace THOK.AS.Sorting.View
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.dgvMaster = new System.Windows.Forms.DataGridView();
-            this.dgvDetail = new System.Windows.Forms.DataGridView();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btQuery = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.SORTNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ORDERNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ORDERID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.烟道顺序 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CHANNELTYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CHANNELNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIGARETTECODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIGARETTENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QUANTITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ORDERDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ORDERID1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ROUTECODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +46,19 @@ namespace THOK.AS.Sorting.View
             this.SORTNO1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PACKNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PACKAGE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDetail = new System.Windows.Forms.DataGridView();
+            this.SORTNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ORDERNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ORDERID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.烟道顺序 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CHANNELTYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CHANNELNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIGARETTECODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIGARETTENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QUANTITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btQuery = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.pnlTool.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -107,6 +107,7 @@ namespace THOK.AS.Sorting.View
             // 
             this.dgvMaster.AllowUserToAddRows = false;
             this.dgvMaster.AllowUserToDeleteRows = false;
+            this.dgvMaster.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dgvMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMaster.BackgroundColor = System.Drawing.SystemColors.Info;
@@ -141,6 +142,76 @@ namespace THOK.AS.Sorting.View
             this.dgvMaster.Size = new System.Drawing.Size(1041, 191);
             this.dgvMaster.TabIndex = 2;
             this.dgvMaster.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaster_RowEnter);
+            // 
+            // ORDERDATE
+            // 
+            this.ORDERDATE.DataPropertyName = "ORDERDATE";
+            this.ORDERDATE.HeaderText = "订单日期";
+            this.ORDERDATE.Name = "ORDERDATE";
+            this.ORDERDATE.ReadOnly = true;
+            // 
+            // ORDERID1
+            // 
+            this.ORDERID1.DataPropertyName = "ORDERID";
+            this.ORDERID1.HeaderText = "订单号";
+            this.ORDERID1.Name = "ORDERID1";
+            this.ORDERID1.ReadOnly = true;
+            // 
+            // ROUTECODE
+            // 
+            this.ROUTECODE.DataPropertyName = "ROUTECODE";
+            this.ROUTECODE.HeaderText = "线路代码";
+            this.ROUTECODE.Name = "ROUTECODE";
+            this.ROUTECODE.ReadOnly = true;
+            // 
+            // ROUTENAME
+            // 
+            this.ROUTENAME.DataPropertyName = "ROUTENAME";
+            this.ROUTENAME.HeaderText = "线路名称";
+            this.ROUTENAME.Name = "ROUTENAME";
+            this.ROUTENAME.ReadOnly = true;
+            // 
+            // CUSTOMERCODE
+            // 
+            this.CUSTOMERCODE.DataPropertyName = "CUSTOMERCODE";
+            this.CUSTOMERCODE.HeaderText = "客户代码";
+            this.CUSTOMERCODE.Name = "CUSTOMERCODE";
+            this.CUSTOMERCODE.ReadOnly = true;
+            // 
+            // CUSTOMERNAME
+            // 
+            this.CUSTOMERNAME.DataPropertyName = "CUSTOMERNAME";
+            this.CUSTOMERNAME.HeaderText = "客户名称";
+            this.CUSTOMERNAME.Name = "CUSTOMERNAME";
+            this.CUSTOMERNAME.ReadOnly = true;
+            // 
+            // QUANTITY1
+            // 
+            this.QUANTITY1.DataPropertyName = "QUANTITY";
+            this.QUANTITY1.HeaderText = "总数量";
+            this.QUANTITY1.Name = "QUANTITY1";
+            this.QUANTITY1.ReadOnly = true;
+            // 
+            // SORTNO1
+            // 
+            this.SORTNO1.DataPropertyName = "SORTNO";
+            this.SORTNO1.HeaderText = "分拣流水号";
+            this.SORTNO1.Name = "SORTNO1";
+            this.SORTNO1.ReadOnly = true;
+            // 
+            // PACKNO
+            // 
+            this.PACKNO.DataPropertyName = "PACKNO";
+            this.PACKNO.HeaderText = "客户顺序号";
+            this.PACKNO.Name = "PACKNO";
+            this.PACKNO.ReadOnly = true;
+            // 
+            // PACKAGE
+            // 
+            this.PACKAGE.DataPropertyName = "PACKAGE";
+            this.PACKAGE.HeaderText = "包装状态";
+            this.PACKAGE.Name = "PACKAGE";
+            this.PACKAGE.ReadOnly = true;
             // 
             // dgvDetail
             // 
@@ -178,48 +249,6 @@ namespace THOK.AS.Sorting.View
             this.dgvDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetail.Size = new System.Drawing.Size(1041, 210);
             this.dgvDetail.TabIndex = 1;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRefresh.Image = global::THOK.AS.Sorting.Properties.Resources.Chart;
-            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRefresh.Location = new System.Drawing.Point(0, 0);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(48, 51);
-            this.btnRefresh.TabIndex = 15;
-            this.btnRefresh.Text = "刷新";
-            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btQuery
-            // 
-            this.btQuery.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btQuery.Image = global::THOK.AS.Sorting.Properties.Resources.Info;
-            this.btQuery.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btQuery.Location = new System.Drawing.Point(48, 0);
-            this.btQuery.Name = "btQuery";
-            this.btQuery.Size = new System.Drawing.Size(48, 51);
-            this.btQuery.TabIndex = 19;
-            this.btQuery.Text = "查询";
-            this.btQuery.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btQuery.UseVisualStyleBackColor = true;
-            this.btQuery.Click += new System.EventHandler(this.btQuery_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnExit.Image = global::THOK.AS.Sorting.Properties.Resources.Exit;
-            this.btnExit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExit.Location = new System.Drawing.Point(96, 0);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(48, 51);
-            this.btnExit.TabIndex = 20;
-            this.btnExit.Text = "退出";
-            this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // SORTNO
             // 
@@ -300,75 +329,47 @@ namespace THOK.AS.Sorting.View
             this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.QUANTITY.Width = 80;
             // 
-            // ORDERDATE
+            // btnRefresh
             // 
-            this.ORDERDATE.DataPropertyName = "ORDERDATE";
-            this.ORDERDATE.HeaderText = "订单日期";
-            this.ORDERDATE.Name = "ORDERDATE";
-            this.ORDERDATE.ReadOnly = true;
+            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRefresh.Image = global::THOK.AS.Sorting.Properties.Resources.Chart;
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRefresh.Location = new System.Drawing.Point(0, 0);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(48, 51);
+            this.btnRefresh.TabIndex = 15;
+            this.btnRefresh.Text = "刷新";
+            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // ORDERID1
+            // btQuery
             // 
-            this.ORDERID1.DataPropertyName = "ORDERID";
-            this.ORDERID1.HeaderText = "订单号";
-            this.ORDERID1.Name = "ORDERID1";
-            this.ORDERID1.ReadOnly = true;
+            this.btQuery.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btQuery.Image = global::THOK.AS.Sorting.Properties.Resources.Info;
+            this.btQuery.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btQuery.Location = new System.Drawing.Point(48, 0);
+            this.btQuery.Name = "btQuery";
+            this.btQuery.Size = new System.Drawing.Size(48, 51);
+            this.btQuery.TabIndex = 19;
+            this.btQuery.Text = "查询";
+            this.btQuery.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btQuery.UseVisualStyleBackColor = true;
+            this.btQuery.Click += new System.EventHandler(this.btQuery_Click);
             // 
-            // ROUTECODE
+            // btnExit
             // 
-            this.ROUTECODE.DataPropertyName = "ROUTECODE";
-            this.ROUTECODE.HeaderText = "线路代码";
-            this.ROUTECODE.Name = "ROUTECODE";
-            this.ROUTECODE.ReadOnly = true;
-            // 
-            // ROUTENAME
-            // 
-            this.ROUTENAME.DataPropertyName = "ROUTENAME";
-            this.ROUTENAME.HeaderText = "线路名称";
-            this.ROUTENAME.Name = "ROUTENAME";
-            this.ROUTENAME.ReadOnly = true;
-            // 
-            // CUSTOMERCODE
-            // 
-            this.CUSTOMERCODE.DataPropertyName = "CUSTOMERCODE";
-            this.CUSTOMERCODE.HeaderText = "客户代码";
-            this.CUSTOMERCODE.Name = "CUSTOMERCODE";
-            this.CUSTOMERCODE.ReadOnly = true;
-            // 
-            // CUSTOMERNAME
-            // 
-            this.CUSTOMERNAME.DataPropertyName = "CUSTOMERNAME";
-            this.CUSTOMERNAME.HeaderText = "客户名称";
-            this.CUSTOMERNAME.Name = "CUSTOMERNAME";
-            this.CUSTOMERNAME.ReadOnly = true;
-            // 
-            // QUANTITY1
-            // 
-            this.QUANTITY1.DataPropertyName = "QUANTITY";
-            this.QUANTITY1.HeaderText = "总数量";
-            this.QUANTITY1.Name = "QUANTITY1";
-            this.QUANTITY1.ReadOnly = true;
-            // 
-            // SORTNO1
-            // 
-            this.SORTNO1.DataPropertyName = "SORTNO";
-            this.SORTNO1.HeaderText = "分拣流水号";
-            this.SORTNO1.Name = "SORTNO1";
-            this.SORTNO1.ReadOnly = true;
-            // 
-            // PACKNO
-            // 
-            this.PACKNO.DataPropertyName = "PACKNO";
-            this.PACKNO.HeaderText = "客户顺序号";
-            this.PACKNO.Name = "PACKNO";
-            this.PACKNO.ReadOnly = true;
-            // 
-            // PACKAGE
-            // 
-            this.PACKAGE.DataPropertyName = "PACKAGE";
-            this.PACKAGE.HeaderText = "包装状态";
-            this.PACKAGE.Name = "PACKAGE";
-            this.PACKAGE.ReadOnly = true;
+            this.btnExit.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnExit.Image = global::THOK.AS.Sorting.Properties.Resources.Exit;
+            this.btnExit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExit.Location = new System.Drawing.Point(96, 0);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(48, 51);
+            this.btnExit.TabIndex = 20;
+            this.btnExit.Text = "退出";
+            this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // CustomerOrderQueryForm
             // 

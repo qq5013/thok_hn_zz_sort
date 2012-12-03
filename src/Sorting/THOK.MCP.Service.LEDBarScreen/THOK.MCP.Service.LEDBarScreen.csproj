@@ -35,7 +35,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="THOK.MCP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\THOK.MCP.dll</HintPath>
+      <HintPath>..\..\..\THOK.MCP.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

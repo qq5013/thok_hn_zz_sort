@@ -43,7 +43,7 @@ namespace THOK.AS.Sorting.Process
                         }
                         else 
                         {
-                            messageUtil.SendToSupply(sortNo);
+                            //messageUtil.SendToSupply(sortNo);
                         }
                     }
 

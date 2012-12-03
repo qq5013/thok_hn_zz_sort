@@ -5,13 +5,14 @@ using System.Data;
 using THOK.AS.Schedule;
 using THOK.AS.Dao;
 using THOK.Util;
-
 using System.Threading;
+using System.Web.UI.WebControls;
 
 namespace THOK.AS.Schedule
 {
     public class SemiAutoSchedule
     {
+        int quantity = 0;
         public event ScheduleEventHandler OnSchedule = null;
 
         public void DownloadData(string orderDate, int batchNo)
@@ -78,7 +79,7 @@ namespace THOK.AS.Schedule
                             if (OnSchedule != null)
                                 OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 8, 14));
 
-                            ClearSchedule(orderDate, batchNo);
+                            //ClearSchedule(orderDate, batchNo);
 
                             //下载区域表
                             AreaDao areaDao = new AreaDao();
@@ -171,7 +172,7 @@ namespace THOK.AS.Schedule
 
                 //订单优化
                 GenOrderScheduleV(orderDate, batchNo);
-
+                
                 //手工补货优化
                 GenHandleSupplySchedule(orderDate, batchNo);
 
@@ -184,9 +185,13 @@ namespace THOK.AS.Schedule
                     BatchDao batchDao = new BatchDao();
                     batchDao.UpdateIsValid(orderDate, batchNo, "1");
                 }
-
+                using (PersistentManager pm = new PersistentManager())
+                {
+                    OrderDao orderDao = new OrderDao();
+                    quantity = orderDao.FindQuantityAll(orderDate, batchNo);
+                }
                 if (OnSchedule != null)
-                    OnSchedule(this, new ScheduleEventArgs(OptimizeStatus.COMPLETE));
+                    OnSchedule(this, new ScheduleEventArgs(OptimizeStatus.COMPLETE, Convert.ToString(quantity)));
 
             }
             catch (Exception e)
@@ -208,8 +213,9 @@ namespace THOK.AS.Schedule
             {
                 //AS_BI_BATCH
                 BatchDao batchDao = new BatchDao();
-                batchDao.UpdateExecuter("0", "0", orderDate, batchNo);
-                batchDao.UpdateIsValid(orderDate, batchNo, "0");
+                //batchDao.UpdateExecuter("0", "0", orderDate, batchNo);
+                //batchDao.UpdateIsValid(orderDate, batchNo, "0");
+                batchDao.deleteBatch(orderDate, batchNo);
 
                 //AS_SC_CHANNELUSED
                 ChannelScheduleDao csDao = new ChannelScheduleDao();
@@ -474,6 +480,10 @@ namespace THOK.AS.Schedule
 
                     //在AS_SC_HANDLESUPPLY中插入新的手工补货定单
                     scOrderDao.InsertHandSupplyOrders(newSupplyOrders);
+
+
+                    //更新混合烟道数量
+                    scOrderDao.UpdateMixChannelQuantity(orderDate, batchNo, lineCode);
 
                     if (OnSchedule != null)
                         OnSchedule(this, new ScheduleEventArgs(6, "正在优化" + lineRow["LINECODE"].ToString() + "分拣线手工补货定单订单", ++currentCount, totalCount));

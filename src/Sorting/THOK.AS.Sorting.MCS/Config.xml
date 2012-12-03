@@ -13,8 +13,6 @@
   <Services>
     <Service Name="SortPLC" Type="THOK.MCP.Service.Siemens.dll, THOK.MCP.Service.Siemens.OPCService" ConfigFile="SortPLC.xml" />
     <Service Name="PackPLC" Type="THOK.MCP.Service.Package.dll, THOK.MCP.Service.Package.S7200Service" ConfigFile="PackPLC.xml" />
-  </Services>
-  <Services>
     <Service Name="LedBarScreen" Type="THOK.MCP.Service.LEDBarScreen.dll, THOK.MCP.Service.LEDBarScreen.LEDBarScreenService" ConfigFile="Led.xml" />
   </Services>
   <Processes>

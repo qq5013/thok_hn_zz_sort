@@ -50,9 +50,9 @@ namespace THOK.AS.Sorting.View
                         int sourceChannelAddress = 0;
                         int targetChannelAddress = 0;
 
-                        if (channelDal.ExechangeChannel(channelCode, channelDailog.SelectedChannelCode,out sourceChannelAddress,out targetChannelAddress))
+                        if (channelDal.ExechangeChannel(channelCode, channelDailog.SelectedChannelCode, out sourceChannelAddress, out targetChannelAddress))
                         {
-                            int [] data = new int [3];
+                            int[] data = new int[3];
                             data[0] = sourceChannelAddress;
                             data[1] = targetChannelAddress;
                             data[2] = 1;

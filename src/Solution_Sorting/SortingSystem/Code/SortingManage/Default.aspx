@@ -66,7 +66,8 @@
                 document.form1.btnStart.disabled = false;
                 document.form1.btnStop.disabled = true;
                 document.form1.btnExit.disabled = false;   
-                alert("订单数据处理完成");                
+                var message = xml.getElementsByTagName("message")[0].text;
+                alert("订单数据处理完成，总数量："+message+"条");                 
             }
             else if (status == "SwitchView")
             {

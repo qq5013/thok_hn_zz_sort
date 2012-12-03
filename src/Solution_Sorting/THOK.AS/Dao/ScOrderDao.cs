@@ -58,5 +58,19 @@ namespace THOK.AS.Dao
                 ExecuteNonQuery(sqlCreate.GetSQL());                
             }
         }
+
+        public void UpdateMixChannelQuantity(string orderDate,int batchNo,string lineCode)
+        {
+            string sql = string.Format(@"UPDATE AS_SC_CHANNELUSED 
+                                             SET QUANTITY=(SELECT ISNULL(SUM(QUANTITY),0) FROM AS_SC_HANDLESUPPLY WHERE CHANNELCODE=2058 AND ORDERDATE='{0}' AND BATCHNO={1} AND LINECODE='{2}')
+                                             WHERE CHANNELCODE=2058 AND CHANNELTYPE=5 AND ORDERDATE='{0}' AND BATCHNO={1} AND LINECODE='{2}'
+                                         UPDATE AS_SC_CHANNELUSED 
+                                             SET QUANTITY=(SELECT ISNULL(SUM(QUANTITY),0) FROM AS_SC_HANDLESUPPLY WHERE CHANNELCODE=2059 AND ORDERDATE='{0}' AND BATCHNO={1} AND LINECODE='{2}')
+                                             WHERE CHANNELCODE=2059 AND CHANNELTYPE=5 AND ORDERDATE='{0}' AND BATCHNO={1} AND LINECODE='{2}'
+                                         UPDATE AS_SC_CHANNELUSED 
+                                             SET QUANTITY=(SELECT ISNULL(SUM(QUANTITY),0) FROM AS_SC_HANDLESUPPLY WHERE CHANNELCODE=2060 AND ORDERDATE='{0}' AND BATCHNO={1} AND LINECODE='{2}')
+                                             WHERE CHANNELCODE=2060 AND CHANNELTYPE=5 AND ORDERDATE='{0}' AND BATCHNO={1} AND LINECODE='{2}'", orderDate, batchNo, lineCode);
+            ExecuteNonQuery(sql);
+        }
     }
 }

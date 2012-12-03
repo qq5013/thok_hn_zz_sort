@@ -199,9 +199,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "卷烟分拣监控系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
             this.pnlMain.ResumeLayout(false);

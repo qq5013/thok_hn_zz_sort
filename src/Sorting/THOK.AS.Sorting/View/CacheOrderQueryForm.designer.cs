@@ -36,13 +36,12 @@
             this.dgvDetail = new System.Windows.Forms.DataGridView();
             this.SORTNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ORDERID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CUSTOMERNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHANNELNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHANNELTYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIGARETTECODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIGARETTENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QUANTITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,13 +63,12 @@
             this.dgvDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SORTNO,
             this.ORDERID,
-            this.Column1,
+            this.CUSTOMERNAME,
             this.CHANNELNAME,
             this.CHANNELTYPE,
             this.CIGARETTECODE,
             this.CIGARETTENAME,
-            this.QUANTITY,
-            this.Column3});
+            this.QUANTITY});
             this.dgvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetail.Location = new System.Drawing.Point(0, 0);
             this.dgvDetail.MultiSelect = false;
@@ -99,13 +97,13 @@
             this.ORDERID.ReadOnly = true;
             this.ORDERID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Column1
+            // CUSTOMERNAME
             // 
-            this.Column1.DataPropertyName = "CUSTOMERNAME";
-            this.Column1.HeaderText = "客户名称";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CUSTOMERNAME.DataPropertyName = "CUSTOMERNAME";
+            this.CUSTOMERNAME.HeaderText = "客户名称";
+            this.CUSTOMERNAME.Name = "CUSTOMERNAME";
+            this.CUSTOMERNAME.ReadOnly = true;
+            this.CUSTOMERNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CHANNELNAME
             // 
@@ -155,14 +153,6 @@
             this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.QUANTITY.Width = 80;
             // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "PACKNO0";
-            this.Column3.HeaderText = "包装机包号";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 120;
-            // 
             // CacheOrderQueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -185,12 +175,11 @@
         private System.Windows.Forms.DataGridView dgvDetail;
         private System.Windows.Forms.DataGridViewTextBoxColumn SORTNO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ORDERID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CUSTOMERNAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn CHANNELNAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn CHANNELTYPE;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIGARETTECODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIGARETTENAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn QUANTITY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

@@ -30,6 +30,14 @@ namespace THOK.AS.Sorting.View
             {
                 dgvMain.DataSource = channelDal.GetChannel(sortnoDialog.SortNo);
             }
+            else
+            {
+
+                string sortNo = "";
+                OrderDal orderDal = new OrderDal();
+                sortNo = orderDal.FindMaxSortedNo();
+                dgvMain.DataSource = channelDal.GetChannel(sortNo);
+            }
         }
     }
 }

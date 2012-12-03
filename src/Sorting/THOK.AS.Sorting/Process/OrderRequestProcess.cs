@@ -50,7 +50,7 @@ namespace THOK.AS.Sorting.Process
                                 DataTable detailTable = orderDao.FindSortDetail(sortNo);
                                 //查询本分拣线组最后流水号，判断是否结束
                                 string endSortNo = orderDao.FindEndSortNo();
-                                int[] orderData = new int[90];
+                                int[] orderData = new int[97];
                                 for (int i = 0; i < detailTable.Rows.Count; i++)
                                 {
                                     orderData[Convert.ToInt32(detailTable.Rows[i]["CHANNELADDRESS"]) - 1] = Convert.ToInt32(detailTable.Rows[i]["QUANTITY"]);
@@ -68,7 +68,7 @@ namespace THOK.AS.Sorting.Process
                                 //是否换户
                                 orderData[92] = maxSortNo == sortNo ? 1 : 0;
                                 //客户分拣流水号
-                                orderData[93] = Convert.ToInt32(masterTable.Rows[0]["CUSTOMERSORTNO"].ToString());
+                                //orderData[93] = Convert.ToInt32(masterTable.Rows[0]["CUSTOMERSORTNO"].ToString());
                                 //包装机号
                                 orderData[94] = 0;
                                 //本分拣线路是否结束
@@ -84,7 +84,7 @@ namespace THOK.AS.Sorting.Process
                                     //发送订单号给分拣出口终端系统
                                     if (sortNo == "1")
                                     {
-                                        messageUtil.SendToExport(sortNo);     
+                                        //messageUtil.SendToExport(sortNo);     
                                     }
                                                                  
                                 }

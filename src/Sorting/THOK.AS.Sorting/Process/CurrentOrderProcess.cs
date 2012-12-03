@@ -6,6 +6,7 @@ using THOK.MCP;
 using THOK.AS.Sorting.Util;
 using THOK.AS.Sorting.Dao;
 using THOK.AS.Sorting.View;
+using THOK.AS.Sorting.Dal;
 using THOK.Util;
 
 namespace THOK.AS.Sorting.Process
@@ -64,7 +65,7 @@ namespace THOK.AS.Sorting.Process
                     if (Convert.ToInt32(sortNo) > 0)
                     {
                         sortNo = Convert.ToString(Convert.ToInt32(sortNo) + 1);
-                        messageUtil.SendToExport(sortNo);
+                        //messageUtil.SendToExport(sortNo);
                     }
                 }
             }
@@ -102,7 +103,48 @@ namespace THOK.AS.Sorting.Process
                     refreshData.Average = orderDao.FindSortingAverage();
 
                     dispatcher.WriteToProcess("sortingStatus", "RefreshData", refreshData);
-                    messageUtil.SendToSortLed(sortNo, refreshData);
+                    //messageUtil.SendToSortLed(sortNo, refreshData);
+
+
+                    if (sortNo != "0")
+                    {
+                        Logger.Info(string.Format("已经完成{0}号定单", sortNo));
+                        DataTable orderInfo = orderDao.GetOrderIdFromSortNo(sortNo);
+                        if (orderInfo.Rows.Count > 0)
+                        {
+                            string orderid = orderInfo.Rows[0]["ORDERID"].ToString();
+                            int uploadMode = 0;
+
+                            //ParamDao paramDao = new ParamDao();
+                            //uploadMode = Convert.ToInt32(paramDao.FindState("UPLOADMODE"));
+
+                            UploadDal uploadDal = new UploadDal();
+                            if (uploadMode == 0)//自动上传国家局
+                            {
+                                //通过ORDERID汇总当前户的定单
+                                //UploadDao uploadDao = new UploadDao();
+                                if (uploadDal.DataUpload(orderid))
+                                {
+                                    Logger.Info(string.Format("已经完成对定单号'{0}'的中烟上传", orderid));
+                                }
+                            }
+                            else
+                            {
+                                //if (uploadDal.SaveUpload(orderid))
+                                //{
+                                //    Logger.Info(string.Format("已经完成对定单号'{0}'的保存", orderid));
+                                //}
+                            }
+
+                            ////通过ORDERID汇总当前户的定单
+                            //UploadDao uploadDao = new UploadDao();
+                            //if (uploadDao.DataUpload(orderid))
+                            //{
+                            //    Logger.Info(string.Format("已经完成对定单号'{0}'的中烟上传",orderid));
+                            //}
+                            ////DataTable dt= masterDao.SumFromOrderId(orderid);
+                        }
+                    }
                 }
             }
             catch (Exception e)

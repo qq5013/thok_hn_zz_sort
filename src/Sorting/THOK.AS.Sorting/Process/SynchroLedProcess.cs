@@ -11,6 +11,18 @@ namespace THOK.AS.Sorting.Process
 {
     public class SynchroLedProcess : AbstractProcess
     {
+        int Null = 0;
+        public override void Initialize(Context context)
+        {
+            try
+            {
+                base.Initialize(context);
+            }
+            catch (Exception e)
+            {
+                Logger.Error("LEDProcess 初始化失败！原因：" + e.Message);
+            }
+        }
         protected override void StateChanged(StateItem stateItem, IProcessDispatcher dispatcher)
         {
             try
@@ -30,16 +42,16 @@ namespace THOK.AS.Sorting.Process
                         if (state is Array)
                         {
                             Array array = (Array)state;
-                            if (array.Length == 86)
+                            if (array.Length == 70)
                             {
                                 //LED显示盘点数据和卷烟品牌
-                                int[] quantity = new int[86];
+                                int[] quantity = new int[70];
                                 array.CopyTo(quantity, 0);
-                                Show(true, quantity);
+                                Show(false);
                             }
                         }
                         else
-                            Show(true);
+                            Show(false);
                         break;
                     case "UnCheck"://由开始按钮事件发出
 
@@ -90,7 +102,7 @@ namespace THOK.AS.Sorting.Process
                 {
                     ChannelDao channelDao = new ChannelDao();
                     DataTable channelTable = channelDao.FindLastSortNo();
-                    int[] channelData = new int[86];
+                    int[] channelData = new int[70];
                     for (int i = 0; i < channelTable.Rows.Count; i++)
                     {
                         channelData[Convert.ToInt32(channelTable.Rows[i]["CHANNELADDRESS"]) - 1] = Convert.ToInt32(channelTable.Rows[i]["SORTNO"]);
@@ -126,7 +138,15 @@ namespace THOK.AS.Sorting.Process
                     if (!checkMode)
                     {
                         ChannelDao channelDao = new ChannelDao();
-                        WriteToService("LedBarScreen", "SendToLed", channelDao.FindChannelInfo());
+                        DataTable aa = channelDao.FindChannelInfo();
+                        try
+                        {
+                            WriteToService("LedBarScreen", "SendToLed", channelDao.FindChannelInfo());
+                        }
+                        catch (Exception e)
+                        {
+                            Null = 1;
+                        }
                     }
                     else
                     {

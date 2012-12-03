@@ -60,7 +60,37 @@ public partial class Code_BaseInfo_Channel : BasePage
     {
         ////保存修改到数据库
         ChannelDal channelDal = new ChannelDal();
-        channelDal.Save(txtChannelCode.ToolTip, txtCigaretteCode.Text, txtCigaretteName.Text, txtLedGroup.Text, txtLedNo.Text, ddlStatus.SelectedValue);
+        if (txtChannelCode.Text == "2058" || txtChannelCode.Text == "2059" || txtChannelCode.Text == "2059")
+        {
+            if (txtChannelType.Text != "立式机" && txtChannelType.Text != "混合立式机")
+            {
+                int ChannelType = 5;
+                try
+                {
+                    ChannelType = Convert.ToInt32(txtChannelType.Text);
+                    if (ChannelType != 2 && ChannelType != 5)
+                    {
+                        JScript.Instance.ShowMessage(UpdatePanel1, "类型请输入2或者5。");
+                    }
+                    else
+                    {
+                        channelDal.Save(txtChannelCode.ToolTip, txtCigaretteCode.Text, txtCigaretteName.Text, ChannelType, txtLedGroup.Text, txtLedNo.Text, ddlStatus.SelectedValue);
+                    }
+                }
+                catch (Exception ee)
+                {
+                    JScript.Instance.ShowMessage(UpdatePanel1, "保存数据失败。" + ee);
+                }
+            }
+            else
+            {
+                channelDal.Save(txtChannelCode.ToolTip, txtCigaretteCode.Text, txtCigaretteName.Text, txtLedGroup.Text, txtLedNo.Text, ddlStatus.SelectedValue);
+            }
+        }
+        else
+        {
+            channelDal.Save(txtChannelCode.ToolTip, txtCigaretteCode.Text, txtCigaretteName.Text, txtLedGroup.Text, txtLedNo.Text, ddlStatus.SelectedValue);
+        }
         JScript.Instance.ShowMessage(UpdatePanel1, "保存数据成功。");
     }
 
@@ -77,6 +107,7 @@ public partial class Code_BaseInfo_Channel : BasePage
         txtChannelCode.ToolTip = gvMain.Rows[e.NewEditIndex].Cells[10].Text;
         txtCigaretteCode.Text = gvMain.Rows[e.NewEditIndex].Cells[5].Text == "&nbsp;" ? "" : gvMain.Rows[e.NewEditIndex].Cells[5].Text;
         txtCigaretteName.Text = gvMain.Rows[e.NewEditIndex].Cells[6].Text == "&nbsp;" ? "" : gvMain.Rows[e.NewEditIndex].Cells[6].Text; ;
+        txtChannelType.Text = gvMain.Rows[e.NewEditIndex].Cells[4].Text;
         txtLedGroup.Text = gvMain.Rows[e.NewEditIndex].Cells[7].Text;
         txtLedNo.Text = gvMain.Rows[e.NewEditIndex].Cells[8].Text;
 
@@ -109,7 +140,7 @@ public partial class Code_BaseInfo_Channel : BasePage
         else if (e.Row.Cells[4].Text == "3")
             e.Row.Cells[4].Text = "通道机";
         else if (e.Row.Cells[4].Text == "5")
-            e.Row.Cells[4].Text = "立式机";
+            e.Row.Cells[4].Text = "混合立式机";
     }
     protected void Button1_Click(object sender, EventArgs e)
     {

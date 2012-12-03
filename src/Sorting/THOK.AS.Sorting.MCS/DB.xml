@@ -5,7 +5,11 @@
     <Password Name="password" Value="65CED0851FFD283F" />
   </Connection>
   <Connection Name="ServerConnection" DatabaseType="SQLSERVER">
-    <ConnectionString Value="server=.;database=Logistics;uid=sa;" />
+    <ConnectionString Value="server=THOK-MONITOR2\SQLEXPRESS;database=Logistics_2;uid=sa;" />
     <Password Name="password" Value="65CED0851FFD283F" />
+  </Connection>
+  <Connection Name="OuterConnection" DatabaseType="DB2">
+    <ConnectionString Value="Server=10.73.68.33;database =wlctr;UID=ms;" />
+    <Password Name="Password" Value="A0E5B8AA619AE888" />
   </Connection>
 </Connections>

@@ -53,7 +53,7 @@ namespace THOK.AS.Sorting.Dao
         //立式机烟道信息
         public DataTable FindChannelInfo()
         {
-            string strSql = "SELECT A.CHANNELCODE,A.CHANNELTYPE, C.CIGARETTENAME,A.LEDGROUP,A.LEDNO,SUM(C.QUANTITY) as QUANTITY from "
+            string strSql = "SELECT DISTINCT A.CHANNELCODE,A.CHANNELTYPE, C.CIGARETTENAME,A.LEDGROUP,A.LEDNO,SUM(C.QUANTITY) as QUANTITY FROM "
                 + "AS_SC_ORDER C left join AS_SC_PALLETMASTER B on B.SORTNO=C.SORTNO "
                 + " left join AS_SC_CHANNELUSED A on C.CHANNELCODE=A.CHANNELCODE"
                 + " where A.CHANNELTYPE in ('2','5')"
@@ -79,7 +79,7 @@ namespace THOK.AS.Sorting.Dao
 
         public DataTable FindEmptyChannel()
         {
-            string sql = "SELECT CHANNELCODE, CHANNELNAME + ' ' + CASE CHANNELTYPE WHEN '2' THEN '立式机'   WHEN '5' THEN '立式机'  ELSE '通道机' END CHANNELNAME FROM AS_SC_CHANNELUSED WHERE QUANTITY=0 AND CHANNELTYPE IN ('2','3') ORDER BY CHANNELNAME";
+            string sql = "SELECT CHANNELCODE, CHANNELNAME + ' ' + CASE CHANNELTYPE WHEN '2' THEN '立式机'   WHEN '5' THEN '立式机'  ELSE '通道机' END CHANNELNAME FROM AS_SC_CHANNELUSED WHERE CHANNELTYPE IN ('2','3') ORDER BY CHANNELNAME";
             return ExecuteQuery(sql).Tables[0];
         }
 

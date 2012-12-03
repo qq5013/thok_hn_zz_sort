@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THOK.Optimize", "THOK.Optim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THOK.AS", "THOK.AS\THOK.AS.csproj", "{90EDBDA6-ECFE-4121-8748-97FC13A9196B}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\Solution_Sorting\SortingSystem\", "SortingSystem\", "{49D8B19E-C9D6-44FE-9430-9F286A34ADFB}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\Solution_Sorting_2\SortingSystem\", "SortingSystem\", "{49D8B19E-C9D6-44FE-9430-9F286A34ADFB}"
 	ProjectSection(WebsiteProperties) = preProject
 		ProjectReferences = "{90EDBDA6-ECFE-4121-8748-97FC13A9196B}|THOK.AS.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/SortingSystem"
@@ -22,7 +22,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\Solution_Sorting\Sorting
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "3156"
+		VWDPort = "4594"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallDB", "InstallDB\InstallDB.csproj", "{22D791D1-0011-4F92-A147-DD88B0CFD13A}"
