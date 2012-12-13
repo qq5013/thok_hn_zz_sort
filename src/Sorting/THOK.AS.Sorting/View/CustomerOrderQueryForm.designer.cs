@@ -33,7 +33,6 @@ namespace THOK.AS.Sorting.View
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.dgvMaster = new System.Windows.Forms.DataGridView();
             this.ORDERDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,18 +46,13 @@ namespace THOK.AS.Sorting.View
             this.PACKNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PACKAGE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvDetail = new System.Windows.Forms.DataGridView();
-            this.SORTNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ORDERNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ORDERID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.—Ãµ¿À≥–Ú = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CHANNELTYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CHANNELNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIGARETTECODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIGARETTENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QUANTITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btQuery = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.ORDERID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIGARETTECODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIGARETTENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QUANTITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlTool.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -230,12 +224,7 @@ namespace THOK.AS.Sorting.View
             this.dgvDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SORTNO,
-            this.ORDERNO,
             this.ORDERID,
-            this.—Ãµ¿À≥–Ú,
-            this.CHANNELTYPE,
-            this.CHANNELNAME,
             this.CIGARETTECODE,
             this.CIGARETTENAME,
             this.QUANTITY});
@@ -249,85 +238,6 @@ namespace THOK.AS.Sorting.View
             this.dgvDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetail.Size = new System.Drawing.Size(1041, 210);
             this.dgvDetail.TabIndex = 1;
-            // 
-            // SORTNO
-            // 
-            this.SORTNO.DataPropertyName = "SORTNO";
-            this.SORTNO.HeaderText = "¡˜ÀÆ∫≈";
-            this.SORTNO.Name = "SORTNO";
-            this.SORTNO.ReadOnly = true;
-            this.SORTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SORTNO.Width = 70;
-            // 
-            // ORDERNO
-            // 
-            this.ORDERNO.DataPropertyName = "ORDERNO";
-            this.ORDERNO.HeaderText = "øÕªß¡˜ÀÆ∫≈";
-            this.ORDERNO.Name = "ORDERNO";
-            this.ORDERNO.ReadOnly = true;
-            // 
-            // ORDERID
-            // 
-            this.ORDERID.DataPropertyName = "ORDERID";
-            this.ORDERID.HeaderText = "∂©µ•∫≈";
-            this.ORDERID.Name = "ORDERID";
-            this.ORDERID.ReadOnly = true;
-            this.ORDERID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // —Ãµ¿À≥–Ú
-            // 
-            this.—Ãµ¿À≥–Ú.DataPropertyName = "CHANNELADDRESS";
-            this.—Ãµ¿À≥–Ú.HeaderText = "—Ãµ¿À≥–Ú";
-            this.—Ãµ¿À≥–Ú.Name = "—Ãµ¿À≥–Ú";
-            this.—Ãµ¿À≥–Ú.ReadOnly = true;
-            // 
-            // CHANNELTYPE
-            // 
-            this.CHANNELTYPE.DataPropertyName = "CHANNELTYPE";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CHANNELTYPE.DefaultCellStyle = dataGridViewCellStyle5;
-            this.CHANNELTYPE.HeaderText = "—Ãµ¿¿‡–Õ";
-            this.CHANNELTYPE.Name = "CHANNELTYPE";
-            this.CHANNELTYPE.ReadOnly = true;
-            this.CHANNELTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CHANNELTYPE.Width = 80;
-            // 
-            // CHANNELNAME
-            // 
-            this.CHANNELNAME.DataPropertyName = "CHANNELNAME";
-            this.CHANNELNAME.HeaderText = "—Ãµ¿√˚≥∆";
-            this.CHANNELNAME.Name = "CHANNELNAME";
-            this.CHANNELNAME.ReadOnly = true;
-            this.CHANNELNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CHANNELNAME.Width = 80;
-            // 
-            // CIGARETTECODE
-            // 
-            this.CIGARETTECODE.DataPropertyName = "CIGARETTECODE";
-            this.CIGARETTECODE.HeaderText = "æÌ—Ã¥˙¬Î";
-            this.CIGARETTECODE.Name = "CIGARETTECODE";
-            this.CIGARETTECODE.ReadOnly = true;
-            this.CIGARETTECODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // CIGARETTENAME
-            // 
-            this.CIGARETTENAME.DataPropertyName = "CIGARETTENAME";
-            this.CIGARETTENAME.HeaderText = "æÌ—Ã√˚≥∆";
-            this.CIGARETTENAME.Name = "CIGARETTENAME";
-            this.CIGARETTENAME.ReadOnly = true;
-            this.CIGARETTENAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CIGARETTENAME.Width = 200;
-            // 
-            // QUANTITY
-            // 
-            this.QUANTITY.DataPropertyName = "QUANTITY";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.QUANTITY.DefaultCellStyle = dataGridViewCellStyle6;
-            this.QUANTITY.HeaderText = " ˝¡ø";
-            this.QUANTITY.Name = "QUANTITY";
-            this.QUANTITY.ReadOnly = true;
-            this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.QUANTITY.Width = 80;
             // 
             // btnRefresh
             // 
@@ -371,6 +281,42 @@ namespace THOK.AS.Sorting.View
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // ORDERID
+            // 
+            this.ORDERID.DataPropertyName = "ORDERID";
+            this.ORDERID.HeaderText = "∂©µ•∫≈";
+            this.ORDERID.Name = "ORDERID";
+            this.ORDERID.ReadOnly = true;
+            this.ORDERID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CIGARETTECODE
+            // 
+            this.CIGARETTECODE.DataPropertyName = "CIGARETTECODE";
+            this.CIGARETTECODE.HeaderText = "æÌ—Ã¥˙¬Î";
+            this.CIGARETTECODE.Name = "CIGARETTECODE";
+            this.CIGARETTECODE.ReadOnly = true;
+            this.CIGARETTECODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CIGARETTENAME
+            // 
+            this.CIGARETTENAME.DataPropertyName = "CIGARETTENAME";
+            this.CIGARETTENAME.HeaderText = "æÌ—Ã√˚≥∆";
+            this.CIGARETTENAME.Name = "CIGARETTENAME";
+            this.CIGARETTENAME.ReadOnly = true;
+            this.CIGARETTENAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CIGARETTENAME.Width = 200;
+            // 
+            // QUANTITY
+            // 
+            this.QUANTITY.DataPropertyName = "QUANTITY";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.QUANTITY.DefaultCellStyle = dataGridViewCellStyle5;
+            this.QUANTITY.HeaderText = " ˝¡ø";
+            this.QUANTITY.Name = "QUANTITY";
+            this.QUANTITY.ReadOnly = true;
+            this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.QUANTITY.Width = 80;
+            // 
             // CustomerOrderQueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -396,15 +342,6 @@ namespace THOK.AS.Sorting.View
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DataGridView dgvDetail;
         private System.Windows.Forms.DataGridView dgvMaster;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SORTNO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ORDERNO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ORDERID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn —Ãµ¿À≥–Ú;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CHANNELTYPE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CHANNELNAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CIGARETTECODE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CIGARETTENAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QUANTITY;
         private System.Windows.Forms.DataGridViewTextBoxColumn ORDERDATE;
         private System.Windows.Forms.DataGridViewTextBoxColumn ORDERID1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ROUTECODE;
@@ -415,5 +352,9 @@ namespace THOK.AS.Sorting.View
         private System.Windows.Forms.DataGridViewTextBoxColumn SORTNO1;
         private System.Windows.Forms.DataGridViewTextBoxColumn PACKNO;
         private System.Windows.Forms.DataGridViewTextBoxColumn PACKAGE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ORDERID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CIGARETTECODE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CIGARETTENAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QUANTITY;
     }
 }

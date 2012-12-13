@@ -54,7 +54,7 @@ namespace THOK.AS.Sorting.Dao
 
         public DataTable FindPackMaster()
         {
-            string sql = "SELECT ROW_NUMBER() OVER(ORDER BY MIN(SORTNO)) AS PACKNO,MIN(SORTNO) AS SORTNO ,ORDERDATE,ORDERID,ROUTECODE,ROUTENAME,CUSTOMERCODE,CUSTOMERNAME,SUM(QUANTITY) AS QUANTITY, " +
+            string sql = "SELECT ROW_NUMBER() OVER(ORDER BY MIN(SORTNO)) AS PACKNO,MIN(SORTNO) AS SORTNO ,ORDERDATE,ORDERID,ROUTECODE,ROUTENAME,CUSTOMERCODE,CUSTOMERNAME,SUM(QUANTITY) AS QUANTITY,SUM(QUANTITY) AS QUANTITY1, " +
                             "CASE WHEN SUM(PACKQUANTITY)=SUM(QUANTITY) THEN 'ÒÑ·¢ËÍ' ELSE 'Î´·¢ËÍ' END [PACKAGE]  " +
                             "FROM AS_SC_PALLETMASTER GROUP BY ORDERDATE,ROUTECODE,ROUTENAME,ORDERID,CUSTOMERCODE,CUSTOMERNAME ORDER BY SORTNO";
             return ExecuteQuery(sql).Tables[0];
@@ -62,7 +62,7 @@ namespace THOK.AS.Sorting.Dao
 
         public DataTable FindPackMaster(string [] filter)
         {
-            string sql = "SELECT B.* FROM " +
+            string sql = "SELECT B.*,SUM(C.QUANTITY) AS QUANTITY1 FROM " +
                             " (" +
 	                            " SELECT ROW_NUMBER() OVER(ORDER BY MIN(A.SORTNO)) AS PACKNO," +
 	                            " MIN(A.SORTNO) AS SORTNO ,A.ORDERDATE,A.ORDERID,A.ROUTECODE,A.ROUTENAME," +
@@ -105,6 +105,13 @@ namespace THOK.AS.Sorting.Dao
             return ExecuteQuery(sql).Tables[0];
         }
 
+        public DataTable FindPackDetailAll()
+        {
+            string sql =@"SELECT ORDERID, CIGARETTECODE,CIGARETTENAME, SUM(QUANTITY) QUANTITY
+                            FROM AS_SC_ORDER
+                              GROUP BY ORDERID,CIGARETTECODE,CIGARETTENAME ORDER BY CIGARETTENAME";
+            return ExecuteQuery(sql).Tables[0];
+        }
         public DataTable FindSortMaster()
         {
             string sql = "SELECT TOP 1 * FROM AS_SC_PALLETMASTER WHERE STATUS=0 ORDER BY SORTNO";
@@ -358,8 +365,14 @@ namespace THOK.AS.Sorting.Dao
 
         public DataTable SumFromOrderId(string orderid)
         {
-            string sql = string.Format("SELECT CUSTOMERCODE,FINISHEDTIME,SUM(QUANTITY) AS QUANTITY FROM AS_SC_PALLETMASTER WHERE ORDERID='{0}' GROUP BY CUSTOMERCODE,FINISHEDTIME", orderid);
+            string sql = string.Format("SELECT CUSTOMERCODE,SUM(QUANTITY) AS QUANTITY FROM AS_SC_PALLETMASTER WHERE ORDERID='{0}' GROUP BY CUSTOMERCODE", orderid);
             return ExecuteQuery(sql).Tables[0];
+        }
+
+        public string GetMaxSortNoByOrderID(string orderid)
+        {
+            string sql = string.Format("SELECT CASE WHEN MAX(SORTNO) IS NULL THEN '0' ELSE MAX(SORTNO) END FROM AS_SC_PALLETMASTER WHERE ORDERID ={0}", orderid);
+            return ExecuteScalar(sql).ToString();
         }
     }
 }

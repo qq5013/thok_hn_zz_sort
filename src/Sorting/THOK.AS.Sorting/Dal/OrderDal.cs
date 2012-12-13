@@ -149,5 +149,14 @@ namespace THOK.AS.Sorting.Dal
                 return orderDao.FindMaxSortedMaster();
             }
         }
+
+        public DataTable GetPackDetailAll()
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindPackDetailAll();
+            }
+        }
     }
 }

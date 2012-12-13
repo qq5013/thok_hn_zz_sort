@@ -177,7 +177,66 @@ namespace THOK.AS.Sorting.Dao
         //        }
         #endregion
 
-        internal void UpData(string strInsert)
+        public DataTable FindData(string sql)
+        {
+            return ExecuteQuery(sql).Tables[0];
+        }
+
+        public DataTable FindOrder(string date)
+        {
+            string sql = string.Format("SELECT ORDER_ID,SORT_TYPE,SORTING_CODE,DIST_BILL_ID,SORT_BILL_ID,CUST_CODE, " +
+                "'{0}' + SUBSTRING(SORT_BEGIN_TIME,9,6) SORT_BEGIN_TIME,'{0}' + SUBSTRING(SORT_END_TIME,9,6) SORT_END_TIME,BRAND_QUANTITY,UP_STATUS, " +
+                "'{0}' + SUBSTRING(UPDATE_DATE,9,6) UPDATE_DATE FROM DWV_DPS_SORT_STATUS ORDER BY ORDER_ID", date);
+            return ExecuteQuery(sql).Tables[0];
+        }
+
+        public void Insert(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
+                THOK.Util.SqlCreate sqlCreate = new THOK.Util.SqlCreate("DWV_DPS_SORT_STATUS", THOK.Util.SqlType.INSERT);
+                sqlCreate.AppendQuote("ORDER_ID", row["ORDER_ID"]);
+                sqlCreate.AppendQuote("SORT_TYPE", row["SORT_TYPE"]);
+                sqlCreate.AppendQuote("SORTING_CODE", row["SORTING_CODE"]);
+                sqlCreate.AppendQuote("DIST_BILL_ID", row["DIST_BILL_ID"]);
+                sqlCreate.AppendQuote("SORT_BILL_ID", row["SORT_BILL_ID"]);
+                sqlCreate.AppendQuote("CUST_CODE", row["CUST_CODE"]);
+                sqlCreate.AppendQuote("SORT_BEGIN_TIME", row["SORT_BEGIN_TIME"]);
+                sqlCreate.AppendQuote("SORT_END_TIME", row["SORT_END_TIME"]);
+                sqlCreate.Append("BRAND_QUANTITY", row["BRAND_QUANTITY"]);
+                sqlCreate.AppendQuote("UP_STATUS", row["UP_STATUS"]);
+                sqlCreate.AppendQuote("UPDATE_DATE", row["UPDATE_DATE"]);
+                ExecuteNonQuery(sqlCreate.GetSQL());
+            }
+        }
+
+        public void Insert(DataRow row)
+        {
+
+            THOK.Util.SqlCreate sqlCreate = new THOK.Util.SqlCreate("DWV_DPS_SORT_STATUS", THOK.Util.SqlType.INSERT);
+            sqlCreate.AppendQuote("ORDER_ID", row["ORDER_ID"]);
+            sqlCreate.AppendQuote("SORT_TYPE", row["SORT_TYPE"]);
+            sqlCreate.AppendQuote("SORTING_CODE", row["SORTING_CODE"]);
+            sqlCreate.AppendQuote("CUST_CODE", row["CUST_CODE"]);
+            sqlCreate.AppendQuote("DIST_BILL_ID", row["DIST_BILL_ID"]);
+            sqlCreate.AppendQuote("SORT_BILL_ID", row["SORT_BILL_ID"]);
+            sqlCreate.AppendQuote("SORT_BEGIN_TIME", row["SORT_BEGIN_TIME"]);
+            sqlCreate.AppendQuote("SORT_END_TIME", row["SORT_END_TIME"]);
+            sqlCreate.Append("BRAND_QUANTITY", row["BRAND_QUANTITY"]);
+            sqlCreate.AppendQuote("UP_STATUS", row["UP_STATUS"]);
+            sqlCreate.AppendQuote("UPDATE_DATE", row["UPDATE_DATE"]);
+            System.Diagnostics.Debug.WriteLine(sqlCreate.GetSQL());
+            ExecuteNonQuery(sqlCreate.GetSQL());
+        }
+
+        public void Delete(string orderID)
+        {
+            string sql = string.Format("DELETE FROM DWV_DPS_SORT_STATUS WHERE ORDER_ID='{0}'", orderID);
+            System.Diagnostics.Debug.WriteLine(sql);
+            ExecuteNonQuery(sql);
+        }
+
+        public void UpData(string strInsert)
         {
             ExecuteNonQuery(strInsert);
         }
