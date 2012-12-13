@@ -47,7 +47,7 @@ public partial class Code_SortingManage_Default : BasePage
     /// <param name="e"></param>
     protected void btnStart_Click(object sender, EventArgs e)
     {
-        if (txtOrderDate.Text.Trim().Length != 0)
+        if (txtOrderDate.Text.Trim().Length != 0 && Session["OptimizeStatus"] == null)
         {
             Session["OptimizeStatus"] = "<root><status>Waiting</status><message></message></root>";
             int batchNo = Convert.ToInt32(ddlBatchNo.SelectedItem.Text);
