@@ -1,0 +1,1 @@
+把DB.xml文件拷贝到c:\windows\System32目录下
