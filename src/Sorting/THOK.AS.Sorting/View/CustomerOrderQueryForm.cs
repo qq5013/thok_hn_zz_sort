@@ -42,7 +42,7 @@ namespace THOK.AS.Sorting.View
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             masterTable = orderDal.GetPackMaster();
-            detailTable = orderDal.GetPackDetail();
+            detailTable = orderDal.GetPackDetailAll();
             dgvMaster.DataSource = masterTable;
             dgvDetail.DataSource = detailTable;
         }

@@ -79,7 +79,7 @@ namespace THOK.AS.Schedule
                             if (OnSchedule != null)
                                 OnSchedule(this, new ScheduleEventArgs(1, "数据清除与下载", 8, 14));
 
-                            //ClearSchedule(orderDate, batchNo);
+                            ClearSchedule1(orderDate, batchNo);
 
                             //下载区域表
                             AreaDao areaDao = new AreaDao();
@@ -196,7 +196,7 @@ namespace THOK.AS.Schedule
             }
             catch (Exception e)
             {
-                ClearSchedule(orderDate, batchNo);
+                ClearSchedule1(orderDate, batchNo);
                 if (OnSchedule != null)
                     OnSchedule(this, new ScheduleEventArgs(OptimizeStatus.ERROR, e.Message));
             }
@@ -213,9 +213,56 @@ namespace THOK.AS.Schedule
             {
                 //AS_BI_BATCH
                 BatchDao batchDao = new BatchDao();
-                //batchDao.UpdateExecuter("0", "0", orderDate, batchNo);
-                //batchDao.UpdateIsValid(orderDate, batchNo, "0");
+                batchDao.UpdateExecuter("0", "0", orderDate, batchNo);
+                batchDao.UpdateIsValid(orderDate, batchNo, "0");
+               
+
+                //AS_SC_CHANNELUSED
+                ChannelScheduleDao csDao = new ChannelScheduleDao();
+                csDao.DeleteSchedule(orderDate, batchNo);
+
+                //AS_SC_LINE
+                LineScheduleDao lsDao = new LineScheduleDao();
+                lsDao.DeleteSchedule(orderDate, batchNo);
+
+                //AS_SC_PALLETMASTER,AS_SC_PALLETDETAIL,AS_SC_ORDER
+                OrderScheduleDao osDao = new OrderScheduleDao();
+                osDao.DeleteSchedule(orderDate, batchNo);
+
+                //AS_I_ORDERDETAIL，AS_I_ORDERMASTER
+                OrderDao orderDao = new OrderDao();
+                orderDao.DeleteOrder(orderDate, batchNo);
+
+                //AS_SC_STOCKMIXCHANNEL
+                StockChannelDao scDao = new StockChannelDao();
+                scDao.DeleteSchedule(orderDate, batchNo);
+
+                //AS_SC_SUPPLY
+                SupplyDao supplyDao = new SupplyDao();
+                supplyDao.DeleteSchedule(orderDate, batchNo);
+
+                //AS_SC_HANDLESUPPLY
+                HandleSupplyDao handleSupplyDao = new HandleSupplyDao();
+                handleSupplyDao.DeleteHandleSupply(orderDate, batchNo);
+
                 batchDao.deleteBatch(orderDate, batchNo);
+            }
+        }
+
+        /// <summary>
+        /// 清除指定批次数据1
+        /// </summary>
+        /// <param name="orderDate"></param>
+        /// <param name="batchNo"></param>
+        public void ClearSchedule1(string orderDate, int batchNo)
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                //AS_BI_BATCH
+                BatchDao batchDao = new BatchDao();
+                batchDao.UpdateExecuter("0", "0", orderDate, batchNo);
+                batchDao.UpdateIsValid(orderDate, batchNo, "0");
+                //batchDao.deleteBatch(orderDate, batchNo);
 
                 //AS_SC_CHANNELUSED
                 ChannelScheduleDao csDao = new ChannelScheduleDao();

@@ -31,22 +31,12 @@ namespace THOK.AS.Sorting.View
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.dgvMaster = new System.Windows.Forms.DataGridView();
-            this.Column1 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column2 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column5 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column6 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column7 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column8 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column3 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column10 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsMaster = new System.Windows.Forms.BindingSource(this.components);
             this.dgvDetail = new System.Windows.Forms.DataGridView();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +48,17 @@ namespace THOK.AS.Sorting.View
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnClean = new System.Windows.Forms.Button();
             this.btQuery = new System.Windows.Forms.Button();
+            this.Column1 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column2 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column5 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column6 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column7 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column8 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column3 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.quantity2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlTool.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -130,6 +131,7 @@ namespace THOK.AS.Sorting.View
             this.Column7,
             this.Column8,
             this.Column3,
+            this.quantity2,
             this.Column10,
             this.Column4,
             this.Column9});
@@ -146,90 +148,6 @@ namespace THOK.AS.Sorting.View
             this.dgvMaster.TabIndex = 0;
             this.dgvMaster.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaster_RowEnter);
             this.dgvMaster.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvMaster_DataError);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ORDERDATE";
-            this.Column1.FilteringEnabled = false;
-            this.Column1.HeaderText = "订单日期";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "ORDERID";
-            this.Column2.FilteringEnabled = false;
-            this.Column2.HeaderText = "订单号";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 80;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "ROUTECODE";
-            this.Column5.FilteringEnabled = false;
-            this.Column5.HeaderText = "线路代码";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "ROUTENAME";
-            this.Column6.FilteringEnabled = false;
-            this.Column6.HeaderText = "线路名称";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "CUSTOMERCODE";
-            this.Column7.FilteringEnabled = false;
-            this.Column7.HeaderText = "客户代码";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "CUSTOMERNAME";
-            this.Column8.FilteringEnabled = false;
-            this.Column8.HeaderText = "客户名称";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "QUANTITY";
-            this.Column3.FilteringEnabled = false;
-            this.Column3.HeaderText = "总数量";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column3.Width = 80;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "PACKAGE";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column10.FilteringEnabled = false;
-            this.Column10.HeaderText = "包装状态";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "SORTNO";
-            this.Column4.HeaderText = "分拣流水号";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "PackNo";
-            this.Column9.HeaderText = "客户顺序号";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
             // 
             // dgvDetail
             // 
@@ -360,6 +278,97 @@ namespace THOK.AS.Sorting.View
             this.btQuery.UseVisualStyleBackColor = true;
             this.btQuery.Click += new System.EventHandler(this.btQuery_Click);
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ORDERDATE";
+            this.Column1.FilteringEnabled = false;
+            this.Column1.HeaderText = "订单日期";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "ORDERID";
+            this.Column2.FilteringEnabled = false;
+            this.Column2.HeaderText = "订单号";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 80;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "ROUTECODE";
+            this.Column5.FilteringEnabled = false;
+            this.Column5.HeaderText = "线路代码";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "ROUTENAME";
+            this.Column6.FilteringEnabled = false;
+            this.Column6.HeaderText = "线路名称";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "CUSTOMERCODE";
+            this.Column7.FilteringEnabled = false;
+            this.Column7.HeaderText = "客户代码";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "CUSTOMERNAME";
+            this.Column8.FilteringEnabled = false;
+            this.Column8.HeaderText = "客户名称";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 150;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "QUANTITY";
+            this.Column3.FilteringEnabled = false;
+            this.Column3.HeaderText = "总数量";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column3.Width = 80;
+            // 
+            // quantity2
+            // 
+            this.quantity2.DataPropertyName = "quantity1";
+            this.quantity2.HeaderText = "卷烟数量";
+            this.quantity2.Name = "quantity2";
+            this.quantity2.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "PACKAGE";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column10.FilteringEnabled = false;
+            this.Column10.HeaderText = "包装状态";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "SORTNO";
+            this.Column4.HeaderText = "分拣流水号";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "PackNo";
+            this.Column9.HeaderText = "客户顺序号";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
             // PackQueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -392,6 +401,7 @@ namespace THOK.AS.Sorting.View
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.Button btQuery;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column1;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column2;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column5;
@@ -399,9 +409,9 @@ namespace THOK.AS.Sorting.View
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column7;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column8;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantity2;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.Button btQuery;
     }
 }

@@ -38,7 +38,7 @@
     <Process Name="SynchroLedProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.SynchroLedProcess">
       <Item ServiceName="SortPLC" ItemName="EmptyErr" />
     </Process>
-	<Process Name="SortStatusProcess" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.SortStatusProcess">
+	<Process Name="SortStatus" Type="THOK.AS.Sorting.dll, THOK.AS.Sorting.Process.SortStatusProcess">
 		<Item ServiceName="SortPLC" ItemName="SortStatus" />
 	</Process>
   </Processes>
