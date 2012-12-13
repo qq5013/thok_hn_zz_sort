@@ -1,21 +1,18 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Code_SortingManage_Default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>无标题页</title>
     <link href="../../css/op.css" rel="Stylesheet" />
     <link href="../../css/css.css" rel="Stylesheet" />
-
     <script language="JavaScript" type="text/javascript" src="../../JScript/ajax.js"></script>
-
     <script language="JavaScript" type="text/javascript" src="../../JScript/setday9.js"></script>
-
     <script language="JavaScript" type="text/javascript" src="../../JScript/Check.js"></script>
-
+    
 </head>
 <body>
-
     <script language="JavaScript" type="text/javascript">
         var ajaxOBJSubmit = new CallBackObject(OnComplete);
         window.setInterval("stateRequest()", 500);
@@ -66,8 +63,9 @@
                 document.form1.btnStart.disabled = false;
                 document.form1.btnStop.disabled = true;
                 document.form1.btnExit.disabled = false;   
+                
                 var message = xml.getElementsByTagName("message")[0].text;
-                alert("订单数据处理完成，总数量："+message+"条");                 
+                alert("订单数据处理完成，总数量："+message+"条");                     
             }
             else if (status == "SwitchView")
             {
@@ -82,231 +80,193 @@
         }
         
     </script>
-
     <form id="form1" runat="server">
-        <asp:Panel ID="pnlMain" runat="server" Height="80px" Width="100%">
+      <asp:Panel ID="pnlMain" runat="server" Height="80px" Width="100%">
             <asp:Panel ID="pnlTool" runat="server" Height="5px" Width="100%">
                 <asp:LinkButton ID="lnkBtnGetBatchNo" runat="server" OnClick="lnkBtnGetBatchNo_Click"></asp:LinkButton>
                 <asp:LinkButton ID="lbtnSwitch" runat="server" OnClick="lbtnSwitch_Click"></asp:LinkButton>
             </asp:Panel>
-            <table width="460" height="50px" style="background-color: #c1d9f3;" align="center">
-                <tr style="padding: 20 10 10 10">
-                    <td style="width: 60px;">
-                        &nbsp;&nbsp;分拣日期</td>
-                    <td style="width: 120px;">
-                        <asp:TextBox ID="txtOrderDate" runat="server" CssClass="TextBox" Width="80" onpropertychange="GetBatchNo();"></asp:TextBox>
-                        <input type="button" class="ButtonDate" onclick="setday(document.getElementById('txtOrderDate'))"
-                            id="Button1" />
-                    </td>
-                    <td style="width: 35px;">
-                        批次</td>
-                    <td style="width: 80px;">
-                        <asp:DropDownList ID="ddlBatchNo" runat="server">
-                        </asp:DropDownList></td>
-                    <td style="">
-                    </td>
+            <table width="460" height="50px" style="background-color:#c1d9f3;" align="center">
+                <tr style="padding:20 10 10 10">
+                  <td style="width:60px;">&nbsp;&nbsp;分拣日期</td>
+                  <td style="width:120px;">
+                     <asp:TextBox ID="txtOrderDate" runat="server" CssClass="TextBox" Width="80"  onpropertychange="GetBatchNo();"></asp:TextBox>
+                     <input type="button"  class="ButtonDate" onclick="setday(document.getElementById('txtOrderDate'))" id="Button1" />
+                  </td>
+                  <td style="width:35px;">批次</td>
+                  <td style="width:80px;">
+                      <asp:DropDownList ID="ddlBatchNo" runat="server">
+                          
+                      </asp:DropDownList></td>
+                      <td style=""></td>
                 </tr>
-            </table>
-            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid;
-                border-left: silver 1px solid;" align="center">
+             </table>
+            
+            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid; border-left: silver 1px solid;" align="center">
                 <tr style="display: block; width: 100%">
                     <td style="width: 480px; height: 41px;">
                         <table cellspacing="3" style="width: 100%; border-bottom: #d8dfe7 1px dashed">
-                            <tr style="display: block; width: 100%">
-                                <td colspan="4" style="padding-left: 3em; height: 18px">
-                                    数据提取与备份</td>
+                           <tr style="display: block; width: 100%">
+                                <td colspan="4" style="padding-left: 3em; height: 18px">数据提取与备份</td>
                             </tr>
                             <tr style="color: #333300">
-                                <td style="width: 54px; height: 24px;">
-                                </td>
+                                <td style="width: 54px; height: 24px;"></td>
                                 <td style="width: 290px; height: 24px;">
-                                    <div id="div1" style="border-right: lavender 1px solid; border-top: lavender 1px solid;
-                                        left: 332px; border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid;
-                                        top: 97px; height: 5px">
-                                        <img id="img1" style="background-image: url(../../images/process/process_bar.gif);
-                                            width: 0px; height: 14px; left: 1px;" /></div>
+                                    <div id="div1" style="border-right: lavender 1px solid; border-top: lavender 1px solid; left: 332px;
+                                                border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid; top: 97px; height: 5px">
+                                        <img id="img1" style="background-image: url(../../images/process/process_bar.gif); width: 0px; height: 14px; left: 1px;"/></div>
                                 </td>
-                                <td style="width: 60px; height: 24px;">
-                                </td>
+                                <td style="width: 60px; height: 24px;"></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid;
-                border-left: silver 1px solid;" align="center">
+            
+            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid; border-left: silver 1px solid;"  align="center">
                 <tr style="display: block; width: 100%">
                     <td style="width: 480px; height: 41px;">
                         <table cellspacing="3" style="width: 100%; border-bottom: #d8dfe7 1px dashed">
-                            <tr style="display: block; width: 100%">
-                                <td colspan="4" style="padding-left: 3em; height: 18px">
-                                    线路优化</td>
+                           <tr style="display: block; width: 100%">
+                                <td colspan="4" style="padding-left: 3em; height: 18px">线路优化</td>
                             </tr>
                             <tr style="color: #333300">
-                                <td style="width: 54px; height: 24px;">
-                                </td>
+                                <td style="width: 54px; height: 24px;"></td>
                                 <td style="width: 290px; height: 24px;">
-                                    <div id="div2" style="border-right: lavender 1px solid; border-top: lavender 1px solid;
-                                        left: 332px; border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid;
-                                        top: 97px; height: 5px">
-                                        <img id="img2" style="background-image: url(../../images/process/process_bar.gif);
-                                            width: 0px; height: 14px; left: 1px;" /></div>
+                                    <div id="div2" style="border-right: lavender 1px solid; border-top: lavender 1px solid; left: 332px;
+                                                border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid; top: 97px; height: 5px">
+                                        <img id="img2" style="background-image: url(../../images/process/process_bar.gif); width: 0px; height: 14px; left: 1px;"/></div>
                                 </td>
-                                <td style="width: 60px; height: 24px;">
+                                <td style="width: 60px; height: 24px;"></td>
+                            </tr>
+                         </table>
+                    </td>
+                </tr>
+            </table>
+            
+            
+            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid; border-left: silver 1px solid;"  align="center">
+                <tr style="display: block; width: 100%">
+                    <td style="width: 480px; height: 41px;">
+                        <table cellspacing="3" style="width: 100%; border-bottom: #d8dfe7 1px dashed">
+                           <tr style="display: block; width: 100%">
+                                <td colspan="4" style="padding-left: 3em; height: 18px">备货烟道优化</td>
+                            </tr>
+                            <tr style="color: #333300">
+                                <td style="width: 54px; height: 24px;"></td>
+                                <td style="width: 290px; height: 24px;">
+                                    <div id="div3" style="border-right: lavender 1px solid; border-top: lavender 1px solid; left: 332px;
+                                                border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid; top: 97px; height: 5px">
+                                        <img id="img3" style="background-image: url(../../images/process/process_bar.gif); width: 0px; height: 14px; left: 1px;"/></div>
                                 </td>
+                                <td style="width: 60px; height: 24px;"></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid;
-                border-left: silver 1px solid;" align="center">
+            
+            
+            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid; border-left: silver 1px solid;"  align="center">
                 <tr style="display: block; width: 100%">
                     <td style="width: 480px; height: 41px;">
                         <table cellspacing="3" style="width: 100%; border-bottom: #d8dfe7 1px dashed">
-                            <tr style="display: block; width: 100%">
-                                <td colspan="4" style="padding-left: 3em; height: 18px">
-                                    备货烟道优化</td>
+                           <tr style="display: block; width: 100%">
+                                <td colspan="4" style="padding-left: 3em; height: 18px">生产线烟道优化</td>
                             </tr>
                             <tr style="color: #333300">
-                                <td style="width: 54px; height: 24px;">
-                                </td>
+                                <td style="width: 54px; height: 24px;"></td>
                                 <td style="width: 290px; height: 24px;">
-                                    <div id="div3" style="border-right: lavender 1px solid; border-top: lavender 1px solid;
-                                        left: 332px; border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid;
-                                        top: 97px; height: 5px">
-                                        <img id="img3" style="background-image: url(../../images/process/process_bar.gif);
-                                            width: 0px; height: 14px; left: 1px;" /></div>
+                                    <div id="div4" style="border-right: lavender 1px solid; border-top: lavender 1px solid; left: 332px;
+                                                border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid; top: 97px; height: 5px">
+                                        <img id="img4" style="background-image: url(../../images/process/process_bar.gif); width: 0px; height: 14px; left: 1px;"/></div>
                                 </td>
-                                <td style="width: 60px; height: 24px;">
-                                </td>
+                                <td style="width: 60px; height: 24px;"></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid;
-                border-left: silver 1px solid;" align="center">
+            
+            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid; border-left: silver 1px solid;"  align="center">
                 <tr style="display: block; width: 100%">
                     <td style="width: 480px; height: 41px;">
                         <table cellspacing="3" style="width: 100%; border-bottom: #d8dfe7 1px dashed">
-                            <tr style="display: block; width: 100%">
-                                <td colspan="4" style="padding-left: 3em; height: 18px">
-                                    生产线烟道优化</td>
+                           <tr style="display: block; width: 100%">
+                                <td colspan="4" style="padding-left: 3em; height: 18px">订单优化</td>
                             </tr>
                             <tr style="color: #333300">
-                                <td style="width: 54px; height: 24px;">
-                                </td>
-                                <td style="width: 290px; height: 24px;">
-                                    <div id="div4" style="border-right: lavender 1px solid; border-top: lavender 1px solid;
-                                        left: 332px; border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid;
-                                        top: 97px; height: 5px">
-                                        <img id="img4" style="background-image: url(../../images/process/process_bar.gif);
-                                            width: 0px; height: 14px; left: 1px;" /></div>
-                                </td>
-                                <td style="width: 60px; height: 24px;">
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid;
-                border-left: silver 1px solid;" align="center">
-                <tr style="display: block; width: 100%">
-                    <td style="width: 480px; height: 41px;">
-                        <table cellspacing="3" style="width: 100%; border-bottom: #d8dfe7 1px dashed">
-                            <tr style="display: block; width: 100%">
-                                <td colspan="4" style="padding-left: 3em; height: 18px">
-                                    订单优化</td>
-                            </tr>
-                            <tr style="color: #333300">
-                                <td style="width: 54px; height: 26px;">
-                                </td>
+                                <td style="width: 54px; height: 26px;"></td>
                                 <td style="width: 290px; height: 26px;">
-                                    <div id="div6" style="border-right: lavender 1px solid; border-top: lavender 1px solid;
-                                        left: 332px; border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid;
-                                        top: 97px; height: 5px">
-                                        <img id="img5" style="background-image: url(../../images/process/process_bar.gif);
-                                            width: 0px; height: 14px; left: 1px;" /></div>
+                                    <div id="div6" style="border-right: lavender 1px solid; border-top: lavender 1px solid; left: 332px;
+                                                border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid; top: 97px; height: 5px">
+                                        <img id="img5" style="background-image: url(../../images/process/process_bar.gif); width: 0px; height: 14px; left: 1px;"/></div>
                                 </td>
-                                <td style="width: 60px; height: 26px;">
-                                </td>
+                                <td style="width: 60px; height: 26px;"></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid;
-                border-left: silver 1px solid;" align="center">
+            
+            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid; border-left: silver 1px solid;"  align="center">
                 <tr style="display: block; width: 100%">
                     <td style="width: 480px; height: 41px;">
                         <table cellspacing="3" style="width: 100%; border-bottom: #d8dfe7 1px dashed">
-                            <tr style="display: block; width: 100%">
-                                <td colspan="4" style="padding-left: 3em; height: 18px">
-                                    混合烟道手工补货优化</td>
+                           <tr style="display: block; width: 100%">
+                                <td colspan="4" style="padding-left: 3em; height: 18px">混合烟道手工补货优化</td>
                             </tr>
                             <tr style="color: #333300">
-                                <td style="width: 54px; height: 26px;">
-                                </td>
+                                <td style="width: 54px; height: 26px;"></td>
                                 <td style="width: 290px; height: 26px;">
-                                    <div id="div7" style="border-right: lavender 1px solid; border-top: lavender 1px solid;
-                                        left: 332px; border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid;
-                                        top: 97px; height: 5px">
-                                        <img id="img6" style="background-image: url(../../images/process/process_bar.gif);
-                                            width: 0px; height: 14px; left: 1px;" /></div>
+                                    <div id="div7" style="border-right: lavender 1px solid; border-top: lavender 1px solid; left: 332px;
+                                                border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid; top: 97px; height: 5px">
+                                        <img id="img6" style="background-image: url(../../images/process/process_bar.gif); width: 0px; height: 14px; left: 1px;"/></div>
                                 </td>
-                                <td style="width: 60px; height: 26px;">
-                                </td>
+                                <td style="width: 60px; height: 26px;"></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid;
-                border-left: silver 1px solid;" align="center">
+            
+            <table cellpadding="0" cellspacing="5" style="width: 460px; border-right: silver 1px solid; border-left: silver 1px solid;"  align="center">
                 <tr style="display: block; width: 100%">
                     <td style="width: 480px; height: 46px;">
                         <table cellspacing="3" style="width: 100%;">
-                            <tr style="display: block; width: 100%">
-                                <td colspan="4" style="padding-left: 3em; height: 18px">
-                                    补货优化</td>
+                           <tr style="display: block; width: 100%">
+                                <td colspan="4" style="padding-left: 3em; height: 18px">补货优化</td>
                             </tr>
                             <tr style="color: #333300">
-                                <td style="width: 60px; height: 33px;">
-                                </td>
+                                <td style="width: 60px; height: 33px;"></td>
                                 <td style="width: 290px; height: 33px;">
-                                    <div id="div5" style="border-right: lavender 1px solid; border-top: lavender 1px solid;
-                                        left: 332px; border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid;
-                                        top: 97px; height: 5px">
-                                        <img id="img7" style="background-image: url(../../images/process/process_bar.gif);
-                                            width: 0px; height: 14px; left: 1px;" /></div>
+                                    <div id="div5" style="border-right: lavender 1px solid; border-top: lavender 1px solid; left: 332px;
+                                                border-left: lavender 1px solid; width: 289px; border-bottom: lavender 1px solid; top: 97px; height: 5px">
+                                        <img id="img7" style="background-image: url(../../images/process/process_bar.gif); width: 0px; height: 14px; left: 1px;"/></div>
                                 </td>
-                                <td style="width: 60px; height: 33px;">
-                                </td>
+                                <td style="width: 60px; height: 33px;"></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-            <table style="border-top: lightgrey 1px solid; width: 460px; height: 40px; border-bottom: lightgrey 1px solid;
-                border-right: lightgrey 1px solid; border-left: lightgrey 1px solid;" align="center">
+            <table style="border-top: lightgrey 1px solid; width: 460px; height: 40px; border-bottom: lightgrey 1px solid; border-right: lightgrey 1px solid; border-left: lightgrey 1px solid;"  align="center">
                 <tr>
-                    <td style="padding-left: 100px; padding-bottom: 15px; padding-top: 15px; height: 45px;
-                        width: 40px;">
+                    <td style="padding-left: 100px; padding-bottom: 15px; padding-top: 15px; height: 45px; width: 40px;">
                         <asp:Button ID="btnStart" runat="server" CssClass="ButtonStart" Text="开始" OnClick="btnStart_Click" /></td>
                     <td style="width: 117px; height: 45px" align="center">
-                        <asp:Button ID="btnStop" runat="server" CssClass="ButtonStop" Enabled="False" Text="终止"
-                            OnClick="btnStop_Click" /></td>
+                    
+                    <asp:Button ID="btnStop" runat="server" CssClass="ButtonStop"  Enabled="False" Text="终止" OnClick="btnStop_Click" /></td>
                     <td style="height: 45px">
-                        <asp:Button ID="btnExit" runat="server" Text="退出" CssClass="ButtonExit2" OnClick="btnExit_Click" /></td>
+                    
+                    <asp:Button ID="btnExit" runat="server" Text="退出" CssClass="ButtonExit2" OnClick="btnExit_Click" /></td>
                 </tr>
-            </table>
-        </asp:Panel>
+            </table>     
+         </asp:Panel>
         <asp:Panel ID="pnlRoute" runat="server" Height="50px" Width="100%" Visible="False">
-            <asp:GridView ID="gvRoute" runat="server" Width="100%" AutoGenerateColumns="False"
-                OnRowDataBound="gvRoute_RowDataBound">
+            <asp:GridView ID="gvRoute" runat="server" Width="100%" AutoGenerateColumns="False" OnRowDataBound="gvRoute_RowDataBound">
                 <RowStyle BackColor="White" Height="28px"></RowStyle>
+
                 <HeaderStyle CssClass="GridHeader"></HeaderStyle>
                 <AlternatingRowStyle BackColor="#E8F4FF"></AlternatingRowStyle>
                 <Columns>
@@ -315,7 +275,7 @@
                         <HeaderStyle Width="30px" />
                     </asp:TemplateField>
                     <asp:BoundField DataField="ROUTECODE" HeaderText="线路代码">
-                        <HeaderStyle Width="80px"/>
+                        <HeaderStyle Width="80px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="ROUTENAME" HeaderText="线路名称" />
                     <asp:BoundField DataField="AREACODE" HeaderText="区域代码">
