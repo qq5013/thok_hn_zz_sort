@@ -227,6 +227,9 @@ namespace THOK.AS.Dao
 
             sql = string.Format("DELETE FROM AS_I_ORDERMASTER WHERE ORDERDATE = '{0}' AND BATCHNO = {1}", orderDate, batchNo);
             ExecuteNonQuery(sql);
+
+            sql = string.Format("DELETE FROM AS_I_ORDERMASTER WHERE ORDERDATE != '{0}'", orderDate);
+            ExecuteNonQuery(sql);
         }
 
         public void DeleteNoUseOrder(string orderDate, int batchNo, string routes)
