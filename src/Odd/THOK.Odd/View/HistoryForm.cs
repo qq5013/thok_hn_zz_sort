@@ -45,7 +45,7 @@ namespace THOK.Odd.View
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            DataTable masterTable = orderDal.GetOrderMaster();
+            DataTable masterTable = orderDal.GetHistoryOrderMaster();
             Printer printer = new Printer();
             for (int i = dgvMaster.SelectedRows.Count - 1; i >= 0; i--)
             {

@@ -17,7 +17,14 @@ namespace THOK.Odd.Dal
                 return orderDao.FindMaster();
             }
         }
-
+        public DataTable GetHistoryOrderMaster()
+        {
+            using (PersistentManager pm = new PersistentManager())
+            {
+                OrderDao orderDao = new OrderDao();
+                return orderDao.FindHistoryMaster();
+            }
+        }
         public DataTable GetRouteQuantity()
         {
             using (PersistentManager pm = new PersistentManager())
@@ -54,12 +61,12 @@ namespace THOK.Odd.Dal
             }
         }
 
-        public DataTable HistoryData(string orderDate,string batchNo)
+        public DataTable HistoryData(string orderDate, string batchNo)
         {
             using (PersistentManager pm = new PersistentManager())
             {
                 OrderDao orderDao = new OrderDao();
-                return orderDao.FindHistoryData(orderDate,batchNo);
+                return orderDao.FindHistoryData(orderDate, batchNo);
             }
         }
         public DataTable DetailTable(string orderDate, string batchNo)
